@@ -1,0 +1,204 @@
+.App {
+  text-align: center;
+  overflow: scroll;
+  font-family: "VCR";
+  flex-direction: row;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 5vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.arrow {
+  animation: arrowMover 1s;
+  animation-iteration-count: infinite;
+}
+
+.bio {
+  max-width: 125vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding-left: 1ch;
+  font-family: "VCR";
+}
+.body {
+  min-height: 25vh;
+  max-width: 150vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding: 1ch;
+  font-family: "VCR";
+}
+
+.contact-me {
+  min-height: 25vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 5vmin);
+  color: white;
+}
+
+@font-face {
+  font-family: "VCR";
+  src: local("VCR"), url("../fonts/vcr_osd_mono.ttf") format("truetype");
+  font-weight: normal;
+}
+
+.academia {
+  display: flexbox;
+  position: inherit;
+  justify-content: right;
+  align-items: center;
+  color: #fff;
+  width: max-content;
+  flex: 25%;
+  padding: 5px;
+  min-width: 500px;
+  max-width: 800px;
+}
+.education {
+  width: 450px;
+  height: auto;
+  padding: 1ch;
+}
+
+.footer {
+  min-height: 3vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(10px);
+  color: white;
+  font-family: "VCR";
+}
+
+.link {
+  color: #fff;
+  padding: 10px;
+  height: 50px;
+  width: 50px;
+}
+.link:hover {
+  color: #999;
+  transition: 0.15s;
+  filter: brightness(50%);
+}
+
+.links-div {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  justify-content: space-around;
+  align-items: center;
+  align-content: stretch;
+  color: #fff;
+  bottom: 0;
+}
+.links-div:hover {
+  bottom: 10px;
+  transition: 0.1s;
+}
+
+.profile-pic {
+  width: 275px;
+  height: 275px;
+  padding-bottom: 1ch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.skill {
+  color: #fff;
+  filter: contrast(40%) brightness(175%) saturate(0%);
+  width: 100px;
+  height: auto;
+  padding: 0.25ch;
+}
+.skill:hover {
+  color: darkgrey;
+  transition: 0.1s;
+  filter: contrast(100%) brightness(100%) saturate(100%);
+}
+
+.skillset {
+  display: flexbox;
+  position: inherit;
+  justify-content: right;
+  align-items: center;
+  color: #fff;
+  width: max-content;
+  flex: 25%;
+  padding: 5px;
+  min-width: 500px;
+  max-width: 800px;
+}
+
+.Skills-header {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-flow: row wrap;
+  font-size: calc(10px + 5vmin);
+  color: white;
+}
+.Top-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 5vmin);
+  color: white;
+}
+
+#video {
+  position: fixed;
+  width: auto;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  filter: blur(2px) brightness(13%);
+}
+
+@keyframes arrowMover {
+  from {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
