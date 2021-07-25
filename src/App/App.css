@@ -1,3 +1,6 @@
+.about-me {
+}
+
 .academia {
   flex: 50%;
   color: #fff;
@@ -191,13 +194,16 @@
 }
 
 /* For Mobile-specific devices*/
-@media screen and (max-width: 480px) {
+
+@media (max-width: 480px) {
+  .contact-me {
+    display: none !important;
+    visibility: hidden;
+  }
   .App {
     width: auto;
   }
-}
 
-@media (max-width: 480px) {
   #video {
     position: fixed;
     overflow: hidden;
@@ -216,5 +222,28 @@
     flex-flow: row wrap;
     font-size: calc(10px + 5vmin);
     color: white;
+  }
+  .links-div {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: space-around;
+    align-items: center;
+    align-content: stretch;
+    color: #fff;
+    padding-top: 10px;
+    animation: links-mobile 1s infinite;
+  }
+}
+
+@keyframes links-mobile {
+  from {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  to {
+    transform: translateY(0px);
   }
 }

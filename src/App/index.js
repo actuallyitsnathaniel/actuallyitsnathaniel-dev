@@ -52,7 +52,7 @@ function App() {
           
       <EducationAndSkills />
       <Projects />
-      <AboutMe />
+      <AboutMe className="about-me"/>
       <ContactMe />
 
       <footer className="footer"> © NATHANIEL BOWMAN 2021. Built exclusively with React, HTML, and CSS. Deployed on Bluehost®.</footer>
