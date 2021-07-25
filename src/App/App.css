@@ -1,19 +1,16 @@
+.academia {
+  flex: 50%;
+  color: #fff;
+  padding: 15px;
+  width: 100%;
+}
+
 .App {
+  display: flex;
   text-align: center;
   overflow: scroll;
   font-family: "VCR";
-  flex-direction: row;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  flex-direction: column;
 }
 
 .App-header {
@@ -46,8 +43,6 @@
   font-family: "VCR";
 }
 .body {
-  min-height: 25vh;
-  max-width: 150vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -73,22 +68,15 @@
   font-weight: normal;
 }
 
-.academia {
-  display: flexbox;
-  position: inherit;
-  justify-content: right;
-  align-items: center;
-  color: #fff;
-  width: max-content;
-  flex: 25%;
-  padding: 5px;
-  min-width: 500px;
-  max-width: 800px;
-}
 .education {
-  width: 450px;
-  height: auto;
+  display: block;
+  margin: auto;
+  max-width: 80%;
   padding: 1ch;
+}
+.education:hover {
+  filter: brightness(75%);
+  transition: 0.15s;
 }
 
 .footer {
@@ -122,6 +110,7 @@
   align-content: stretch;
   color: #fff;
   bottom: 0;
+  z-index: 1;
 }
 .links-div:hover {
   bottom: 10px;
@@ -152,28 +141,26 @@
 }
 
 .skillset {
-  display: flexbox;
-  position: inherit;
-  justify-content: right;
+  justify-content: center;
   align-items: center;
   color: #fff;
-  width: max-content;
-  flex: 25%;
+  flex: 50%;
   padding: 5px;
-  min-width: 500px;
-  max-width: 800px;
+  width: 100%;
 }
 
 .Skills-header {
   display: flex;
+  flex-wrap: wrap row;
   align-content: center;
   justify-content: center;
-  flex-flow: row wrap;
+  width: fit-content;
   font-size: calc(10px + 5vmin);
   color: white;
 }
+
 .Top-header {
-  min-height: 100vh;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -184,11 +171,11 @@
 
 #video {
   position: fixed;
-  width: auto;
   z-index: -1;
   top: 0;
   left: 0;
-  filter: blur(2px) brightness(13%);
+  filter: blur(1px) brightness(18%);
+  background-color: black;
 }
 
 @keyframes arrowMover {
@@ -200,5 +187,51 @@
   }
   to {
     transform: translateY(0px);
+  }
+}
+
+/* For Mobile-specific devices*/
+@media screen and (max-width: 480px) {
+  .App {
+    width: auto;
+  }
+}
+
+@media (min-aspect-ratio: 16/9) {
+  #video {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  #video {
+    width: auto;
+    height: 100%;
+    background-size: cover;
+  }
+}
+
+@media (max-width: 480px) {
+  #video {
+    display: flex;
+    background: url(../assets/images/node_background.png);
+    background-size: contain;
+    filter: blur(1px) brightness(18%);
+    background-color: black;
+  }
+
+  .Top-header {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .Skills-header {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-flow: row wrap;
+    font-size: calc(10px + 5vmin);
+    color: white;
   }
 }

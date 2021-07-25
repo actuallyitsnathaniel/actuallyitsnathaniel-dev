@@ -34,7 +34,14 @@ function SkillsAndExperience() {
           <a href="https://cloud.google.com"><img src={gcp} alt="google cloud platform" className="skill"/></a>
           <a href="https://firebase.google.com"><img src={firebase} alt="firestore" className="skill" width="75%"/></a>
           <a href="https://www.mysql.com/"><img src={mysql} alt="mysql" className="skill"/></a>
-    </div>
+          <p className="body">
+          Deliverables: 
+          <br/>
+          <br/>
+          Full-Stack Web & Mobile Development, Database Management, Software Engineering</p>
+          </div>
+
+    
 </header>
 )
 }

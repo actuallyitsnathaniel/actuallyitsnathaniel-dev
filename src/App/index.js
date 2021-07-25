@@ -40,9 +40,9 @@ function App() {
       <img src={profilePic} alt="profile_pic" className="profile-pic"/>
       NATHANIEL BOWMAN
       <p className="bio">B.S. Computer Science, looking for work! <br/>
-      I'm a motivated developer who reads the documentation and checks the features before an update. 
-      I love collaboration, problem-solving, and Agile Development. 
-      I think critically to look for creative solutions.
+      I'm a motivated software engineer who reads the documentation and checks the features before an update.
+      I think critically to look for creative solutions. I love collaboration, problem-solving, and Agile Development.
+      
       </p>
       <div className="arrow">
         ⬇
