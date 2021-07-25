@@ -197,28 +197,11 @@
   }
 }
 
-@media (min-aspect-ratio: 16/9) {
-  #video {
-    width: 100%;
-    height: auto;
-  }
-}
-
-@media (max-aspect-ratio: 16/9) {
-  #video {
-    width: auto;
-    height: 100%;
-    background-size: cover;
-  }
-}
-
 @media (max-width: 480px) {
   #video {
-    display: flex;
-    background: url(../assets/images/node_background.png);
-    background-size: contain;
-    filter: blur(1px) brightness(18%);
-    background-color: black;
+    position: fixed;
+    overflow: hidden;
+    height: 400%;
   }
 
   .Top-header {
