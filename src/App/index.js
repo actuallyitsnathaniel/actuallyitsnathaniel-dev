@@ -7,7 +7,7 @@ import ContactMe from '../Components/ContactMe';
 import Projects from '../Components/Projects';
 
 import '../fonts/vcr_osd_mono.ttf';
-import backgroundVideo from '../assets/videos/node_background.webm';
+import backgroundVideo from '../assets/videos/node_background.mp4';
 import profilePic from '../assets/images/profile_pic.png';
 import resume from '../assets/files/resume.pdf';
 
@@ -22,7 +22,10 @@ function App() {
   return (
     
     <div className="App">
-
+      <video autoPlay loop muted id='video'>
+        <source src={backgroundVideo} type='video/mp4'/>
+        Sorry, your browser does not support HTML5 video.
+      </video>
     {/** STATIC EXTERNAL LINKS*/}
       <div className="links-div">
         <a href={"mailto:nathanielrbowman@gmail.com"}><AiOutlineMail className="link" alt="email" /></a>
@@ -31,10 +34,7 @@ function App() {
         <a href={resume} rel="noopener noreferrer" type="application/pdf"  download="nathaniel-bowman_resume" ><img src={resumeIcon} className="link" alt="resume" /></a>
       </div>
 
-      <video autoPlay loop muted id='video'>
-        <source src={backgroundVideo} type='video/webm'/>
-        Sorry, your browser does not support HTML5 video.
-      </video>
+
       
       {/** TOP DIV */}
       <header className="Top-header">

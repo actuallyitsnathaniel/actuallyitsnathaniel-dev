@@ -179,6 +179,8 @@
   left: 0;
   filter: blur(1px) brightness(18%);
   background-color: black;
+  width: 1440px;
+  height: auto;
 }
 
 @keyframes arrowMover {
@@ -207,7 +209,7 @@
   #video {
     position: fixed;
     overflow: hidden;
-    height: 400%;
+    height: 100%;
     width: auto;
   }
 
