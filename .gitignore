@@ -3,4 +3,7 @@ node_modules
 .vscode
 .eslintcache
 build
-*.DS_Store
+*/.DS_Store
+**/.DS_Store
+.DS_Store
+src/assets/.DS_Store

@@ -208,6 +208,7 @@
     position: fixed;
     overflow: hidden;
     height: 400%;
+    width: auto;
   }
 
   .Top-header {

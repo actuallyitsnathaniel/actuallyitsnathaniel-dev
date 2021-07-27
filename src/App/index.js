@@ -9,6 +9,7 @@ import Projects from '../Components/Projects';
 import '../fonts/vcr_osd_mono.ttf';
 import backgroundVideo from '../assets/videos/node_background.webm';
 import profilePic from '../assets/images/profile_pic.png';
+import resume from '../assets/files/resume.pdf';
 
 
 // for social links
@@ -27,7 +28,7 @@ function App() {
         <a href={"mailto:nathanielrbowman@gmail.com"}><AiOutlineMail className="link" alt="email" /></a>
         <a href={"https://linkedin.com/in/actuallyitsnathaniel"}><FaLinkedin className="link" alt="linkedin" /></a>
         <a href={"https://github.com/actuallyitsnathaniel"}> <FaGithub className="link" alt="github" /> </a>
-        <a href={"/resume/resume.pdf"} rel="noopener noreferrer" download><img src={resumeIcon} className="link" alt="resume" /></a>
+        <a href={resume} rel="noopener noreferrer" type="application/pdf"  download="nathaniel-bowman_resume" ><img src={resumeIcon} className="link" alt="resume" /></a>
       </div>
 
       <video autoPlay loop muted id='video'>
