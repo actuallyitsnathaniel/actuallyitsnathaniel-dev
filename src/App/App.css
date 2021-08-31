@@ -175,7 +175,7 @@
 #video {
   position: fixed;
   z-index: -1;
-  top: 0;
+  top: -25px; /* this is to fix top blank space in video*/
   left: 0;
   filter: blur(1px) brightness(18%);
   background-color: black;
