@@ -9,9 +9,8 @@ import apu from '../assets/images/apu_white.svg';
 import mysql from '../assets/images/logo-mysql.svg';
 
 function SkillsAndExperience() {
-
     return(
-      <header className="Skills-header"> 
+      <header className="Education-Skills-header"> 
           <div className="academia">
           EDUCATION <br/>
           <a href={"https://www.apu.edu/"}><img src={apu} alt="apu" className="education"/></a>
@@ -42,8 +41,6 @@ function SkillsAndExperience() {
           <br/>
           Full-Stack Web & Mobile Development, Database Management, Software Engineering, Programming</p>
           </div>
-
-    
 </header>
 )
 }

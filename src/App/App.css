@@ -92,9 +92,9 @@
   font-family: "VCR";
 }
 
-.git-repo-set {
+.git-repo-card-set {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: wrap row;
 }
 
 .link {
@@ -145,6 +145,12 @@
   color: white;
 }
 
+.Projects-header-title {
+  font-size: 3.5ch;
+  padding: auto;
+  margin: 0%;
+}
+
 .skill {
   color: #fff;
   filter: contrast(40%) brightness(175%) saturate(0%);
@@ -163,25 +169,27 @@
   align-items: center;
   color: #fff;
   flex: 50%;
-  padding: 5px;
+  padding: 4px;
   width: 100%;
 }
 
-.Skills-header {
+.Education-Skills-header {
+  height: 100vh;
   text-align: center;
   display: flex;
   flex-wrap: wrap row;
   align-content: center;
   justify-content: center;
-  width: fit-content;
+  width: 100%;
   font-size: calc(10px + 5vmin);
   color: white;
   margin-bottom: 3ch;
+  min-height: 100%;
 }
 
 .Top-header {
   text-align: center;
-  min-height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -215,7 +223,7 @@
 
 /* For Mobile-specific devices*/
 
-@media (max-width: 480px) {
+@media (max-width: 750px) {
   .contact-me {
     display: none !important;
     visibility: hidden;
@@ -236,7 +244,7 @@
     padding-right: 10px;
   }
 
-  .Skills-header {
+  .Education-Skills-header {
     display: flex;
     align-content: center;
     justify-content: center;

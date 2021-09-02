@@ -53,8 +53,9 @@ function App() {
       </header>
           
       <EducationAndSkills />
-      
-      <Projects /> {/** List GitHub Repos! */}
+
+      <Projects />
+
       <AboutMe className="about-me"/>
       <ContactMe />
 
