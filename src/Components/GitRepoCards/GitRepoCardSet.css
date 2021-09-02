@@ -1,0 +1,40 @@
+/* Make this look like the night-time GitHub Repo Card!*/
+.git-repo-card {
+  text-align: left;
+  height: 200px;
+  min-width: 320px;
+  max-width: 30%;
+  background-color: #111;
+  border: #333 solid;
+  border-radius: 0.15ch;
+  border-width: 0.01ch;
+  margin: 15px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 450;
+}
+
+.git-repo-card-title {
+  color: #4987d8;
+  font-size: 50%;
+  padding: 0.85ch;
+}
+
+.git-repo-card-desc {
+  color: #727272;
+  font-size: 35%;
+  padding-left: 1ch;
+  padding-right: 1ch;
+}
+
+.git-repo-card-codeType {
+  color: #aaa;
+  font-size: 35%;
+  padding: 1ch;
+}
+
+@media (max-width: 480px) {
+  .git-repo-card {
+    max-width: 95%;
+  }
+}

@@ -7,3 +7,5 @@ build
 **/.DS_Store
 .DS_Store
 src/assets/.DS_Store
+src/assets/files/repos.json
+git-repo-card-example.png

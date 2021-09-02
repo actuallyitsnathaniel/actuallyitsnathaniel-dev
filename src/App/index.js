@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
 
-import EducationAndSkills from '../Components/EducationAndSkills';
-import AboutMe from "../Components/AboutMe";
-import ContactMe from '../Components/ContactMe';
-import Projects from '../Components/Projects';
+import EducationAndSkills from '../Pages/EducationAndSkills';
+import AboutMe from "../Pages/AboutMe";
+import ContactMe from '../Pages/ContactMe';
+import Projects from '../Pages/Projects';
 
 import '../fonts/vcr_osd_mono.ttf';
 import backgroundVideo from '../assets/videos/node_background.mp4';
@@ -31,7 +31,8 @@ function App() {
         <a href={"mailto:nathanielrbowman@gmail.com"}><AiOutlineMail className="link" alt="email" /></a>
         <a href={"https://linkedin.com/in/actuallyitsnathaniel"}><FaLinkedin className="link" alt="linkedin" /></a>
         <a href={"https://github.com/actuallyitsnathaniel"}> <FaGithub className="link" alt="github" /> </a>
-        <a href={resume} rel="noopener noreferrer" type="application/pdf"  download="nathaniel-bowman_resume" ><img src={resumeIcon} className="link" alt="resume" /></a>
+        <a href={resume} rel="noopener noreferrer" type="application/pdf"  download="nathaniel-bowman_resume" >
+        <img src={resumeIcon} className="link" alt="resume" /></a>
       </div>
 
 
@@ -52,7 +53,8 @@ function App() {
       </header>
           
       <EducationAndSkills />
-      <Projects />
+      
+      <Projects /> {/** List GitHub Repos! */}
       <AboutMe className="about-me"/>
       <ContactMe />
 

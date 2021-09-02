@@ -35,10 +35,12 @@ function SkillsAndExperience() {
           <a href="https://firebase.google.com"><img src={firebase} alt="firestore" className="skill" width="75%"/></a>
           <a href="https://www.mysql.com/"><img src={mysql} alt="mysql" className="skill"/></a>
           <p className="body">
+          <br/>
+          <br/>
           Deliverables: 
           <br/>
           <br/>
-          Full-Stack Web & Mobile Development, Database Management, Software Engineering</p>
+          Full-Stack Web & Mobile Development, Database Management, Software Engineering, Programming</p>
           </div>
 
     
