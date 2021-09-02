@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import './GitRepoCardSet.css';
 
 // import { parsedGitRepos } from './getGitHubRepos';
@@ -24,12 +24,14 @@ function GitRepoCard(props) {
 
 // TODO: dynamically propagate based on number of repositories
 // https://www.storyblok.com/tp/react-dynamic-component-from-json
-function GitRepoCardSet() {
+class GitRepoCardSet extends Component {
 
     // Placeholder until all is dynamically allocated
-    return(
+    render() {
+        return(
        <GitRepoCard/>
     );
+    }
 }
 
 export default GitRepoCardSet;
