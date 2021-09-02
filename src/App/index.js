@@ -52,7 +52,10 @@ function App() {
       <p/>
       </header>
           
-      <EducationAndSkills />
+      <EducationAndSkills/>
+      <div className="arrow">
+      ⬇
+      </div>
 
       <Projects />
 

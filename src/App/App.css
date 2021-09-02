@@ -15,8 +15,7 @@
   flex-direction: column;
 }
 
-.App-header {
-  min-height: 100vh;
+.About-Me-header {
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -33,6 +32,12 @@
 .arrow {
   animation: arrowMover 1s;
   animation-iteration-count: infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 5vmin);
+  color: white;
 }
 
 .bio {
@@ -92,11 +97,6 @@
   font-family: "VCR";
 }
 
-.git-repo-card-set {
-  display: flex;
-  flex-flow: wrap row;
-}
-
 .link {
   color: #fff;
   padding: 10px;
@@ -137,12 +137,12 @@
 
 .Projects-header {
   text-align: center;
-  min-height: 100vh;
   display: flexbox;
   flex-direction: row;
   justify-content: left;
   font-size: calc(10px + 5vmin);
   color: white;
+  padding-bottom: 5%;
 }
 
 .Projects-header-title {
@@ -174,7 +174,6 @@
 }
 
 .Education-Skills-header {
-  height: 100vh;
   text-align: center;
   display: flex;
   flex-wrap: wrap row;
@@ -183,7 +182,7 @@
   width: 100%;
   font-size: calc(10px + 5vmin);
   color: white;
-  margin-bottom: 3ch;
+  margin-bottom: 2%;
   min-height: 100%;
 }
 

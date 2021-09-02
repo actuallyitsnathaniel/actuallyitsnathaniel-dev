@@ -3,7 +3,7 @@ import "../App/App.css";
 
 function AboutMe() {
     return(
-      <header className="App-header">
+      <header className="About-Me-header">
       ABOUT ME <br/>
       <p className="body"> 
       I'm a growing Tolkien-buff who loves video games and music. I like to read challenging books and love 
