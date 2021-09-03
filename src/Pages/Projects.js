@@ -1,6 +1,6 @@
 import React from 'react';
 import "../App/App.css";
-import GitRepoCardSet from "../Components/GitRepoCards/GitRepoCardSet";
+import GitRepoCardSet from "../Components/GitRepoCards";
 
 function Projects() {
 

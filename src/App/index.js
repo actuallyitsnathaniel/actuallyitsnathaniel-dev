@@ -56,7 +56,8 @@ function App() {
       <div className="arrow">
       ⬇
       </div>
-
+      <p/>
+      <p/>
       <Projects />
 
       <AboutMe className="about-me"/>

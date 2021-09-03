@@ -48,7 +48,7 @@
   font-size: calc(10px + 2vmin);
   color: white;
   padding-left: 1ch;
-  font-family: "VCR";
+  /*font-family: "VCR"; */
 }
 .body {
   display: flex;
@@ -57,7 +57,7 @@
   font-size: calc(10px + 2vmin);
   color: white;
   padding: 1ch;
-  font-family: "VCR";
+  /* font-family: "VCR"; */
 }
 
 .contact-me {
