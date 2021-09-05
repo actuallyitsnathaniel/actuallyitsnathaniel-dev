@@ -12,7 +12,7 @@ function AboutMe() {
       </p>
       <br/>
       CURRENTLY LEARNING:
-      <p className="body"> Better development practices, primarily refreshing my knowledge on <i>data structures 🤓.</i></p>
+      <p className="body"> Better development practices, primarily refreshing my knowledge on <i>data structures <span aria-label="nerd" role="img">🤓</span>.</i></p>
       </header>
     )
 }
