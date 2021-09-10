@@ -9,18 +9,20 @@ import githubLogo from '../../assets/images/git-repos-icon.png';
 function GitRepoCard() {
 
     // fetch HERE
-    const publicKey = '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';
     const [repos, setRepos] = useState([]);
     
-    // Fix GetData
     const GetData=()=>
         useEffect(()=>{
+            // It's rude not to remember what you just asked for. USE LOCAL STORAGE TO REDUCE API CALLS!!!
+            // https://felixgerschau.com/react-localstorage/
             fetch(`https://api.github.com/users/actuallyitsnathaniel/repos`, {
             headers: {
-                //'Authorization': `token ${publicKey}`,
-                'Content-Type': 'application/json',
+                // 'Authorization': `token ${token}`,
             }
         }).then((response)=> {
+            if (response.status == 401) {
+                console.log("Ah. good ol' 401 error. How many API calls have you made??")
+            }
             if (response.ok) return response.json();
         }).then((json=>{
             setRepos(json);
