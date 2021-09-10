@@ -1,21 +1,20 @@
 import React, { Component } from "react";
+
 import './GitRepoCardSet.css';
-
-// import { parsedGitRepos } from './getGitHubRepos';
-
-import parsedGitRepos from '../../assets/files/repos.json';
 import githubLogo from '../../assets/images/git-repos-icon.png';
+import gitHubRepos from "../../assets/files/repos.json";
 
 // TODO: DYNAMICALLY RENDER JSON
 // SIMPLE TUTORIAL TO MAKE THIS HAPPEN https://www.youtube.com/watch?v=9C85o8jIgUU
 
+// NOTE!!! This only works 60 times per hour. See https://docs.github.com/en/rest/guides/getting-started-with-the-rest-api
+
+// the parsing is in ./GitRepoCardSet.js
 
 function GitRepoCard() {
 
-    console.log(parsedGitRepos);
-
     return (
-            <div className="git-repo-card-set">{parsedGitRepos.map((parsedDetails, index) => {
+            <div className="git-repo-card-set">{gitHubRepos.map((parsedDetails, index) => {
                 return (
                     <a className="git-repo-card" href={parsedDetails.html_url}>
                         <div className="git-repo-card-title">{parsedDetails.name}</div>
@@ -27,7 +26,7 @@ function GitRepoCard() {
     );
 }
 
-// TODO: dynamically propagate based on number of repositories
+// Dynamically propagated based on number of repositories
 // https://www.storyblok.com/tp/react-dynamic-component-from-json
 class GitRepoCardSet extends Component {
 
