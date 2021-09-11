@@ -20,8 +20,8 @@ function GitRepoCard() {
                 // 'Authorization': `token ${token}`,
             }
         }).then((response)=> {
-            if (response.status == 401) {
-                console.log("Ah. good ol' 401 error. How many API calls have you made??")
+            if (response.status === 401) {
+                console.error("Ah. good ol' 401 error. How many API calls have you made??")
             }
             if (response.ok) return response.json();
         }).then((json=>{
