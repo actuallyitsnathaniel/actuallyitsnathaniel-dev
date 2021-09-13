@@ -9,13 +9,9 @@ function GitRepoCard() {
     
     const [repos, setRepos] = useState([]);
 
-    // TODO: Push, Build, Deploy
-    // https://github.com/marketplace/actions/ssh-deploy
-    
-    // Github Actions should do all this for you. ^^^
-
-    // Possibly better-suited link:
-    // https://levelup.gitconnected.com/make-deployment-easy-with-continuous-delivery-and-github-action-f5dde92468a1
+    // TODO: Push, Build, Deploy. I think what I'm looking for is a script to build and then deplopy via SSH
+    // cPanel seems super convenient, so follow this video and it should be pretty clean
+    // https://www.youtube.com/watch?v=18tXFctuqQ0
 
     // fetch HERE
     const GetData=()=>
