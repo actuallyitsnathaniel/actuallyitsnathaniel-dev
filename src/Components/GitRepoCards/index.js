@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 import './GitRepoCardSet.css';
-
 import githubLogo from '../../assets/images/git-repos-icon.png';
 
 
@@ -15,22 +14,38 @@ function GitRepoCard() {
         useEffect(()=>{
             // It's rude not to remember what you just asked for. USE LOCAL STORAGE TO REDUCE API CALLS!!!
             // https://felixgerschau.com/react-localstorage/
-            fetch(`https://api.github.com/users/actuallyitsnathaniel/repos`, {
-            headers: {
-                // 'Authorization': `token ${token}`,
+
+            let token = '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';
+            if (localStorage.length === 0) {
+                fetch(`https://api.github.com/users/actuallyitsnathaniel/repos`, {
+                headers: {
+                    'Authorization': `token ${token}`,
+                }
+            }).then((response) => {
+                if (response.status === 401) {
+                    console.error("Ah. good ol' 401 error. How many API calls have you made??");
+                    alert("Ah. good ol' 401 error. How many API calls have you made??");
+                }
+                else if (response.status === 200) return response.json();
+            }).then((json => {
+                setRepos(json);
+
+                localStorage.setItem('repos', JSON.stringify(json));
+
+                console.log("Repos fetched to localStorage!")
+            }))
+            .catch((err) => {
+                console.log(err);
+                return err;
+            });
+            } else {
+                console.log("Repos already in localStorage.")
+
+                setRepos(Array.from(JSON.parse(localStorage.getItem('repos'))));
+                console.log(JSON.parse(localStorage.getItem('repos')));
             }
-        }).then((response)=> {
-            if (response.status === 401) {
-                console.error("Ah. good ol' 401 error. How many API calls have you made??")
-            }
-            if (response.ok) return response.json();
-        }).then((json=>{
-            setRepos(json);
-        }))
-        .catch((err) => {
-            console.log(err);
-            return err;
-        });
+
+            
         
         }, [])
 
