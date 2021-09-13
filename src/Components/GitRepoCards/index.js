@@ -6,10 +6,18 @@ import githubLogo from '../../assets/images/git-repos-icon.png';
 
 // Dynamically propagated based on number of repositories
 function GitRepoCard() {
+    
+    const [repos, setRepos] = useState([]);
+
+    // TODO: Push, Build, Deploy
+    // https://github.com/marketplace/actions/ssh-deploy
+    
+    // Github Actions should do all this for you. ^^^
+
+    // Possibly better-suited link:
+    // https://levelup.gitconnected.com/make-deployment-easy-with-continuous-delivery-and-github-action-f5dde92468a1
 
     // fetch HERE
-    const [repos, setRepos] = useState([]);
-    
     const GetData=()=>
         useEffect(()=>{
             // It's rude not to remember what you just asked for. USE LOCAL STORAGE TO REDUCE API CALLS!!!
