@@ -15,11 +15,10 @@ function GitRepoCard() {
             // It's rude not to remember what you just asked for. USE LOCAL STORAGE TO REDUCE API CALLS!!!
             // https://felixgerschau.com/react-localstorage/
 
-            let token = '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';
             if (localStorage.length === 0) {
                 fetch(`https://api.github.com/users/actuallyitsnathaniel/repos`, {
                 headers: {
-                    'Authorization': `token ${token}`,
+                //    'Authorization': `token ${token}`,
                 }
             }).then((response) => {
                 if (response.status === 401) {
