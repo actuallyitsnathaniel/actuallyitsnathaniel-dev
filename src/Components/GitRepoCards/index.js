@@ -64,6 +64,7 @@ function GitRepoCard() {
     return(
         <div>
             <img src={githubLogo} alt="GitHub" className="github-text github-logo"/>
+            <div>Total Repositories: {repos.length}</div>
             <div className="git-repo-card-set">{
                 repos.map((details, i) => {
                 return (
