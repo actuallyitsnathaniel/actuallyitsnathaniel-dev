@@ -14,6 +14,7 @@ function GitRepoCard() {
 
     // Deploy from cPanel. learn the .yml file requirements and commands.
     // https://docs.cpanel.net/knowledge-base/web-services/guide-to-git-deployment/
+    // https://docs.cpanel.net/knowledge-base/web-services/guide-to-git-how-to-set-up-deployment/
     // Requirements: Auto-PULL, BUILD, then DEPLOY from remote branch when remote branch is PUSHed
 
     // fetch HERE
