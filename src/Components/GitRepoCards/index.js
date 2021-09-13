@@ -10,8 +10,10 @@ function GitRepoCard() {
     const [repos, setRepos] = useState([]);
 
     // TODO: Push, Build, Deploy. I think what I'm looking for is a script to build and then deplopy via SSH
-    // cPanel seems super convenient, so follow this video and it should be pretty clean
     // https://www.youtube.com/watch?v=18tXFctuqQ0
+
+    // Deploy from cPanel. learn the .yml file requirements and commands.
+    // Requirements: Auto-PULL, BUILD, then DEPLOY from remote branch when remote branch is PUSHed
 
     // fetch HERE
     const GetData=()=>
