@@ -10,17 +10,18 @@ function GitRepoCard() {
     const [repos, setRepos] = useState([]);
 
     // TODO: Push, Build, Deploy. I think what I'm looking for is a script to build and then deplopy via SSH
-    // https://www.youtube.com/watch?v=18tXFctuqQ0
+    // https://www.youtube.com/watch?v=18tXFctuqQ0 <- maybe not
 
     // Deploy from cPanel. learn the .yml file requirements and commands.
     // https://docs.cpanel.net/knowledge-base/web-services/guide-to-git-deployment/
     // https://docs.cpanel.net/knowledge-base/web-services/guide-to-git-how-to-set-up-deployment/
     // Requirements: Auto-PULL, BUILD, then DEPLOY from remote branch when remote branch is PUSHed
 
-    // fetch HERE
+    // fetch and map the repositories HERE
     const GetData=()=>
         useEffect(()=>{
-            // It's rude not to remember what you just asked for. USE LOCAL STORAGE TO REDUCE API CALLS!!!
+            // It's rude not to remember what you just asked for. 
+            // USE LOCAL STORAGE TO REDUCE API CALLS!!!
             // https://felixgerschau.com/react-localstorage/
 
             if (localStorage.length === 0) {
@@ -57,10 +58,7 @@ function GitRepoCard() {
         }, [])
 
         
-        GetData();
-
-        // THIS LOG PROVES REPOS WORKS  
-        // console.log(repos);      
+        GetData(); // run GetData   
         
     return(
         <div>

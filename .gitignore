@@ -3,9 +3,11 @@ node_modules
 .vscode
 .eslintcache
 build
+build.zip
 */.DS_Store
 **/.DS_Store
 .DS_Store
 src/assets/.DS_Store
 src/assets/files/repos.json
 git-repo-card-example.png
+.cpanel.yml
