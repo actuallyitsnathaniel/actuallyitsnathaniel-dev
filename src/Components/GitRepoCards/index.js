@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import "./GitRepoCardSet.css";
 import githubLogo from "../../assets/images/git-repos-icon.png";
 
+var username = process.env.REACT_APP_GIT_USERNAME;
+var token = process.env.REACT_APP_GIT_TOKEN;
+
 // Dynamically propagated based on number of repositories
 function GitRepoCard() {
   const [repos, setRepos] = useState([]);
@@ -23,9 +26,9 @@ function GitRepoCard() {
       // https://felixgerschau.com/react-localstorage/
 
       if (localStorage.length === 0) {
-        fetch(`https://api.github.com/users/actuallyitsnathaniel/repos`, {
+        fetch(`https://api.github.com/users/${username}/repos`, {
           headers: {
-            //    'Authorization': `token ${token}`, // TODO: implement auth token as ENV variable
+            Authorization: `${token}`, // TODO: implement auth token as ENV variable
           },
         })
           .then((response) => {
