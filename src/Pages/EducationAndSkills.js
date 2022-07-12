@@ -1,7 +1,7 @@
 import React from "react";
 import "../App/App.css";
 
-import github_svg from "../assets/images/github-svg.svg";
+import github_png from "../assets/images/git-repos-icon.png";
 import html_svg from "../assets/images/html-svg.svg";
 import css3_svg from "../assets/images/css-svg.svg";
 import mongodb_svg from "../assets/images/mongodb-svg.svg";
@@ -51,7 +51,7 @@ function SkillsAndExperience() {
           />
         </a>
         <a href={"https://www.github.com"}>
-          <img src={github_svg} alt="github" className="skill" color="9192ed" />
+          <img src={github_png} alt="github" className="skill" />
         </a>
         <a href={"https://reactjs.org"}>
           <img src={react_svg} alt="react" className="skill" color="61DBFB" />

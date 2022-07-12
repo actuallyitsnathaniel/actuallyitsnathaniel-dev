@@ -13,7 +13,7 @@ import resume from "../assets/files/resume.pdf";
 
 // for social links
 import linkedin from "../assets/images/linkedin-svg.svg";
-import github from "../assets/images/github-svg.svg";
+import github from "../assets/images/github_square_icon.svg";
 import mail from "../assets/images/mail-svg.svg";
 import resumeIcon from "../assets/images/resume-icon.svg";
 
