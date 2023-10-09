@@ -8,7 +8,7 @@ import Projects from "../Pages/Projects";
 
 import "../fonts/vcr_osd_mono.ttf";
 import backgroundVideo from "../assets/videos/node_background.mp4";
-import profilePic from "../assets/images/profile_pic.png";
+import profilePic from "../assets/images/pfp_2023.png";
 import resume from "../assets/files/resume.pdf";
 
 // for social links
@@ -49,7 +49,7 @@ function App() {
       {/** TOP DIV */}
       <header className="Top-header">
         <img src={profilePic} alt="profile_pic" className="profile-pic" />
-        NATHANIEL BOWMAN
+        Nathaniel Bowman
         <p className="bio">
           B.S. Computer Science, looking for work! <br />
           I'm a motivated software engineer who reads the documentation and
