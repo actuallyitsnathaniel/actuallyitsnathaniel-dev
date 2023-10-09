@@ -49,10 +49,10 @@ function App() {
       {/** TOP DIV */}
       <header className="Top-header">
         <img src={profilePic} alt="profile_pic" className="profile-pic" />
-        Nathaniel Bowman
-        <p className="bio">
-          B.S. Computer Science, looking for work! <br />
-          I'm a motivated software engineer who reads the documentation and
+        <p style={{fontSize: '1.5ch', margin: '0'}}>Nathaniel Bowman</p>
+        <p style={{fontSize: '0.8ch'}}>Full-Stack Software Engineer</p>
+        <p className="bio" style={{ flexWrap: 'wrap'}}>
+          Currently working for Lightfeather.io&nbsp;LLC., I'm a motivated software engineer who reads the documentation and
           checks the features before an update. I think critically to look for
           creative solutions. I love collaboration, problem-solving, and Agile
           Development.
