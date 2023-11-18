@@ -1,5 +1,4 @@
 import React from "react";
-import "../App/App.css";
 
 import github_svg from "../assets/images/github_square_icon.svg";
 import html_svg from "../assets/images/html-svg.svg";

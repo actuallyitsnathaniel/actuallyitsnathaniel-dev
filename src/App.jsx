@@ -1,23 +1,23 @@
 import React from "react";
-import "./App.css";
+import "./index.css";
 
-import EducationAndSkills from "../Pages/EducationAndSkills";
-import AboutMe from "../Pages/AboutMe";
-import ContactMe from "../Pages/ContactMe";
-import Projects from "../Pages/Projects";
+import EducationAndSkills from "./Pages/EducationAndSkills";
+import AboutMe from "./Pages/AboutMe";
+import ContactMe from "./Pages/ContactMe";
+import Projects from "./Pages/Projects";
 
-import "../fonts/vcr_osd_mono.ttf";
-import backgroundVideo from "../assets/videos/node_background.mp4";
-import profilePic from "../assets/images/pfp_2023.png";
-import resume from "../assets/files/resume.pdf";
+import "./fonts/vcr_osd_mono.ttf";
+import backgroundVideo from "./assets/videos/node_background.mp4";
+import profilePic from "./assets/images/pfp_2023.png";
+import resume from "./assets/files/resume.pdf";
 
 // for social links
-import linkedin from "../assets/images/linkedin-svg.svg";
-import github from "../assets/images/github_square_icon.svg";
-import mail from "../assets/images/mail-svg.svg";
-import resumeIcon from "../assets/images/resume-icon.svg";
+import linkedin from "./assets/images/linkedin-svg.svg";
+import github from "./assets/images/github_square_icon.svg";
+import mail from "./assets/images/mail-svg.svg";
+import resumeIcon from "./assets/images/resume-icon.svg";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <video autoPlay loop muted id="video">
@@ -49,13 +49,13 @@ function App() {
       {/** TOP DIV */}
       <header className="Top-header">
         <img src={profilePic} alt="profile_pic" className="profile-pic" />
-        <p style={{fontSize: '1.5ch', margin: '0'}}>Nathaniel Bowman</p>
-        <p style={{fontSize: '0.8ch'}}>Full-Stack Software Engineer</p>
-        <p className="bio" style={{ flexWrap: 'wrap'}}>
-          Currently working for Lightfeather.io&nbsp;LLC., I'm a motivated software engineer who reads the documentation and
-          checks the features before an update. I think critically to look for
-          creative solutions. I love collaboration, problem-solving, and Agile
-          Development.
+        <p style={{ fontSize: "1.5ch", margin: "0" }}>Nathaniel Bowman</p>
+        <p style={{ fontSize: "0.8ch" }}>Full-Stack Software Engineer</p>
+        <p className="bio" style={{ flexWrap: "wrap" }}>
+          Currently working for Lightfeather.io&nbsp;LLC., I'm a motivated
+          software engineer who reads the documentation and checks the features
+          before an update. I think critically to look for creative solutions. I
+          love collaboration, problem-solving, and Agile Development.
         </p>
         <div className="arrow">⬇</div>
         <p />
@@ -77,6 +77,6 @@ function App() {
       </footer>
     </div>
   );
-}
+};
 
 export default App;
