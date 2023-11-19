@@ -18,7 +18,7 @@ function SkillsAndExperience() {
   return (
     <div className="flex flex-row flex-wrap text-center justify-center md:w-full text-sm text-white min-h-full py-10">
       <div className="color-white md:basis-1/2 p-4 w-full">
-        <h2 className="underline text-4xl py-5">EDUCATION</h2>
+        <h2 className="underline text-5xl py-5">EDUCATION</h2>
         <a href={"https://www.apu.edu/"} className="flex justify-center">
           <img src={apu} alt="apu" className="md:max-w-[80%] p-4" />
         </a>
@@ -28,7 +28,7 @@ function SkillsAndExperience() {
         </p>
       </div>
       <div className="flex flex-wrap content-center md:basis-1/2 justify-center p-1 fill-white">
-        <h2 className="underline text-4xl py-5">SKILLS</h2>
+        <h2 className="underline text-5xl py-5">SKILLS</h2>
         <span
           id="skill-items"
           className="flex flex-wrap items-center justify-center py-10"

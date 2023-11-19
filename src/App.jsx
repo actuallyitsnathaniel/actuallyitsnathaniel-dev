@@ -12,11 +12,11 @@ import { VideoBackground } from "./Components/video-background";
 
 const App = () => {
   return (
-    <div className="flex flex-wrap flex-col w-screen font-vcr text-white">
+    <div className="flex flex-wrap overflow-clip flex-col font-pokemon text-white lowercase">
       <VideoBackground />
-      {/* TODO: floating animation for links */}
       <Links />
       <Header />
+      {/* TODO: add all website projects here. */}
       <Projects />
       <AboutMe />
       <EducationAndSkills />

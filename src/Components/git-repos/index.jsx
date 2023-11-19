@@ -66,12 +66,16 @@ export const GitRepoCard = () => {
               href={details.html_url}
               key={details.id}
             >
-              <div className="text-[#4987d8] text-sm p-1.5">{details.name}</div>
-              <div className="text-[#7f7f7f] text-xs px-1 break-words hyphens-auto">
-                {details.description}
-              </div>
-              <div className="text-[#aaa] text-xs p-1 absolute bottom-0.5">
-                {details.language}
+              <div id="text-wrapper" className="px-1.5">
+                <div className="text-[#4987d8] text-left text-lg p-1.5">
+                  {details.name}
+                </div>
+                <div className="text-[#7f7f7f] text-md px-1 break-words hyphens-auto">
+                  {details.description}
+                </div>
+                <div className="text-[#aaa] text-sm p-1 absolute bottom-0.5">
+                  {details.language}
+                </div>
               </div>
             </a>
           );

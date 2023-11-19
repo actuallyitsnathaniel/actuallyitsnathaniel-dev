@@ -19,6 +19,9 @@ module.exports = {
     extend: {
       fontFamily: {
         vcr: ["VCR", ...defaultTheme.fontFamily.sans],
+        lincoln: ["Lincoln", ...defaultTheme.fontFamily.sans],
+        ibm1: ["IBM-1", ...defaultTheme.fontFamily.sans],
+        pokemon: ["Pokemon", ...defaultTheme.fontFamily.sans],
       },
       keyframes: {
         "link-floaters": {

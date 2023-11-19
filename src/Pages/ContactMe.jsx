@@ -1,6 +1,6 @@
 import React from "react";
 
-function ContactMe() {
+export const ContactMe = () => {
   return (
     <header className="">
       <i className="">
@@ -8,6 +8,6 @@ function ContactMe() {
       </i>
     </header>
   );
-}
+};
 
 export default ContactMe;

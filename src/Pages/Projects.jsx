@@ -3,10 +3,10 @@ import sahilJindalThumbnail from "../assets/images/thumbnails/sahil-jindal.png";
 
 import GitRepoCardSet from "../Components/git-repos";
 
-function Projects() {
+export const Projects = () => {
   return (
     <div className="flex flex-wrap flex-col w-screen text-center py-10">
-      <h2 className="flex text-4xl justify-center">Projects</h2>
+      <h2 className="underline text-5xl py-4">PROJECTS</h2>
       <div
         id="site-thumbnails-wrapper"
         className="flex w-screen justify-center py-10"
@@ -29,6 +29,6 @@ function Projects() {
       </span>
     </div>
   );
-}
+};
 
 export default Projects;
