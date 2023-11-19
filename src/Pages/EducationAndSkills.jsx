@@ -8,10 +8,12 @@ import react_svg from "../assets/images/skills/react-svg.svg";
 import js_svg from "../assets/images/skills/js-svg.svg";
 import ts_svg from "../assets/images/skills/typescript-logo-svg.svg";
 import gcp from "../assets/images/skills/google-cloud-seeklogo.com.svg";
+import aws from "../assets/images/skills/aws-logo.svg";
 import firebase from "../assets/images/skills/firebase-logomark.svg";
 import java_svg from "../assets/images/skills/java.svg";
 import apu from "../assets/images/apu_white.svg";
 import mysql from "../assets/images/skills/logo-mysql.svg";
+
 import { SkillItem } from "../Components/skill-item";
 
 function SkillsAndExperience() {
@@ -22,7 +24,7 @@ function SkillsAndExperience() {
         <a href={"https://www.apu.edu/"} className="flex justify-center">
           <img src={apu} alt="apu" className="md:max-w-[80%] p-4" />
         </a>
-        <p className="text-sm md:text-2xl py-5">
+        <p className="text-2xl py-5">
           B.S. Computer Science ~ Dept. of ECS <br />
           B.S. Honors Humanitites ~ APU Honors College
         </p>
@@ -95,6 +97,12 @@ function SkillsAndExperience() {
             image={firebase}
             alt={"firebase"}
             classNames={"scale-90"}
+          />
+          <SkillItem
+            href="https://aws.amazon.com/"
+            image={aws}
+            alt={"aws"}
+            classNames={"hover:brightness-110"}
           />
           <SkillItem
             href={"https://www.mysql.com/"}

@@ -1,4 +1,5 @@
 import { Bio } from "./bio";
+import { Links } from "../links";
 import profilePic from "../../assets/images/pfp_2023.png";
 
 export const Header = () => {
@@ -7,8 +8,9 @@ export const Header = () => {
       <img
         src={profilePic}
         alt="profile-pic"
-        className="flex h-72 object-contain py-5"
+        className="flex h-72 object-contain py-6 mt-4"
       />
+      <Links />
       <Bio />
       <div className="arrow">⬇</div>
     </header>

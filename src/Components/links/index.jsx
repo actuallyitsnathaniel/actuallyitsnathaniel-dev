@@ -8,7 +8,7 @@ import resumeIcon from "../../assets/images/resume-icon.svg";
 
 export const Links = () => {
   return (
-    <div className="flex flex-row duration-100 md:fixed md:bottom-0 z-10 justify-around content-stretch items-center md:hover:bottom-3 md:animate-none animate-mobile-links">
+    <div className="flex flex-row duration-100 md:fixed md:bottom-0 md:left-0 justify-around content-stretch items-center md:hover:bottom-3 md:animate-none animate-mobile-links z-[2]">
       <Link image={mail} href="mailto:nathanielrbowman@gmail.com" alt="email" />
       <Link
         image={linkedin}

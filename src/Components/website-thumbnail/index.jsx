@@ -4,7 +4,7 @@ export const WebsiteThumbnail = ({ href, image, label, classNames, alt }) => {
       <a href={href} rel="noopener noreferrer" target="_blank" className="p-2">
         <img src={image} alt={alt} className="object-scale-down rounded-md" />
       </a>
-      {label}
+      <p className="text-3xl">{label}</p>
     </div>
   );
 };

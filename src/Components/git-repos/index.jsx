@@ -55,7 +55,7 @@ export const GitRepoCard = () => {
   return (
     <div className="flex flex-wrap flex-col">
       <img src={githubLogo} alt="GitHub" className="p-3 object-contain" />
-      <p className="text-center font-medium">
+      <p className="text-center font-medium text-3xl">
         Total Repositories: {repos.length}
       </p>
       <div className="flex flex-wrap justify-center">
@@ -64,6 +64,7 @@ export const GitRepoCard = () => {
             <a
               className="relative text-left duration-100 ease-in-out h-48 min-w-[330px] w-1/4 bg-gray-900 outline outline-gray-600 font-medium rounded-md m-4 hover:brightness-125 hover:scale-105"
               href={details.html_url}
+              target="_blank"
               key={details.id}
             >
               <div id="text-wrapper" className="px-1.5">
