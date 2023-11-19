@@ -1,5 +1,6 @@
 import { WebsiteThumbnail } from "../Components/website-thumbnail";
 import sahilJindalThumbnail from "../assets/images/thumbnails/sahil-jindal.png";
+import johnWhiteThumbnail from "../assets/images/thumbnails/john-white-thumbnail.png";
 
 import GitRepoCardSet from "../Components/git-repos";
 
@@ -9,13 +10,19 @@ export const Projects = () => {
       <h2 className="underline text-5xl py-4">PROJECTS</h2>
       <div
         id="site-thumbnails-wrapper"
-        className="flex w-screen justify-center py-10"
+        className="flex flex-wrap w-screen justify-center py-10"
       >
         <WebsiteThumbnail
           image={sahilJindalThumbnail}
           href="https://sahiljindal.com"
           alt="sahil-jindal-site"
           label={"Sahil Jindal"}
+        />
+        <WebsiteThumbnail
+          image={johnWhiteThumbnail}
+          href="https://johnwhitesmusic.com"
+          alt="john-white-site"
+          label={"John White"}
         />
       </div>
 
