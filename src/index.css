@@ -257,7 +257,7 @@ code {
 }
 
 .video {
-  filter: brightness(0.09) blur(1.25px);
+  filter: brightness(0.11) blur(1.25px);
   /* The min width had to be set for both */
   min-width: 220vh;
   transform: translateY(-50px);
