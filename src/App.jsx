@@ -22,8 +22,6 @@ const App = () => {
         isCRT && "crt"
       }`}
     >
-      {/* TODO: CRT effect
-      http://aleclownes.com/2017/02/01/crt-display.html */}
       <VideoBackground />
       <CRTToggle {...{ HandleCRT }} />
       <Header />
