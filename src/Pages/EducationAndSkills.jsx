@@ -12,72 +12,98 @@ import firebase from "../assets/images/firebase-logomark.svg";
 import java_svg from "../assets/images/java.svg";
 import apu from "../assets/images/apu_white.svg";
 import mysql from "../assets/images/logo-mysql.svg";
+import { SkillItem } from "../Components/skill-item";
 
 function SkillsAndExperience() {
   return (
-    <header className="Education-Skills-header">
-      <div className="academia">
-        EDUCATION <br />
-        <a href={"https://www.apu.edu/"}>
-          <img src={apu} alt="apu" className="education" />
+    <div className="flex flex-row flex-wrap text-center justify-center md:w-full text-sm text-white min-h-full py-10">
+      <div className="color-white md:basis-1/2 p-4 w-full">
+        <h2 className="underline text-4xl py-5">EDUCATION</h2>
+        <a href={"https://www.apu.edu/"} className="flex justify-center">
+          <img src={apu} alt="apu" className="md:max-w-[80%] p-4" />
         </a>
-        <p className="body">
+        <p className="text-sm md:text-2xl py-5">
           B.S. Computer Science ~ Dept. of ECS <br />
           B.S. Honors Humanitites ~ APU Honors College
         </p>
       </div>
-      <div className="skillset">
-        SKILLS
-        <br />
-        <a href={"https://www.java.com/en/"}>
-          <img src={java_svg} alt="java" className="skill" />
-        </a>
-        <a href={"https://developer.mozilla.org/en-US/docs/Web/HTML"}>
-          <img src={html_svg} alt="html" className="skill" color="eb8300" />
-        </a>
-        <a href={"https://developer.mozilla.org/en-US/docs/Web/CSS"}>
-          <img src={css3_svg} alt="css3" className="skill" color="007df2" />
-        </a>
-        <a href={"https://www.javascript.com"}>
-          <img src={js_svg} alt="javascript" className="skill" color="ffe91f" />
-        </a>
-        <a href={"https://mongodb.com"}>
-          <img
-            src={mongodb_svg}
-            alt="mongodb"
-            className="skill"
-            color="0d9e2c"
+      <div className="flex flex-wrap content-center md:basis-1/2 justify-center p-1 fill-white">
+        <h2 className="underline text-4xl py-5">SKILLS</h2>
+        <span
+          id="skill-items"
+          className="flex flex-wrap items-center justify-center py-10"
+        >
+          <SkillItem
+            href={"https://www.java.com/en/"}
+            image={java_svg}
+            alt={"java"}
+            color={"white"}
+            classNames={"-translate-y-6"}
           />
-        </a>
-        <a href={"https://www.github.com"}>
-          <img src={github_svg} alt="github" className="skill" />
-        </a>
-        <a href={"https://reactjs.org"}>
-          <img src={react_svg} alt="react" className="skill" color="61DBFB" />
-        </a>
-        <a href={"https://www.typescriptlang.org/"}>
-          <img src={ts_svg} alt="typescript" className="skill" color="2495ff" />
-        </a>
-        <a href="https://cloud.google.com">
-          <img src={gcp} alt="google cloud platform" className="skill" />
-        </a>
-        <a href="https://firebase.google.com">
-          <img src={firebase} alt="firestore" className="skill" width="75%" />
-        </a>
-        <a href="https://www.mysql.com/">
-          <img src={mysql} alt="mysql" className="skill" />
-        </a>
-        <p className="body">
-          <br />
-          <br />
-          Deliverables:
-          <br />
-          <br />
-          Full-Stack Web & Mobile Development, Database Management, Software
-          Engineering, Programming
-        </p>
+          <SkillItem
+            href="https://developer.mozilla.org/en-US/docs/Web/HTML"
+            image={html_svg}
+            alt={"html5"}
+            color={"eb8300"}
+          />
+          <SkillItem
+            href={"https://developer.mozilla.org/en-US/docs/Web/CSS"}
+            image={css3_svg}
+            alt={"css3"}
+            color={"007df2"}
+          />
+          <SkillItem
+            href={"https://www.javascript.com"}
+            image={js_svg}
+            alt={"javascript"}
+            color={"ffe91f"}
+            classNames={"scale-95 px-1.5"}
+          />
+          <SkillItem
+            href={"https://mongodb.com"}
+            image={mongodb_svg}
+            alt={"mongo-db"}
+            color={"0d9e2c"}
+          />
+          <SkillItem
+            href={"https://www.github.com"}
+            image={github_svg}
+            alt={"github"}
+            color={"DDDEEE"}
+            classNames={"object-contain rounded-xl"}
+          />
+          <SkillItem
+            href="https://reactjs.org"
+            image={react_svg}
+            alt={"react"}
+            color={"50CAEA"}
+          />
+          <SkillItem
+            href="https://www.typescriptlang.org/"
+            image={ts_svg}
+            alt={"typescript"}
+            color={"2495ff"}
+          />
+          <SkillItem
+            href="https://cloud.google.com"
+            image={gcp}
+            alt={"google-cloud-platform"}
+            classNames="scale-110"
+          />
+          <SkillItem
+            href={"https://firebase.google.com"}
+            image={firebase}
+            alt={"firebase"}
+            classNames={"scale-90"}
+          />
+          <SkillItem
+            href={"https://www.mysql.com/"}
+            image={mysql}
+            alt={"mySQL"}
+          />
+        </span>
       </div>
-    </header>
+    </div>
   );
 }
 

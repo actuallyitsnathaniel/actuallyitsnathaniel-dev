@@ -14,10 +14,20 @@ module.exports = {
       gray: colors.gray,
       orange: colors.orange,
       yellow: colors.yellow,
+      cyan: colors.cyan,
     },
     extend: {
       fontFamily: {
         vcr: ["VCR", ...defaultTheme.fontFamily.sans],
+      },
+      keyframes: {
+        "link-floaters": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(3px)" },
+        },
+      },
+      animation: {
+        "mobile-links": "link-floaters 2s ease-in-out infinite",
       },
     },
   },

@@ -3,78 +3,24 @@ import "./index.css";
 
 import EducationAndSkills from "./Pages/EducationAndSkills";
 import AboutMe from "./Pages/AboutMe";
-import ContactMe from "./Pages/ContactMe";
 import Projects from "./Pages/Projects";
 
-import "./fonts/vcr_osd_mono.ttf";
-import backgroundVideo from "./assets/videos/node_background.mp4";
-import profilePic from "./assets/images/pfp_2023.png";
-import resume from "./assets/files/resume.pdf";
-
-// for social links
-import linkedin from "./assets/images/linkedin-svg.svg";
-import github from "./assets/images/github_square_icon.svg";
-import mail from "./assets/images/mail-svg.svg";
-import resumeIcon from "./assets/images/resume-icon.svg";
+import { Footer } from "./Components/footer";
+import { Header } from "./Components/header";
+import { Links } from "./Components/links";
+import { VideoBackground } from "./Components/video-background";
 
 const App = () => {
   return (
-    <div className="App">
-      <video autoPlay loop muted id="video">
-        <source src={backgroundVideo} type="video/mp4" />
-        Sorry, your browser does not support HTML5 video.
-      </video>
-      {/** STATIC EXTERNAL LINKS*/}
-      <div className="links-div">
-        <a href={"mailto:nathanielrbowman@gmail.com"}>
-          <img src={mail} className="link" alt="email" />
-        </a>
-        <a href={"https://linkedin.com/in/actuallyitsnathaniel"}>
-          <img src={linkedin} className="link" alt="linkedin" />
-        </a>
-        <a href={"https://github.com/actuallyitsnathaniel"}>
-          {" "}
-          <img src={github} className="link" alt="github" />{" "}
-        </a>
-        <a
-          href={resume}
-          rel="noopener noreferrer"
-          type="application/pdf"
-          download="nathaniel-bowman_resume"
-        >
-          <img src={resumeIcon} className="link" alt="resume" />
-        </a>
-      </div>
-
-      {/** TOP DIV */}
-      <header className="Top-header">
-        <img src={profilePic} alt="profile_pic" className="profile-pic" />
-        <p style={{ fontSize: "1.5ch", margin: "0" }}>Nathaniel Bowman</p>
-        <p style={{ fontSize: "0.8ch" }}>Full-Stack Software Engineer</p>
-        <p className="bio" style={{ flexWrap: "wrap" }}>
-          Currently working for Lightfeather.io&nbsp;LLC., I'm a motivated
-          software engineer who reads the documentation and checks the features
-          before an update. I think critically to look for creative solutions. I
-          love collaboration, problem-solving, and Agile Development.
-        </p>
-        <div className="arrow">⬇</div>
-        <p />
-      </header>
-
-      <EducationAndSkills />
-      <div className="arrow">⬇</div>
-      <p />
-      <p />
+    <div className="flex flex-wrap flex-col w-screen font-vcr text-white">
+      <VideoBackground />
+      {/* TODO: floating animation for links */}
+      <Links />
+      <Header />
       <Projects />
-
-      <AboutMe className="about-me" />
-      <ContactMe />
-
-      <footer className="footer">
-        {" "}
-        © NATHANIEL BOWMAN 2023. Built exclusively with Vite, React, and CSS.
-        Deployed on Vercel.
-      </footer>
+      <AboutMe />
+      <EducationAndSkills />
+      <Footer />
     </div>
   );
 };
