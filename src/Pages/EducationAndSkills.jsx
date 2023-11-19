@@ -1,17 +1,17 @@
 import React from "react";
 
-import github_svg from "../assets/images/github_square_icon.svg";
-import html_svg from "../assets/images/html-svg.svg";
-import css3_svg from "../assets/images/css-svg.svg";
-import mongodb_svg from "../assets/images/mongodb-svg.svg";
-import react_svg from "../assets/images/react-svg.svg";
-import js_svg from "../assets/images/js-svg.svg";
-import ts_svg from "../assets/images/typescript-logo-svg.svg";
-import gcp from "../assets/images/google-cloud-seeklogo.com.svg";
-import firebase from "../assets/images/firebase-logomark.svg";
-import java_svg from "../assets/images/java.svg";
+import github_svg from "../assets/images/skills/github_square_icon.svg";
+import html_svg from "../assets/images/skills/html-svg.svg";
+import css3_svg from "../assets/images/skills/css-svg.svg";
+import mongodb_svg from "../assets/images/skills/mongodb-svg.svg";
+import react_svg from "../assets/images/skills/react-svg.svg";
+import js_svg from "../assets/images/skills/js-svg.svg";
+import ts_svg from "../assets/images/skills/typescript-logo-svg.svg";
+import gcp from "../assets/images/skills/google-cloud-seeklogo.com.svg";
+import firebase from "../assets/images/skills/firebase-logomark.svg";
+import java_svg from "../assets/images/skills/java.svg";
 import apu from "../assets/images/apu_white.svg";
-import mysql from "../assets/images/logo-mysql.svg";
+import mysql from "../assets/images/skills/logo-mysql.svg";
 import { SkillItem } from "../Components/skill-item";
 
 function SkillsAndExperience() {

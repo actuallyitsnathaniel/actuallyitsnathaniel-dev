@@ -2,7 +2,7 @@ import { Link } from "./link";
 
 import resume from "../../assets/files/resume.pdf";
 import linkedin from "../../assets/images/linkedin-svg.svg";
-import github from "../../assets/images/github_square_icon.svg";
+import github from "../../assets/images/skills/github_square_icon.svg";
 import mail from "../../assets/images/mail-svg.svg";
 import resumeIcon from "../../assets/images/resume-icon.svg";
 
