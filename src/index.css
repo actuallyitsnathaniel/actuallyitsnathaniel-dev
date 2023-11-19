@@ -26,6 +26,35 @@
 /* * {
   outline: 1px solid #f00 !important;
 } */
+body {
+  z-index: -2;
+  overflow: visible;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  z-index: -1;
+  background: #ddd;
+  border: 7px solid black;
+  border-bottom: none;
+  border-top: none;
+}
+
+::-webkit-scrollbar-thumb {
+  z-index: -1;
+  background: black;
+  stroke-width: 3px;
+  height: 80px;
+  border: 4px solid #ddd;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ddd;
+  border: 3px solid black;
+}
 
 @keyframes flicker {
   0% {
