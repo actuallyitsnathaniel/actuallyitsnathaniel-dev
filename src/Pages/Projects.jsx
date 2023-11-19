@@ -1,9 +1,9 @@
 import { WebsiteThumbnail } from "../Components/website-thumbnail";
 
-import sahilJindalThumbnail from "../assets/images/thumbnails/sahil-jindal.png";
-import johnWhiteThumbnail from "../assets/images/thumbnails/john-white-thumbnail.png";
-import rylandThumbnail from "../assets/images/thumbnails/ryland-thumbnail.png";
-import samDentonThumbnail from "../assets/images/thumbnails/sam-denton-thumbnail.png";
+import sahilJindalThumbnail from "../assets/images/thumbnails/sahil-jindal.jpg";
+import johnWhiteThumbnail from "../assets/images/thumbnails/john-white-thumbnail.jpg";
+import rylandThumbnail from "../assets/images/thumbnails/ryland-thumbnail.jpg";
+import samDentonThumbnail from "../assets/images/thumbnails/sam-denton-thumbnail.jpg";
 
 import GitRepoCardSet from "../Components/git-repos";
 
