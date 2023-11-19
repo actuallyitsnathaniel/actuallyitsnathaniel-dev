@@ -1,6 +1,9 @@
 import { WebsiteThumbnail } from "../Components/website-thumbnail";
+
 import sahilJindalThumbnail from "../assets/images/thumbnails/sahil-jindal.png";
 import johnWhiteThumbnail from "../assets/images/thumbnails/john-white-thumbnail.png";
+import rylandThumbnail from "../assets/images/thumbnails/ryland-thumbnail.png";
+import samDentonThumbnail from "../assets/images/thumbnails/sam-denton-thumbnail.png";
 
 import GitRepoCardSet from "../Components/git-repos";
 
@@ -23,6 +26,18 @@ export const Projects = () => {
           href="https://johnwhitesmusic.com"
           alt="john-white-site"
           label={"John White"}
+        />
+        <WebsiteThumbnail
+          image={rylandThumbnail}
+          href="https://weareryland.com"
+          alt="ryland-site"
+          label={"Ryland"}
+        />
+        <WebsiteThumbnail
+          image={samDentonThumbnail}
+          href="https://sam-denton-site.vercel.app/"
+          alt="sam-denton-site"
+          label={"Sam Denton"}
         />
       </div>
 
