@@ -71,7 +71,7 @@ export const GitRepoCard = () => {
                 <div className="text-[#4987d8] text-left text-lg p-1.5">
                   {details.name}
                 </div>
-                <div className="text-[#7f7f7f] text-md px-1 break-words hyphens-auto">
+                <div className="text-[#eee] text-lg px-1 break-words hyphens-auto">
                   {details.description}
                 </div>
                 <div className="text-[#aaa] text-sm p-1 absolute bottom-0.5">
