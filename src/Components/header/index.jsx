@@ -1,5 +1,5 @@
 import { Bio } from "./bio";
-import { Links } from "/src/links";
+import Links from "../links";
 import profilePic from "/src/assets/images/pfp_2023.png";
 
 export const Header = () => {
