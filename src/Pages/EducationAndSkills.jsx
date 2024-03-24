@@ -1,22 +1,22 @@
 import React from "react";
 
-import github_svg from "../assets/images/skills/github_square_icon.svg";
-import html_svg from "../assets/images/skills/html-svg.svg";
-import css3_svg from "../assets/images/skills/css-svg.svg";
-import mongodb_svg from "../assets/images/skills/mongodb-svg.svg";
-import react_svg from "../assets/images/skills/react-svg.svg";
-import js_svg from "../assets/images/skills/js-svg.svg";
-import ts_svg from "../assets/images/skills/typescript-logo-svg.svg";
-import gcp from "../assets/images/skills/google-cloud-seeklogo.com.svg";
-import aws from "../assets/images/skills/aws-logo.svg";
-import firebase from "../assets/images/skills/firebase-logomark.svg";
-import java_svg from "../assets/images/skills/java.svg";
-import apu from "../assets/images/apu_white.svg";
-import mysql from "../assets/images/skills/logo-mysql.svg";
+import github_svg from "/src/assets/images/skills/github_square_icon.svg";
+import html_svg from "/src/assets/images/skills/html-svg.svg";
+import css3_svg from "/src/assets/images/skills/css-svg.svg";
+import mongodb_svg from "/src/assets/images/skills/mongodb-svg.svg";
+import react_svg from "/src/assets/images/skills/react-svg.svg";
+import js_svg from "/src/assets/images/skills/js-svg.svg";
+import ts_svg from "/src/assets/images/skills/typescript-logo-svg.svg";
+import gcp from "/src/assets/images/skills/google-cloud-seeklogo.com.svg";
+import aws from "/src/assets/images/skills/aws-logo.svg";
+import firebase from "/src/assets/images/skills/firebase-logomark.svg";
+import java_svg from "/src/assets/images/skills/java.svg";
+import apu from "/src/assets/images/apu_white.svg";
+import mysql from "/src/assets/images/skills/logo-mysql.svg";
 
-import { SkillItem } from "../Components/skill-item";
+import { SkillItem } from "/src/Components/skill-item";
 
-function SkillsAndExperience() {
+const SkillsAndExperience = () => {
   return (
     <div className="flex flex-row flex-wrap text-center justify-center md:w-full text-sm text-white min-h-full py-10">
       <div className="color-white md:basis-1/2 p-4 w-full">
@@ -35,6 +35,7 @@ function SkillsAndExperience() {
           id="skill-items"
           className="flex flex-wrap items-center justify-center py-10"
         >
+          {/* TODO: add RubyOnRails, PostgreSQL, Vercel, Jenkins, Docker, Splunk */}
           <SkillItem
             href={"https://www.java.com/en/"}
             image={java_svg}
@@ -113,6 +114,6 @@ function SkillsAndExperience() {
       </div>
     </div>
   );
-}
+};
 
 export default SkillsAndExperience;

@@ -1,10 +1,10 @@
 import { Link } from "./link";
 
-import resume from "../../assets/files/resume.pdf";
-import linkedin from "../../assets/images/linkedin-svg.svg";
-import github from "../../assets/images/skills/github_square_icon.svg";
-import mail from "../../assets/images/mail-svg.svg";
-import resumeIcon from "../../assets/images/resume-icon.svg";
+import resume from "/src/assets/files/resume.pdf";
+import linkedin from "/src/assets/images/linkedin-svg.svg";
+import github from "/src/assets/images/skills/github_square_icon.svg";
+import mail from "/src/assets/images/mail-svg.svg";
+import resumeIcon from "/src/assets/images/resume-icon.svg";
 
 export const Links = () => {
   return (

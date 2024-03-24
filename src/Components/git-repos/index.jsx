@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import githubLogo from "../../assets/images/git-repos-icon.png";
+import githubLogo from "/src/assets/images/git-repos-icon.png";
 
 var username = process.env.REACT_APP_GIT_USERNAME;
 var token = process.env.REACT_APP_GIT_TOKEN;
@@ -12,14 +12,14 @@ export const GitRepoCard = () => {
   // fetch and map the repositories HERE
   const GetData = () =>
     useEffect(() => {
-      // It's rude not to remember what you just asked for.
-      // USE LOCAL STORAGE TO REDUCE API CALLS!!!
+      // Let's reduce how often we call to Github.
+      // I SUMMON LOCAL STORAGE!!
       // https://felixgerschau.com/react-localstorage/
 
       if (!localStorage.getItem("repos")) {
         fetch(`https://api.github.com/users/${username}/repos`, {
           headers: {
-            Authorization: `${token}`, // TODO: implement auth token as ENV variable
+            Authorization: `${token}`,
           },
         })
           .then((response) => {

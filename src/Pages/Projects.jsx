@@ -1,11 +1,11 @@
-import { WebsiteThumbnail } from "../Components/website-thumbnail";
+import { WebsiteThumbnail } from "/src/Components/website-thumbnail";
 
-import sahilJindalThumbnail from "../assets/images/thumbnails/sahil-jindal.jpg";
-import johnWhiteThumbnail from "../assets/images/thumbnails/john-white-thumbnail.jpg";
-import rylandThumbnail from "../assets/images/thumbnails/ryland-thumbnail.jpg";
-import samDentonThumbnail from "../assets/images/thumbnails/sam-denton-thumbnail.jpg";
+import sahilJindalThumbnail from "/src/assets/images/thumbnails/sahil-jindal.jpg";
+import johnWhiteThumbnail from "/src/assets/images/thumbnails/john-white-thumbnail.jpg";
+import rylandThumbnail from "/src/assets/images/thumbnails/ryland-thumbnail.jpg";
+import samDentonThumbnail from "/src/assets/images/thumbnails/sam-denton-thumbnail.jpg";
 
-import GitRepoCardSet from "../Components/git-repos";
+import GitRepoCardSet from "/src/Components/git-repos";
 
 export const Projects = () => {
   return (

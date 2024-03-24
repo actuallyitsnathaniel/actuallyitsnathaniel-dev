@@ -1,5 +1,5 @@
-import BGVideoMP4 from "../../assets/videos/node_background.mp4";
-import BGVideoWEBM from "../../assets/videos/node_background.webm";
+import BGVideoMP4 from "/src/assets/videos/node_background.mp4";
+import BGVideoWEBM from "/src/assets/videos/node_background.webm";
 
 export const VideoBackground = () => {
   return (

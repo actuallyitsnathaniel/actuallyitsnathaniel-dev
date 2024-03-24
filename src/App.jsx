@@ -25,7 +25,7 @@ const App = () => {
       <VideoBackground />
       <CRTToggle {...{ HandleCRT }} />
       <Header />
-      {/* TODO: add all website projects here. */}
+      {/* TODO: ensure all really cool website projects are here. */}
       <Projects />
       <AboutMe />
       <EducationAndSkills />
