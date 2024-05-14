@@ -40,7 +40,7 @@ const SkillsAndExperience = () => {
         <h2 className="underline text-5xl py-5">SKILLS</h2>
         <span
           id="skill-items"
-          className="flex flex-wrap items-center justify-center py-10"
+          className="flex flex-wrap items-center justify-center p-5 gap-x-16 gap-y-4"
         >
           {/* TODO: implement an interactable 3D "skill-sphere"
           --- this will then require that i include babylon.js in my skills 😎  */}
@@ -123,7 +123,6 @@ const SkillsAndExperience = () => {
             href={"https://www.postgresql.org/"}
             image={postgresql_logo}
             alt={"postgresql"}
-            classNames={"scale-150"}
           />
           <SkillItem
             href="https://reactjs.org"
@@ -159,7 +158,7 @@ const SkillsAndExperience = () => {
             href={"https://vercel.com/"}
             image={vercel_svg}
             alt={"vercel"}
-            classNames={"scale-125"}
+            classNames={"scale-110"}
           />
         </span>
       </div>

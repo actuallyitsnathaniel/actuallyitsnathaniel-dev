@@ -1,6 +1,6 @@
 export const SkillItem = ({ href, image, alt, color, classNames }) => {
   return (
-    <a href={href} className="flex justify-center md:basis-1/4 basis-1/3 p-1">
+    <a href={href} className="flex justify-center">
       <img
         src={image}
         alt={alt}
