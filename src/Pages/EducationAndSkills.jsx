@@ -42,6 +42,7 @@ const SkillsAndExperience = () => {
           id="skill-items"
           className="flex flex-wrap items-center justify-center p-5 gap-x-16 gap-y-4"
         >
+          {/* TODO: add MUI to this list */}
           {/* TODO: implement an interactable 3D "skill-sphere"
           --- this will then require that i include babylon.js in my skills 😎  */}
           <SkillItem
