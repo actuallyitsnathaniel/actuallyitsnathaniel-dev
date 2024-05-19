@@ -1,17 +1,16 @@
-# My First Site Using React, HTML, and CSS.
+# My First Site Using Vite + React, HTML, and CSS.
 
-<img width="1437" alt="Screen Shot 2022-03-16 at 6 57 57 PM" src="https://user-images.githubusercontent.com/38742706/158721316-33718f9e-4c8a-430e-88ee-f68ff7cc591f.png">
-
+<p align="center">
+  <img width="auto" height="450" src="https://github.com/actuallyitsnathaniel/actuallyitsnathaniel-dev/assets/38742706/4e7d3af0-cbdd-47b1-93b8-7fd4fbddfa99">
+</p>
 
 
 ## Installation
 
-> I like yarn so:
-
 ```bash
-yarn add
+npm i
 ```
 
 ## Development
 
-`yarn start`
+`npm run dev`
