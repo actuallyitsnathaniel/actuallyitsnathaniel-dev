@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 import githubLogo from "/src/assets/images/git-repos-icon.png";
 
-var username = process.env.REACT_APP_GIT_USERNAME;
-var token = process.env.REACT_APP_GIT_TOKEN;
+const username = process.env.REACT_APP_GIT_USERNAME;
+const token = process.env.REACT_APP_GIT_TOKEN;
 
 // Dynamically propagated based on number of repositories
 export const GitRepoCard = () => {
