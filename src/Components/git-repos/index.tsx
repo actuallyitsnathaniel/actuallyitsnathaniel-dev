@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import githubLogo from "/src/assets/images/git-repos-icon.png";
 
@@ -45,8 +45,10 @@ export const GitRepoCard = () => {
           });
       } else {
         console.log("Repos already in localStorage.");
-        setRepos(Array.from(JSON.parse(localStorage.getItem("repos"))));
-        console.log(JSON.parse(localStorage.getItem("repos")));
+        setRepos(
+          Array.from(JSON.parse(localStorage.getItem("repos") as string))
+        );
+        console.log(JSON.parse(localStorage.getItem("repos") as string));
       }
     }, []);
 
@@ -59,28 +61,36 @@ export const GitRepoCard = () => {
         Total Repositories: {repos.length}
       </p>
       <div className="flex flex-wrap justify-center">
-        {repos.map((details, i) => {
-          return (
-            <a
-              className="relative text-left duration-100 ease-in-out h-48 min-w-[330px] w-1/4 bg-gray-900 outline outline-gray-600 font-medium rounded-md m-4 hover:brightness-125 hover:scale-105"
-              href={details.html_url}
-              target="_blank"
-              key={details.id}
-            >
-              <div id="text-wrapper" className="px-1.5">
-                <div className="text-[#4987d8] text-left text-lg p-1.5">
-                  {details.name}
+        {repos.map(
+          (details: {
+            html_url: string;
+            id: string;
+            name: string;
+            description: string;
+            language: string;
+          }) => {
+            return (
+              <a
+                className="relative text-left duration-100 ease-in-out h-48 min-w-[330px] w-1/4 bg-gray-900 outline outline-gray-600 font-medium rounded-md m-4 hover:brightness-125 hover:scale-105"
+                href={details.html_url}
+                target="_blank"
+                key={details.id}
+              >
+                <div id="text-wrapper" className="px-1.5">
+                  <div className="text-[#4987d8] text-left text-lg p-1.5">
+                    {details.name}
+                  </div>
+                  <div className="text-[#eee] text-lg px-1 break-words hyphens-auto">
+                    {details.description}
+                  </div>
+                  <div className="text-[#aaa] text-sm p-1 absolute bottom-0.5">
+                    {details.language}
+                  </div>
                 </div>
-                <div className="text-[#eee] text-lg px-1 break-words hyphens-auto">
-                  {details.description}
-                </div>
-                <div className="text-[#aaa] text-sm p-1 absolute bottom-0.5">
-                  {details.language}
-                </div>
-              </div>
-            </a>
-          );
-        })}
+              </a>
+            );
+          }
+        )}
       </div>
     </div>
   );

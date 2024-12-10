@@ -1,4 +1,16 @@
-export const SkillItem = ({ href, image, alt, color, classNames }) => {
+export const SkillItem = ({
+  href,
+  image,
+  alt,
+  color,
+  classNames,
+}: {
+  href: string;
+  image: string;
+  alt: string;
+  color?: string;
+  classNames?: string;
+}) => {
   return (
     <a href={href} className="flex justify-center">
       <img

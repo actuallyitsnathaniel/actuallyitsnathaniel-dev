@@ -1,4 +1,8 @@
-export const CRTToggle = ({ HandleCRT }) => {
+export const CRTToggle = ({
+  HandleCRT,
+}: {
+  HandleCRT: React.MouseEventHandler<HTMLInputElement>;
+}) => {
   return (
     <span className="fixed top-2 left-2 flex align-middle z-[2]">
       <input

@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import svgr from "vite-plugin-svgr";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 
-export default defineConfig(({ command, mode }) => {
+export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   return {
     define: {
@@ -36,11 +36,6 @@ export default defineConfig(({ command, mode }) => {
                   cleanupNumericValues: false,
                   removeViewBox: false, // https://github.com/svg/svgo/issues/1128
                 },
-                cleanupIDs: {
-                  minify: true,
-                  remove: false,
-                },
-                convertPathData: false,
               },
             },
             "sortAttrs",

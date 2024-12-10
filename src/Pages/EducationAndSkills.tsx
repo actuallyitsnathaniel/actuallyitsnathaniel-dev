@@ -1,5 +1,3 @@
-import React from "react";
-
 import apu from "/src/assets/images/apu_white.svg";
 import aws from "/src/assets/images/skills/aws-logo.svg";
 import css3_svg from "/src/assets/images/skills/css-svg.svg";
@@ -21,7 +19,7 @@ import tailwindcss_svg from "/src/assets/images/skills/tailwindcss-logo.svg";
 import ts_svg from "/src/assets/images/skills/typescript-logo-svg.svg";
 import vercel_svg from "/src/assets/images/skills/vercel-logotype-light.svg";
 
-import { SkillItem } from "/src/Components/skill-item";
+import { SkillItem } from "../Components/skill-item";
 
 const SkillsAndExperience = () => {
   return (

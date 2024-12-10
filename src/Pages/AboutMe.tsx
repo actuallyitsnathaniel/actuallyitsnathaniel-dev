@@ -1,5 +1,3 @@
-import React from "react";
-
 export const AboutMe = () => {
   return (
     <div className="flex text-center flex-col items-center justify-center text-xl">
