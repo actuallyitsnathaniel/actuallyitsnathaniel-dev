@@ -4,7 +4,7 @@ import profilePic from "/src/assets/images/pfp_2023.png";
 
 export const Header = () => {
   return (
-    <header className="flex flex-col items-center justify-center text-center min-h-[100vh]">
+    <header className="flex flex-col items-center justify-center text-center min-h-screen">
       <img
         src={profilePic}
         alt="profile-pic"

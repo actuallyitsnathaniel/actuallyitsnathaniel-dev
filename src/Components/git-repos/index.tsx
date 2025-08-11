@@ -69,7 +69,7 @@ export const GitRepoCard = () => {
         {repos.map((details: Repository) => {
             return (
               <a
-                className="relative text-left duration-100 ease-in-out h-48 min-w-[330px] w-1/4 bg-gray-900 outline outline-gray-600 font-medium rounded-md m-4 hover:brightness-125 hover:scale-105"
+                className="relative text-left duration-100 ease-in-out h-48 min-w-[330px] w-1/4 bg-gray-900 outline-solid outline-gray-600 font-medium rounded-md m-4 hover:brightness-125 hover:scale-105"
                 href={details.html_url}
                 target="_blank"
                 rel="noopener noreferrer"
