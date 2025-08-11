@@ -6,53 +6,58 @@ const username = process.env.REACT_APP_GIT_USERNAME;
 const token = process.env.REACT_APP_GIT_TOKEN;
 
 // Dynamically propagated based on number of repositories
+interface Repository {
+  html_url: string;
+  id: string;
+  name: string;
+  description: string;
+  language: string;
+}
+
 export const GitRepoCard = () => {
-  const [repos, setRepos] = useState([]);
+  const [repos, setRepos] = useState<Repository[]>([]);
 
   // fetch and map the repositories HERE
-  const GetData = () =>
-    useEffect(() => {
-      // Let's reduce how often we call to Github.
-      // I SUMMON LOCAL STORAGE!!
-      // https://felixgerschau.com/react-localstorage/
+  useEffect(() => {
+    // Let's reduce how often we call to Github.
+    // I SUMMON LOCAL STORAGE!!
+    // https://felixgerschau.com/react-localstorage/
 
-      if (!localStorage.getItem("repos")) {
-        fetch(`https://api.github.com/users/${username}/repos`, {
-          headers: {
-            Authorization: `${token}`,
-          },
+    if (!localStorage.getItem("repos")) {
+      fetch(`https://api.github.com/users/${username}/repos`, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      })
+        .then((response) => {
+          if (response.status === 401) {
+            console.error(
+              "Ah. good ol' 401 error. How many API calls have you made??"
+            );
+            alert(
+              "Ah. good ol' 401 error. How many API calls have you made??"
+            );
+          } else if (response.status === 200) return response.json();
         })
-          .then((response) => {
-            if (response.status === 401) {
-              console.error(
-                "Ah. good ol' 401 error. How many API calls have you made??"
-              );
-              alert(
-                "Ah. good ol' 401 error. How many API calls have you made??"
-              );
-            } else if (response.status === 200) return response.json();
-          })
-          .then((json) => {
-            setRepos(json);
+        .then((json) => {
+          setRepos(json);
 
-            localStorage.setItem("repos", JSON.stringify(json));
+          localStorage.setItem("repos", JSON.stringify(json));
 
-            console.log("Repos fetched to localStorage!");
-          })
-          .catch((err) => {
-            console.log(err);
-            return err;
-          });
-      } else {
-        console.log("Repos already in localStorage.");
-        setRepos(
-          Array.from(JSON.parse(localStorage.getItem("repos") as string))
-        );
-        console.log(JSON.parse(localStorage.getItem("repos") as string));
-      }
-    }, []);
-
-  GetData(); // run GetData
+          console.log("Repos fetched to localStorage!");
+        })
+        .catch((err) => {
+          console.log(err);
+          return err;
+        });
+    } else {
+      console.log("Repos already in localStorage.");
+      setRepos(
+        Array.from(JSON.parse(localStorage.getItem("repos") as string))
+      );
+      console.log(JSON.parse(localStorage.getItem("repos") as string));
+    }
+  }, []);
 
   return (
     <div className="flex flex-wrap flex-col">
@@ -61,19 +66,13 @@ export const GitRepoCard = () => {
         Total Repositories: {repos.length}
       </p>
       <div className="flex flex-wrap justify-center">
-        {repos.map(
-          (details: {
-            html_url: string;
-            id: string;
-            name: string;
-            description: string;
-            language: string;
-          }) => {
+        {repos.map((details: Repository) => {
             return (
               <a
                 className="relative text-left duration-100 ease-in-out h-48 min-w-[330px] w-1/4 bg-gray-900 outline outline-gray-600 font-medium rounded-md m-4 hover:brightness-125 hover:scale-105"
                 href={details.html_url}
                 target="_blank"
+                rel="noopener noreferrer"
                 key={details.id}
               >
                 <div id="text-wrapper" className="px-1.5">
