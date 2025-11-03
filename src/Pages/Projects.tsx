@@ -43,7 +43,7 @@ export const Projects = () => {
 
       <GitRepoCardSet />
       <span className="p-10">
-        <h2 className="underline text-4xl p-5">DELIVERABLES</h2>
+        <h3 className="underline text-4xl p-5">DELIVERABLES</h3>
         <p className="text-2xl">
           Full-Stack Web & Mobile Development, Database Management, Software
           Engineering, Programming

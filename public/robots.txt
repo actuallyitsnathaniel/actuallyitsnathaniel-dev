@@ -1,6 +1,5 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Allow: /
-Disallow:
+Disallow: /
 
-Sitemap: https://actuallyitsnathaniel.dev/sitemap.xml
+Sitemap: https://dev.actuallyitsnathaniel.com/sitemap.xml

@@ -18,7 +18,15 @@ export const WebsiteThumbnail = ({
         mx-8 duration-100 hover:scale-105 ${classNames}`}
     >
       <a href={href} rel="noopener noreferrer" target="_blank" className="p-2 ">
-        <img src={image} alt={alt} className="object-cover rounded-md" />
+        <img
+          src={image}
+          alt={`${label} - Portfolio project website by Nathaniel Bowman`}
+          className="object-cover rounded-md"
+          width="400"
+          height="300"
+          loading="lazy"
+          decoding="async"
+        />
       </a>
       <p className="text-3xl">{label}</p>
     </div>

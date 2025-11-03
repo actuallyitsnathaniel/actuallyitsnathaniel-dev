@@ -22,24 +22,24 @@ const App = () => {
       <SEO
         title="Nathaniel Bowman - Full-Stack Developer & Software Engineer"
         description="Portfolio of Nathaniel Bowman - Full-Stack Web & Mobile Developer specializing in React, TypeScript, AWS, and modern web technologies. B.S. Computer Science from APU."
-        url="https://actuallyitsnathaniel.dev"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Person",
           "name": "Nathaniel Bowman",
-          "url": "https://actuallyitsnathaniel.dev",
+          "url": import.meta.env.VITE_SITE_URL || "https://actuallyitsnathaniel.dev",
           "jobTitle": "Full-Stack Developer & Software Engineer",
           "alumniOf": {
             "@type": "CollegeOrUniversity",
-            "name": "Azusa Pacific University"
+            "name": "Azusa Pacific University",
+            "url": "https://www.apu.edu/"
           },
-          "knowsAbout": ["React", "TypeScript", "JavaScript", "AWS", "Firebase", "Docker", "Node.js", "MongoDB", "PostgreSQL", "Web Development", "Mobile Development"],
+          "knowsAbout": ["React", "TypeScript", "JavaScript", "AWS", "Firebase", "Docker", "Node.js", "MongoDB", "PostgreSQL", "Web Development", "Mobile Development", "Full-Stack Development"],
           "sameAs": [
-            "https://github.com/actuallyitsnathaniel"
+            "https://github.com/actuallyitsnathaniel",
+            "https://linkedin.com/in/actuallyitsnathaniel"
           ]
         }}
       />
-      <h1 className="sr-only">Nathaniel Bowman - Full-Stack Developer & Software Engineer Portfolio</h1>
       <div
         className={`flex flex-wrap overflow-clip flex-col font-pokemon text-white lowercase ${
           isCRT && "crt"

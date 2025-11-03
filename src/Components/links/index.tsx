@@ -23,7 +23,7 @@ const Links = () => {
       <Link
         image={resumeIcon}
         href={resume}
-        alt="github"
+        alt="Download Resume PDF"
         type="application/pdf"
         download="nathaniel-bowman_resume"
       />
