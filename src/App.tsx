@@ -25,19 +25,34 @@ const App = () => {
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Person",
-          "name": "Nathaniel Bowman",
-          "url": import.meta.env.VITE_SITE_URL || "https://actuallyitsnathaniel.dev",
-          "jobTitle": "Full-Stack Developer & Software Engineer",
-          "alumniOf": {
+          name: "Nathaniel Bowman",
+          url:
+            import.meta.env.VITE_SITE_URL ||
+            "https://dev.actuallyitsnathaniel.com",
+          jobTitle: "Full-Stack Developer & Software Engineer",
+          alumniOf: {
             "@type": "CollegeOrUniversity",
-            "name": "Azusa Pacific University",
-            "url": "https://www.apu.edu/"
+            name: "Azusa Pacific University",
+            url: "https://www.apu.edu/",
           },
-          "knowsAbout": ["React", "TypeScript", "JavaScript", "AWS", "Firebase", "Docker", "Node.js", "MongoDB", "PostgreSQL", "Web Development", "Mobile Development", "Full-Stack Development"],
-          "sameAs": [
+          knowsAbout: [
+            "React",
+            "TypeScript",
+            "JavaScript",
+            "AWS",
+            "Firebase",
+            "Docker",
+            "Node.js",
+            "MongoDB",
+            "PostgreSQL",
+            "Web Development",
+            "Mobile Development",
+            "Full-Stack Development",
+          ],
+          sameAs: [
             "https://github.com/actuallyitsnathaniel",
-            "https://linkedin.com/in/actuallyitsnathaniel"
-          ]
+            "https://linkedin.com/in/actuallyitsnathaniel",
+          ],
         }}
       />
       <div

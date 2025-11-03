@@ -18,12 +18,15 @@ const SEO = ({
   jsonLd,
 }: SEOProps) => {
   // Use environment variables for URLs
-  const siteUrl = import.meta.env.VITE_SITE_URL || "https://actuallyitsnathaniel.dev";
+  const siteUrl =
+    import.meta.env.VITE_SITE_URL || "https://dev.actuallyitsnathaniel.com";
   const isProduction = import.meta.env.VITE_IS_PRODUCTION === "true";
 
   const finalUrl = url || siteUrl;
   const finalImage = image || `${siteUrl}/og-image.png`;
-  const fullTitle = title.includes("Nathaniel Bowman") ? title : `${title} | Nathaniel Bowman`;
+  const fullTitle = title.includes("Nathaniel Bowman")
+    ? title
+    : `${title} | Nathaniel Bowman`;
 
   useHead({
     title: fullTitle,
@@ -31,7 +34,10 @@ const SEO = ({
       { name: "title", content: fullTitle },
       { name: "description", content: description },
       // Use noindex on dev/staging to prevent duplicate content
-      { name: "robots", content: isProduction ? "index, follow" : "noindex, nofollow" },
+      {
+        name: "robots",
+        content: isProduction ? "index, follow" : "noindex, nofollow",
+      },
       { name: "language", content: "English" },
       { name: "author", content: "Nathaniel Bowman" },
       { property: "og:type", content: type },
@@ -47,7 +53,9 @@ const SEO = ({
       { name: "twitter:image", content: finalImage },
     ],
     link: [{ rel: "canonical", href: finalUrl }],
-    script: jsonLd ? [{ type: "application/ld+json", children: JSON.stringify(jsonLd) }] : [],
+    script: jsonLd
+      ? [{ type: "application/ld+json", children: JSON.stringify(jsonLd) }]
+      : [],
   });
 
   return null;
