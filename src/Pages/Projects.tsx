@@ -3,6 +3,7 @@ import { WebsiteThumbnail } from "../Components/website-thumbnail";
 import sahilJindalThumbnail from "/src/assets/images/thumbnails/sahil-jindal.jpg";
 import johnWhiteThumbnail from "/src/assets/images/thumbnails/john-white-thumbnail.jpg";
 import rylandThumbnail from "/src/assets/images/thumbnails/ryland-thumbnail.jpg";
+import dwThumbnail from "/src/assets/images/thumbnails/davewilbert-thumbnail.jpg";
 // import samDentonThumbnail from "/src/assets/images/thumbnails/sam-denton-thumbnail.jpg";
 
 import GitRepoCardSet from "../Components/git-repos";
@@ -10,7 +11,9 @@ import GitRepoCardSet from "../Components/git-repos";
 export const Projects = () => {
   return (
     <div className="flex flex-wrap flex-col w-screen text-center py-10">
-      <h2 className="underline text-5xl py-4" id="projects">PROJECTS</h2>
+      <h2 className="underline text-5xl py-4" id="projects">
+        PROJECTS
+      </h2>
       <div
         id="site-thumbnails-wrapper"
         className="flex flex-wrap w-screen justify-center py-10"
@@ -22,10 +25,16 @@ export const Projects = () => {
           label={"Sahil Jindal"}
         />
         <WebsiteThumbnail
+          image={dwThumbnail}
+          href="https://davewilbertmusic.com"
+          alt="dave-wilbert-site"
+          label={"Dave Wilbert Music"}
+        />
+        <WebsiteThumbnail
           image={johnWhiteThumbnail}
           href="https://johnwhitesmusic.com"
           alt="john-white-site"
-          label={"John White"}
+          label={"John White Music"}
         />
         <WebsiteThumbnail
           image={rylandThumbnail}

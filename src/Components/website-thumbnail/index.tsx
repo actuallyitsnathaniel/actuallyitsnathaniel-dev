@@ -20,7 +20,7 @@ export const WebsiteThumbnail = ({
       <a href={href} rel="noopener noreferrer" target="_blank" className="p-2 ">
         <img
           src={image}
-          alt={`${label} - Portfolio project website by Nathaniel Bowman`}
+          alt={`${alt} - website by Nathaniel Bowman`}
           className="object-cover rounded-md"
           width="400"
           height="300"
