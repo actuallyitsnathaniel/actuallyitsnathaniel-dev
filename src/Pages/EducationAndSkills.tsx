@@ -3,10 +3,9 @@ import { SkillsSection } from "../Components/skills";
 
 // TODO - ADD THESE:
 /**
- * Springboot
- * Angular 17^
- * SQL Developer
- *
+ * Harness
+ * SonarQube
+ * New Relic
  */
 
 const SkillsAndExperience = () => {
