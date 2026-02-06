@@ -25,10 +25,18 @@ const App = () => {
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Person",
+          "@id":
+            (import.meta.env.VITE_SITE_URL ||
+              "https://dev.actuallyitsnathaniel.com") + "/#person",
           name: "Nathaniel Bowman",
           url:
             import.meta.env.VITE_SITE_URL ||
             "https://dev.actuallyitsnathaniel.com",
+          image:
+            (import.meta.env.VITE_SITE_URL ||
+              "https://dev.actuallyitsnathaniel.com") + "/og-image.jpg",
+          description:
+            "Full-Stack Web & Mobile Developer specializing in React, TypeScript, AWS, and modern web technologies.",
           jobTitle: "Full-Stack Developer & Software Engineer",
           alumniOf: {
             "@type": "CollegeOrUniversity",

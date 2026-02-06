@@ -23,7 +23,7 @@ const SEO = ({
   const isProduction = import.meta.env.VITE_IS_PRODUCTION === "true";
 
   const finalUrl = url || siteUrl;
-  const finalImage = image || `${siteUrl}/og-image.png`;
+  const finalImage = image || `${siteUrl}/og-image.jpg`;
   const fullTitle = title.includes("Nathaniel Bowman")
     ? title
     : `${title} | Nathaniel Bowman`;
@@ -45,6 +45,10 @@ const SEO = ({
       { property: "og:title", content: fullTitle },
       { property: "og:description", content: description },
       { property: "og:image", content: finalImage },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "627" },
+      { property: "og:image:alt", content: fullTitle },
+      { property: "og:locale", content: "en_US" },
       { property: "og:site_name", content: "Nathaniel Bowman" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:url", content: finalUrl },

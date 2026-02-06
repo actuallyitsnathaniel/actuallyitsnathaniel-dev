@@ -1,4 +1,16 @@
+import { useState, useEffect } from "react";
 import { FiSearch, FiX } from "react-icons/fi";
+
+const PLACEHOLDER_KEYWORDS = [
+  "react",
+  "typeScript",
+  "aws",
+  "frontend",
+  "backend",
+  "docker",
+  "node.js",
+  "postgresql",
+];
 
 export const SkillSearch = ({
   value,
@@ -7,6 +19,16 @@ export const SkillSearch = ({
   value: string;
   onChange: (value: string) => void;
 }) => {
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPlaceholderIndex((prev) => (prev + 1) % PLACEHOLDER_KEYWORDS.length);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="relative w-64 mb-4">
       <FiSearch
@@ -17,9 +39,9 @@ export const SkillSearch = ({
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="Search skills..."
+        placeholder={`Search "${PLACEHOLDER_KEYWORDS[placeholderIndex]}"`}
         aria-label="Search skills"
-        className="w-full px-4 py-2 pl-10 pr-10 bg-gray-900 text-white border-4 border-gray-300 focus:outline-none focus:border-gray-100 placeholder-gray-200"
+        className="w-full px-4 py-2 pl-10 pr-10 bg-gray-900 text-white border-4 border-gray-300 focus:outline-none focus:border-gray-100 placeholder:text-gray-500"
       />
       {value && (
         <button
