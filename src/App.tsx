@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./index.css";
 
 import EducationAndSkills from "./Pages/EducationAndSkills";
@@ -18,10 +18,75 @@ import {
 const AppContent = () => {
   const [isCRT, setIsCRT] = useState(true);
   const { log } = useActivityLog();
+  const hasBooted = useRef(false);
 
   useEffect(() => {
-    log("system", "Session started");
+    // Prevent double-run from React StrictMode
+    if (hasBooted.current) return;
+    hasBooted.current = true;
 
+    // Stagger the boot logs for effect
+    const interval = 150;
+    const originalLog = log;
+    const delayedLogs: Array<() => void> = [];
+
+    const delayedLog = (type: "system", message: string) => {
+      delayedLogs.push(() => originalLog(type, message));
+    };
+
+    // Temporarily replace log with delayed version
+    const tempLog = delayedLog as typeof log;
+
+    // Build the sequence
+    tempLog("system", "Initializing terminal...");
+
+    const platform = navigator.platform || "Unknown";
+    tempLog("system", `Platform: ${platform}`);
+
+    const ua = navigator.userAgent;
+    let browser = "Unknown";
+    if (ua.includes("Firefox")) browser = "Firefox";
+    else if (ua.includes("Edg")) browser = "Edge";
+    else if (ua.includes("Chrome")) browser = "Chrome";
+    else if (ua.includes("Safari")) browser = "Safari";
+    else if (ua.includes("Opera") || ua.includes("OPR")) browser = "Opera";
+    tempLog("system", `Browser: ${browser}`);
+
+    const cores = navigator.hardwareConcurrency || "Unknown";
+    tempLog("system", `CPU Cores: ${cores}`);
+
+    const memory = (navigator as Navigator & { deviceMemory?: number })
+      .deviceMemory;
+    tempLog("system", `Memory: ${memory ? `${memory}GB` : "Unknown"}`);
+
+    const width = window.screen.width;
+    const height = window.screen.height;
+    const dpr = window.devicePixelRatio || 1;
+    tempLog("system", `Display: ${width}x${height} @${dpr}x`);
+
+    const touchPoints = navigator.maxTouchPoints || 0;
+    const inputType = touchPoints > 0 ? "Touch" : "Desktop";
+    tempLog("system", `Input: ${inputType}`);
+
+    const locale = navigator.language || "Unknown";
+    tempLog("system", `Locale: ${locale}`);
+
+    const connection = (
+      navigator as Navigator & {
+        connection?: { effectiveType?: string };
+      }
+    ).connection;
+    const networkType = connection?.effectiveType || "Unknown";
+    tempLog("system", `Network: ${networkType}`);
+
+    tempLog("system", "Session ready");
+
+    // Execute with staggered timing
+    delayedLogs.forEach((fn, i) => {
+      setTimeout(fn, i * interval);
+    });
+
+    // Click handler (after boot sequence)
     const handleClick = (e: MouseEvent) => {
       log("event", `Click @ (${e.clientX}, ${e.clientY})`);
     };
