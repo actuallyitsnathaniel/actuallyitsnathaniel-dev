@@ -1,12 +1,14 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useDebounce } from "../../hooks/useDebounce";
 import { skills } from "./skills-data";
 import { SkillSearch } from "./SkillSearch";
 import { SkillsGrid } from "./SkillsGrid";
+import { useActivityLog } from "../../context/ActivityLogContext";
 
 export const SkillsSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const debouncedQuery = useDebounce(searchQuery, 150);
+  const { log } = useActivityLog();
 
   const filteredSkills = useMemo(() => {
     if (!debouncedQuery.trim()) return skills;
@@ -22,6 +24,12 @@ export const SkillsSection = () => {
 
     return results.length > 0 ? results : skills;
   }, [debouncedQuery]);
+
+  useEffect(() => {
+    if (debouncedQuery.trim()) {
+      log("event", `Search: "${debouncedQuery}" → ${filteredSkills.length} results`);
+    }
+  }, [debouncedQuery, filteredSkills.length, log]);
 
   return (
     <div className="flex flex-wrap content-center md:basis-1/2 justify-center p-1 fill-white">

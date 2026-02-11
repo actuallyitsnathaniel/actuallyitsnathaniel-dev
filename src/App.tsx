@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./index.css";
 
 import EducationAndSkills from "./Pages/EducationAndSkills";
@@ -7,16 +7,35 @@ import Projects from "./Pages/Projects";
 
 import { Footer } from "./Components/footer";
 import { Header } from "./Components/header";
-import { VideoBackground } from "./Components/video-background";
+import { ActivityLogBackground } from "./Components/activity-log-background";
 import { CRTToggle } from "./Components/crt-toggle";
 import SEO from "./Components/seo";
+import {
+  ActivityLogProvider,
+  useActivityLog,
+} from "./context/ActivityLogContext";
 
-const App = () => {
+const AppContent = () => {
   const [isCRT, setIsCRT] = useState(true);
+  const { log } = useActivityLog();
+
+  useEffect(() => {
+    log("system", "Session started");
+
+    const handleClick = (e: MouseEvent) => {
+      log("event", `Click @ (${e.clientX}, ${e.clientY})`);
+    };
+
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+  }, [log]);
 
   const HandleCRT = () => {
-    setIsCRT(!isCRT);
+    const newValue = !isCRT;
+    setIsCRT(newValue);
+    log("event", `CRT effect: ${newValue ? "enabled" : "disabled"}`);
   };
+
   return (
     <>
       <SEO
@@ -68,7 +87,7 @@ const App = () => {
           isCRT && "crt"
         }`}
       >
-        <VideoBackground />
+        <ActivityLogBackground isCRT={isCRT} />
         <CRTToggle {...{ HandleCRT }} />
         <Header />
         {/* TODO: ensure all really cool website projects are here. */}
@@ -78,6 +97,14 @@ const App = () => {
         <Footer />
       </div>
     </>
+  );
+};
+
+const App = () => {
+  return (
+    <ActivityLogProvider>
+      <AppContent />
+    </ActivityLogProvider>
   );
 };
 

@@ -1,3 +1,5 @@
+import { useActivityLog } from "../../context/ActivityLogContext";
+
 export const Link = ({
   image,
   href,
@@ -11,6 +13,12 @@ export const Link = ({
   type?: string;
   download?: string;
 }) => {
+  const { log } = useActivityLog();
+
+  const handleClick = () => {
+    log("event", `Opened: ${alt}`);
+  };
+
   return (
     <a
       href={href}
@@ -18,6 +26,7 @@ export const Link = ({
       target="_blank"
       type={type}
       download={download}
+      onClick={handleClick}
     >
       <img
         src={image}

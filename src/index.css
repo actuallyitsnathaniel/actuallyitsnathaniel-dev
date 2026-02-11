@@ -418,22 +418,87 @@ code {
   color: white;
 }
 
-.video {
-  filter: brightness(0.11) blur(1.25px);
-  /* The min width had to be set for both */
-  min-width: 220vh;
-  transform: translateY(-50px);
-  justify-content: center;
-  align-content: center;
+/* Activity Log Background */
+.activity-log-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: #000;
   overflow: hidden;
-  object-fit: fill;
+  pointer-events: none;
 }
 
-.video-wrapper {
-  background-color: #000;
-  position: fixed;
+/* Reduce CRT text-shadow effect on activity log */
+.crt .activity-log-content {
+  animation: textShadowHalf 1.6s infinite;
+}
+
+@keyframes textShadowHalf {
+  0% {
+    text-shadow: 0.2px 0 0.5px rgba(0, 30, 255, 0.25),
+      -0.2px 0 0.5px rgba(255, 0, 80, 0.15), 0 0 1px;
+  }
+  25% {
+    text-shadow: 0.8px 0 0.5px rgba(0, 30, 255, 0.25),
+      -0.8px 0 0.5px rgba(255, 0, 80, 0.15), 0 0 1px;
+  }
+  50% {
+    text-shadow: 0.04px 0 0.5px rgba(0, 30, 255, 0.25),
+      -0.04px 0 0.5px rgba(255, 0, 80, 0.15), 0 0 1px;
+  }
+  75% {
+    text-shadow: 0.9px 0 0.5px rgba(0, 30, 255, 0.25),
+      -0.9px 0 0.5px rgba(255, 0, 80, 0.15), 0 0 1px;
+  }
+  100% {
+    text-shadow: 1.3px 0 0.5px rgba(0, 30, 255, 0.25),
+      -1.3px 0 0.5px rgba(255, 0, 80, 0.15), 0 0 1px;
+  }
+}
+
+.activity-log-content {
+  font-family: "IBM-1", monospace;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.15);
+  padding: 20px;
+  line-height: 1.8;
   display: flex;
-  z-index: -1;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100%;
+  overflow: hidden;
+}
+
+.log-line {
+  opacity: 0;
+  animation: fadeInLog 0.3s ease-out forwards;
+  white-space: nowrap;
+}
+
+.log-timestamp {
+  color: rgba(255, 255, 255, 0.1);
+  margin-right: 8px;
+}
+
+.log-type {
+  color: rgba(255, 255, 255, 0.2);
+  margin-right: 8px;
+}
+
+.log-message {
+  color: rgba(255, 255, 255, 0.15);
+}
+
+@keyframes fadeInLog {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes arrowMover {

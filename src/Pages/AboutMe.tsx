@@ -1,6 +1,13 @@
+import { useSectionVisibility } from "../hooks/useSectionVisibility";
+
 export const AboutMe = () => {
+  const sectionRef = useSectionVisibility("About Me");
+
   return (
-    <div className="flex text-center flex-col items-center justify-center text-xl">
+    <div
+      ref={sectionRef}
+      className="flex text-center flex-col items-center justify-center text-xl"
+    >
       <h2 className="underline text-5xl p-5" id="about">ABOUT ME</h2>
 
       <div className="max-w-4xl px-6">

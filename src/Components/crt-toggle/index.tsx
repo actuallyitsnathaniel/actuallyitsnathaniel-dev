@@ -6,7 +6,7 @@ export const CRTToggle = ({
   HandleCRT: React.MouseEventHandler<HTMLInputElement>;
 }) => {
   return (
-    <span className="fixed top-2 left-2 flex align-middle z-2">
+    <span className="fixed top-2 right-2 flex align-middle z-2">
       <input
         type="checkbox"
         onClick={HandleCRT}

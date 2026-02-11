@@ -7,10 +7,16 @@ import dwThumbnail from "/src/assets/images/thumbnails/davewilbert-thumbnail.jpg
 // import samDentonThumbnail from "/src/assets/images/thumbnails/sam-denton-thumbnail.jpg";
 
 import GitRepoCardSet from "../Components/git-repos";
+import { useSectionVisibility } from "../hooks/useSectionVisibility";
 
 export const Projects = () => {
+  const sectionRef = useSectionVisibility("Projects");
+
   return (
-    <div className="flex flex-wrap flex-col w-screen text-center py-10">
+    <div
+      ref={sectionRef}
+      className="flex flex-wrap flex-col w-screen text-center py-10"
+    >
       <h2 className="underline text-5xl py-4" id="projects">
         PROJECTS
       </h2>

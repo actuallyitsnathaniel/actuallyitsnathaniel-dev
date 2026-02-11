@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import githubLogo from "/src/assets/images/git-repos-icon.png";
+import { useActivityLog } from "../../context/ActivityLogContext";
 
 const username = process.env.REACT_APP_GIT_USERNAME;
 const token = process.env.REACT_APP_GIT_TOKEN;
@@ -16,6 +17,7 @@ interface Repository {
 
 export const GitRepoCard = () => {
   const [repos, setRepos] = useState<Repository[]>([]);
+  const { log } = useActivityLog();
 
   // fetch and map the repositories HERE
   useEffect(() => {
@@ -24,6 +26,7 @@ export const GitRepoCard = () => {
     // https://felixgerschau.com/react-localstorage/
 
     if (!localStorage.getItem("repos")) {
+      log("fetch", `GET github/users/${username}/repos`);
       fetch(`https://api.github.com/users/${username}/repos`, {
         headers: {
           Authorization: `${token}`,
@@ -31,29 +34,36 @@ export const GitRepoCard = () => {
       })
         .then((response) => {
           if (response.status === 401) {
+            log("fetch", "github/repos → 401 Unauthorized");
             console.error(
               "Ah. good ol' 401 error. How many API calls have you made??"
             );
             alert("Ah. good ol' 401 error. How many API calls have you made??");
-          } else if (response.status === 200) return response.json();
+          } else if (response.status === 200) {
+            log("fetch", `github/repos → 200 OK`);
+            return response.json();
+          }
         })
         .then((json) => {
           setRepos(json);
 
           localStorage.setItem("repos", JSON.stringify(json));
+          log("info", `Cached ${json?.length || 0} repositories`);
 
           console.log("Repos fetched to localStorage!");
         })
         .catch((err) => {
+          log("fetch", `github/repos → Error: ${err.message}`);
           console.log(err);
           return err;
         });
     } else {
+      log("info", "Loaded repos from cache");
       console.log("Repos already in localStorage.");
       setRepos(Array.from(JSON.parse(localStorage.getItem("repos") as string)));
       console.log(JSON.parse(localStorage.getItem("repos") as string));
     }
-  }, []);
+  }, [log]);
 
   return (
     <div className="flex flex-wrap flex-col items-center">
