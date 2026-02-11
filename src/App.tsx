@@ -72,9 +72,9 @@ const App = () => {
         <CRTToggle {...{ HandleCRT }} />
         <Header />
         {/* TODO: ensure all really cool website projects are here. */}
+        <EducationAndSkills />
         <Projects />
         <AboutMe />
-        <EducationAndSkills />
         <Footer />
       </div>
     </>

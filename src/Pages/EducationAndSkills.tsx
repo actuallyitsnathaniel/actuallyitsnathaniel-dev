@@ -1,13 +1,6 @@
 import apu from "/src/assets/images/apu_white.svg";
 import { SkillsSection } from "../Components/skills";
 
-// TODO - ADD THESE:
-/**
- * Harness
- * SonarQube
- * New Relic
- */
-
 const SkillsAndExperience = () => {
   return (
     <div className="flex flex-row flex-wrap text-center justify-center md:w-full text-sm text-white min-h-full py-10">
