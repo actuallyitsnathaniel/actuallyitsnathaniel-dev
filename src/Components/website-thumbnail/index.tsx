@@ -13,7 +13,7 @@ export const WebsiteThumbnail = ({
 }) => {
   return (
     <div
-      className={`flex max-w-md flex-wrap flex-col 
+      className={`flex w-md flex-wrap flex-col 
         justify-center uppercase text-center p-4 
         mx-8 duration-100 hover:scale-105 ${classNames}`}
     >

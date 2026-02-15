@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.ico?v=2" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+    <!-- Preconnect to external resources for faster loading -->
+    <link rel="preconnect" href="https://github.com" />
+    <link rel="preconnect" href="https://api.github.com" />
+    <link rel="dns-prefetch" href="https://github.com" />
+    <link rel="dns-prefetch" href="https://linkedin.com" />
     <link href="/dist/output.css" rel="stylesheet" />
     <meta
       name="description"
@@ -25,10 +30,15 @@
     <title>Nathaniel Bowman - Full-Stack Developer & Software Engineer</title>
   </head>
   <body style="background-color: black">
-    <noscript
-      >Shoot! You need to enable JavaScript to see my work. It's the future
-      anyways, so turn it on!!</noscript
-    >
+    <noscript>
+      <div style="padding: 2rem; text-align: center; font-family: system-ui, sans-serif;">
+        <h1>Nathaniel Bowman - Full-Stack Developer</h1>
+        <p>Full-Stack Web & Mobile Developer specializing in React, TypeScript, AWS, and modern web technologies.</p>
+        <p>B.S. Computer Science from Azusa Pacific University.</p>
+        <p>Please enable JavaScript to view the interactive portfolio.</p>
+        <p>Connect with me: <a href="https://github.com/actuallyitsnathaniel">GitHub</a> | <a href="https://linkedin.com/in/actuallyitsnathaniel">LinkedIn</a></p>
+      </div>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/index.tsx"></script>
 

@@ -26,6 +26,7 @@ import {
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
 import { HarnessIcon } from "../icons/HarnessIcon";
+import { ClaudeIcon } from "../icons/ClaudeIcon";
 import type { Skill } from "../../types/skill.types";
 
 export const skills: Skill[] = [
@@ -451,5 +452,23 @@ export const skills: Skill[] = [
       "merchant tools",
     ],
     color: "#95bf47",
+  },
+  {
+    id: "claude-code",
+    name: "Claude Code",
+    icon: ClaudeIcon,
+    href: "https://claude.ai/",
+    category: "tools",
+    keywords: [
+      "ai",
+      "anthropic",
+      "assistant",
+      "coding",
+      "llm",
+      "claude",
+      "ai coding",
+      "code generation",
+    ],
+    color: "#D97757",
   },
 ];

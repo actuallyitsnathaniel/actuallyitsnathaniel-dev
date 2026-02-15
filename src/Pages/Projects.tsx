@@ -4,6 +4,7 @@ import sahilJindalThumbnail from "/src/assets/images/thumbnails/sahil-jindal.jpg
 import johnWhiteThumbnail from "/src/assets/images/thumbnails/john-white-thumbnail.jpg";
 import rylandThumbnail from "/src/assets/images/thumbnails/ryland-thumbnail.jpg";
 import dwThumbnail from "/src/assets/images/thumbnails/davewilbert-thumbnail.jpg";
+import jlmThumbnail from "/src/assets/images/thumbnails/jlm-thumbnail.png";
 // import samDentonThumbnail from "/src/assets/images/thumbnails/sam-denton-thumbnail.jpg";
 
 import GitRepoCardSet from "../Components/git-repos";
@@ -24,6 +25,12 @@ export const Projects = () => {
         id="site-thumbnails-wrapper"
         className="flex flex-wrap w-screen justify-center py-10"
       >
+        <WebsiteThumbnail
+          image={jlmThumbnail}
+          href="https://jessicaleamayfieldofficial.com"
+          alt="jessica-lea-mayfield-site"
+          label={"Jessica Lea Mayfield"}
+        />
         <WebsiteThumbnail
           image={sahilJindalThumbnail}
           href="https://sahiljindal.com"
@@ -57,13 +64,13 @@ export const Projects = () => {
       </div>
 
       <GitRepoCardSet />
-      <span className="p-10">
+      {/* <span className="p-10">
         <h3 className="underline text-4xl p-5">DELIVERABLES</h3>
         <p className="text-2xl">
           Full-Stack Web & Mobile Development, Database Management, Software
           Engineering, Programming
         </p>
-      </span>
+      </span> */}
     </div>
   );
 };

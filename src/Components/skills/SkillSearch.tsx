@@ -3,6 +3,7 @@ import { FiSearch, FiX } from "react-icons/fi";
 
 const PLACEHOLDER_KEYWORDS = [
   "react",
+  "claude",
   "typeScript",
   "aws",
   "frontend",
@@ -10,6 +11,8 @@ const PLACEHOLDER_KEYWORDS = [
   "docker",
   "node.js",
   "postgresql",
+  "llm",
+  "ai",
 ];
 
 export const SkillSearch = ({
