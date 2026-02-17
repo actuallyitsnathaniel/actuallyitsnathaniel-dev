@@ -2,7 +2,7 @@ export const Bio = () => {
   return (
     <div className="flex flex-wrap flex-col justify-center max-w-4xl">
       <h1 className="text-5xl underline py-4">Nathaniel Bowman</h1>
-      <p className="text-3xl p-2 italic">Full-Stack Software Engineer</p>
+      <h2 className="text-2xl font-bold">Full-Stack Software Engineer</h2>
       <p className="flex-wrap text-2xl py-4 px-6 text-justify">
         Currently working for&nbsp;
         <a

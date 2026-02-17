@@ -1,16 +1,16 @@
-import apu from "/src/assets/images/apu_white.svg";
+// import apu from "/src/assets/images/apu_white.svg";
 import { SkillsSection } from "../Components/skills";
 import { useSectionVisibility } from "../hooks/useSectionVisibility";
 
 const SkillsAndExperience = () => {
-  const sectionRef = useSectionVisibility("Education & Skills");
+  const sectionRef = useSectionVisibility("Skills");
 
   return (
     <div
       ref={sectionRef}
-      className="flex flex-row flex-wrap text-center justify-center md:w-full text-sm text-white min-h-full py-10"
+      className="flex flex-row flex-wrap text-center justify-center w-full text-sm text-white min-h-full py-10"
     >
-      <div className="color-white md:basis-1/2 p-4 w-full">
+      {/* <div className="color-white md:basis-1/2 p-4 w-full">
         <h2 className="underline text-5xl py-5" id="education">
           EDUCATION
         </h2>
@@ -28,7 +28,7 @@ const SkillsAndExperience = () => {
           B.S. Computer Science ~ Dept. of ECS <br />
           B.S. Honors Humanitites ~ APU Honors College
         </p>
-      </div>
+      </div> */}
       <SkillsSection />
     </div>
   );

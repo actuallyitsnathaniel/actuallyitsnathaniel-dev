@@ -27,12 +27,15 @@ export const SkillsSection = () => {
 
   useEffect(() => {
     if (debouncedQuery.trim()) {
-      log("event", `Search: "${debouncedQuery}" → ${filteredSkills.length} results`);
+      log(
+        "event",
+        `Search: "${debouncedQuery}" → ${filteredSkills.length} results`,
+      );
     }
   }, [debouncedQuery, filteredSkills.length, log]);
 
   return (
-    <div className="flex flex-wrap content-center md:basis-1/2 justify-center p-1 fill-white">
+    <div className="flex flex-wrap content-center justify-center p-1 fill-white">
       <h2 className="underline text-5xl py-5 w-full text-center" id="skills">
         SKILLS
       </h2>

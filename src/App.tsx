@@ -148,7 +148,7 @@ const AppContent = () => {
         }}
       />
       <div
-        className={`flex flex-wrap overflow-clip flex-col font-pokemon text-white lowercase ${
+        className={`flex flex-wrap overflow-clip flex-col text-white lowercase ${
           isCRT && "crt"
         }`}
       >
