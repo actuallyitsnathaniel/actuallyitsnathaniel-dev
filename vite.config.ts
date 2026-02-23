@@ -15,8 +15,7 @@ export default defineConfig(({ mode }) => {
         env.REACT_APP_GIT_TOKEN
       ),
     },
-    // depending on your application, base can also be "/"
-    base: "",
+    base: "/",
     plugins: [
       tailwindcss(),
       react(),
@@ -88,7 +87,7 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       open: true,
-      port: 3000,
+      port: 5173,
     },
   };
 });

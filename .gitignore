@@ -10,3 +10,4 @@ git-repo-card-example.png
 .cpanel.yml
 *.env
 .yarn
+.vercel

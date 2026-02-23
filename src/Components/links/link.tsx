@@ -6,27 +6,37 @@ export const Link = ({
   alt,
   type,
   download,
+  onClick,
+  disabled,
 }: {
   image: string;
-  href: string;
+  href?: string;
   alt: string;
   type?: string;
   download?: string;
+  onClick?: () => void;
+  disabled?: boolean;
 }) => {
   const { log } = useActivityLog();
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (onClick) {
+      e.preventDefault();
+      onClick();
+    }
     log("event", `Opened: ${alt}`);
   };
 
   return (
     <a
-      href={href}
+      href={href ?? "#"}
       rel="noopener noreferrer"
       target="_blank"
       type={type}
       download={download}
       onClick={handleClick}
+      aria-disabled={disabled}
+      style={disabled ? { cursor: "wait", opacity: 0.6 } : undefined}
     >
       <img
         src={image}

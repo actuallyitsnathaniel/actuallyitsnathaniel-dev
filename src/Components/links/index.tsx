@@ -1,12 +1,14 @@
 import { Link } from "./link";
+import { useResumeDownload } from "../../hooks/useResumeDownload";
 
-import resume from "/src/assets/files/resume.pdf";
 import linkedin from "/src/assets/images/linkedin-svg.svg";
 import github from "/src/assets/images/skills/github_square_icon.svg";
 import mail from "/src/assets/images/mail-svg.svg";
 import resumeIcon from "/src/assets/images/resume-icon.svg";
 
 const Links = () => {
+  const { isDownloading, downloadResume } = useResumeDownload();
+
   return (
     <div className="flex flex-row duration-100 md:fixed md:bottom-0 md:left-0 justify-around content-stretch items-center md:hover:bottom-3 md:animate-none animate-mobile-links z-2">
       <Link image={mail} href="mailto:nathanielrbowman@gmail.com" alt="email" />
@@ -22,10 +24,9 @@ const Links = () => {
       />
       <Link
         image={resumeIcon}
-        href={resume}
-        alt="Download Resume PDF"
-        type="application/pdf"
-        download="nathaniel-bowman_resume"
+        alt={isDownloading ? "Downloading resume..." : "Download Resume PDF"}
+        onClick={downloadResume}
+        disabled={isDownloading}
       />
     </div>
   );
