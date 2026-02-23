@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import "./index.css";
 
 import EducationAndSkills from "./Pages/EducationAndSkills";
+import InfraReliability from "./Pages/InfraReliability";
+import BackendWork from "./Pages/BackendWork";
 import AboutMe from "./Pages/AboutMe";
 import Projects from "./Pages/Projects";
 
@@ -104,8 +106,8 @@ const AppContent = () => {
   return (
     <>
       <SEO
-        title="Nathaniel Bowman - Full-Stack Developer & Software Engineer"
-        description="Portfolio of Nathaniel Bowman - Full-Stack Web & Mobile Developer specializing in React, TypeScript, AWS, and modern web technologies. B.S. Computer Science from APU."
+        title="Nathaniel Bowman - Senior Full-Stack & Backend Engineer"
+        description="Portfolio of Nathaniel Bowman - Senior Full-Stack & Backend Engineer specializing in Node.js, AWS, Postgres, CI/CD pipelines, and building tools for musicians and creative teams."
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Person",
@@ -120,8 +122,8 @@ const AppContent = () => {
             (import.meta.env.VITE_SITE_URL ||
               "https://dev.actuallyitsnathaniel.com") + "/og-image.jpg",
           description:
-            "Full-Stack Web & Mobile Developer specializing in React, TypeScript, AWS, and modern web technologies.",
-          jobTitle: "Full-Stack Developer & Software Engineer",
+            "Senior Full-Stack & Backend Engineer specializing in Node.js, AWS, Postgres, CI/CD pipelines, and building tools for musicians and creative teams.",
+          jobTitle: "Senior Full-Stack & Backend Engineer",
           alumniOf: {
             "@type": "CollegeOrUniversity",
             name: "Azusa Pacific University",
@@ -131,14 +133,17 @@ const AppContent = () => {
             "React",
             "TypeScript",
             "JavaScript",
+            "Node.js",
+            "Express",
             "AWS",
             "Firebase",
             "Docker",
-            "Node.js",
             "MongoDB",
             "PostgreSQL",
+            "CI/CD",
+            "Infrastructure",
+            "Performance Optimization",
             "Web Development",
-            "Mobile Development",
             "Full-Stack Development",
           ],
           sameAs: [
@@ -157,7 +162,9 @@ const AppContent = () => {
         <Header />
         {/* TODO: ensure all really cool website projects are here. */}
         <EducationAndSkills />
+        <InfraReliability />
         <Projects />
+        <BackendWork />
         <AboutMe />
         <Footer />
       </div>

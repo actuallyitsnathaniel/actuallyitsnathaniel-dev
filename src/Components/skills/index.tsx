@@ -37,7 +37,7 @@ export const SkillsSection = () => {
   return (
     <div className="flex flex-wrap content-center justify-center p-1 fill-white">
       <h2 className="underline text-5xl py-5 w-full text-center" id="skills">
-        SKILLS
+        TOOLBELT
       </h2>
       <div className="flex flex-col items-center w-full">
         <SkillSearch value={searchQuery} onChange={setSearchQuery} />

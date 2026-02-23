@@ -50,7 +50,12 @@ export const AboutMe = () => {
           I'm a growing Tolkien-buff who loves video games and music. I like to
           read challenging books and love the Great Works like Brothers K,
           Plato's Republic, The Abolition of Man, and many others. Feel free to
-          ask me about them, I love to talk books!
+          ask me about them, I love to talk books! I've built and maintained
+          websites and tools for artists and music projects, so I care a lot
+          about workflows that actually fit how musicians and producers work. My
+          background in music and audio production helps me design engineering
+          solutions that serve real creative processes, not just abstract
+          requirements.
         </p>
       </div>
     </div>
