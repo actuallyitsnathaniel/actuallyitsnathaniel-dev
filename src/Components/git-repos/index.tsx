@@ -36,7 +36,7 @@ export const GitRepoCard = () => {
           if (response.status === 401) {
             log("fetch", "github/repos → 401 Unauthorized");
             console.error(
-              "Ah. good ol' 401 error. How many API calls have you made??"
+              "Ah. good ol' 401 error. How many API calls have you made??",
             );
             alert("Ah. good ol' 401 error. How many API calls have you made??");
           } else if (response.status === 200) {
@@ -81,7 +81,7 @@ export const GitRepoCard = () => {
         {repos.map((details: Repository) => {
           return (
             <a
-              className="relative text-left duration-100 ease-in-out h-48 min-w-[330px] w-1/4 bg-gray-900 outline-solid outline-gray-600 font-medium rounded-md m-4 hover:brightness-125 hover:scale-105"
+              className="relative text-left duration-100 ease-in-out h-48 min-w-82.5 w-1/4 bg-gray-900 outline-solid outline-gray-600 font-medium rounded-md m-4 hover:brightness-125 hover:scale-105"
               href={details.html_url}
               target="_blank"
               rel="noopener noreferrer"
@@ -91,7 +91,7 @@ export const GitRepoCard = () => {
                 <div className="text-[#4987d8] text-left text-lg p-1.5">
                   {details.name}
                 </div>
-                <div className="text-[#eee] text-lg px-1 break-words hyphens-auto">
+                <div className="text-[#eee] text-lg px-1 line-clamp-3">
                   {details.description}
                 </div>
                 <div className="text-[#aaa] text-sm p-1 absolute bottom-0.5">

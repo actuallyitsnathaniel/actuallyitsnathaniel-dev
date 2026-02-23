@@ -1,4 +1,5 @@
 import { useSectionVisibility } from "../hooks/useSectionVisibility";
+import FavoriteSong from "../Components/favorite-song";
 
 export const AboutMe = () => {
   const sectionRef = useSectionVisibility("About Me");
@@ -57,6 +58,7 @@ export const AboutMe = () => {
           solutions that serve real creative processes, not just abstract
           requirements.
         </p>
+        <FavoriteSong />
       </div>
     </div>
   );

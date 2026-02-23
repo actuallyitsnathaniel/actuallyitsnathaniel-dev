@@ -88,6 +88,12 @@ const AppContent = () => {
       setTimeout(fn, i * interval);
     });
 
+    // Scroll to hash target on load
+    if (window.location.hash) {
+      const el = document.querySelector(window.location.hash);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
+
     // Click handler (after boot sequence)
     const handleClick = (e: MouseEvent) => {
       log("event", `Click @ (${e.clientX}, ${e.clientY})`);
