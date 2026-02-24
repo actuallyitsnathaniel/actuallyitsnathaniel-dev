@@ -1,13 +1,64 @@
-node_modules
+# Dependencies
+node_modules/
+.yarn/
+.pnp/
+.pnp.js
 
-.vscode
-.eslintcache
-build
+# Build output
+build/
 build.zip
+dist/
+
+# Vite
+.vite/
+
+# Environment variables
+.env
+.env.*
+!.env.development
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime / caches
+.cache/
+.eslintcache
+*.tsbuildinfo
+
+# Vercel
+.vercel/
+
+# OS artifacts
 .DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Claude (local IDE settings)
+.claude/
+
+# Puppeteer (cached browser)
+.puppeteer-cache/
+.local-chromium/
+
+# Sharp / image processing cache
+.sharp/
+
+# Legacy deploy configs (not used in Vercel workflow)
+.cpanel.yml
+
+# Project-specific ignores
 src/assets/files/repos.json
 git-repo-card-example.png
-.cpanel.yml
-*.env
-.yarn
-.vercel
