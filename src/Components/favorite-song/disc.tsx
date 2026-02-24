@@ -63,6 +63,18 @@ const Disc = ({
           loading="eager"
         />
       </div>
+      {/* Mobile hint */}
+      <p
+        className={`text-center text-xs mt-1 md:hidden transition-opacity duration-150 ${focused ? "opacity-0" : "opacity-75"}`}
+      >
+        tap to explore
+      </p>
+      {/* Desktop hint */}
+      <p
+        className={`text-center text-xs mt-1 hidden md:block transition-opacity duration-150 ${focused ? "opacity-0" : "opacity-75"}`}
+      >
+        hover to explore
+      </p>
       <div className="flex flex-col text-center justify-center transition-scale duration-100 origin-top text-lg md:invisible md:group-hover:visible md:scale-0 md:group-hover:scale-90">
         {title && <span className="font-bold">{title}</span>}
         {artist && <span className="text-base opacity-70">{artist}</span>}
