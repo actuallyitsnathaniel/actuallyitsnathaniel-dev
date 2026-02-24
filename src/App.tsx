@@ -166,12 +166,18 @@ const AppContent = () => {
         <ActivityLogBackground isCRT={isCRT} />
         <CRTToggle {...{ HandleCRT }} />
         <Header />
+        <hr className="border-t border-gray-800 max-w-4xl mx-auto w-full" />
         {/* TODO: ensure all really cool website projects are here. */}
         <EducationAndSkills />
+        <hr className="border-t border-gray-800 max-w-4xl mx-auto w-full" />
         <InfraReliability />
+        <hr className="border-t border-gray-800 max-w-4xl mx-auto w-full" />
         <Projects />
+        <hr className="border-t border-gray-800 max-w-4xl mx-auto w-full" />
         <BackendWork />
+        <hr className="border-t border-gray-800 max-w-4xl mx-auto w-full" />
         <AboutMe />
+        <hr className="border-t border-gray-800 max-w-4xl mx-auto w-full" />
         <Footer />
       </div>
     </>

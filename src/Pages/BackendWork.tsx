@@ -1,12 +1,15 @@
 import { useSectionVisibility } from "../hooks/useSectionVisibility";
 
+const cardClass =
+  "outline outline-gray-600 hover:outline-gray-400 rounded-md m-4 p-6 text-left max-w-4xl mx-auto w-full transition-colors duration-150 cursor-pointer focus-within:outline focus-within:outline-gray-400";
+
 const BackendWork = () => {
   const sectionRef = useSectionVisibility("Selected Work (Backend & Infra)");
 
   return (
     <div
       ref={sectionRef}
-      className="flex flex-wrap flex-col w-screen text-center py-10"
+      className="flex flex-wrap flex-col w-full text-center py-10"
     >
       <h2 className="underline text-5xl py-4" id="backend-work">
         SELECTED WORK (BACKEND & INFRA)
@@ -14,7 +17,7 @@ const BackendWork = () => {
 
       <div className="flex flex-col items-center w-full px-4">
         {/* Why this kind of role fits me callout */}
-        <div className="max-w-4xl mx-auto w-full m-4 p-6 outline outline-gray-600 rounded-md text-left">
+        <div className={cardClass}>
           <h3 className="text-3xl font-bold py-2">
             WHY THIS KIND OF ROLE FITS ME
           </h3>
@@ -35,7 +38,7 @@ const BackendWork = () => {
         </div>
 
         {/* Card 1 — Jessica Lea Mayfield */}
-        <div className="relative bg-gray-900 outline outline-gray-600 rounded-md m-4 p-6 text-left max-w-4xl mx-auto w-full hover:brightness-125 duration-150">
+        <div className={cardClass}>
           <h3 className="text-3xl font-bold pb-2">
             <a
               href="https://jessicaleamayfieldofficial.com"
@@ -71,7 +74,7 @@ const BackendWork = () => {
         </div>
 
         {/* Card 2 — Lightfeather.io enterprise work */}
-        <div className="relative bg-gray-900 outline outline-gray-600 rounded-md m-4 p-6 text-left max-w-4xl mx-auto w-full hover:brightness-125 duration-150">
+        <div className={cardClass}>
           <h3 className="text-3xl font-bold pb-2">
             <a
               href="https://lightfeather.io"
@@ -109,7 +112,7 @@ const BackendWork = () => {
         </div>
 
         {/* Card 3 — Music artist sites */}
-        <div className="relative bg-gray-900 outline outline-gray-600 rounded-md m-4 p-6 text-left max-w-4xl mx-auto w-full hover:brightness-125 duration-150">
+        <div className={cardClass}>
           <h3 className="text-3xl font-bold pb-2">
             Music Artist Sites
           </h3>

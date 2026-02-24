@@ -1,17 +1,36 @@
 import { useSectionVisibility } from "../hooks/useSectionVisibility";
 
+const BADGES = [
+  "Node.js · AWS · Postgres",
+  "CI/CD Pipelines",
+  "Production Monitoring",
+];
+
 const InfraReliability = () => {
   const sectionRef = useSectionVisibility("Infrastructure & Reliability");
 
   return (
     <div
       ref={sectionRef}
-      className="flex flex-wrap flex-col w-screen text-center py-10"
+      className="flex flex-wrap flex-col w-full text-center py-10"
     >
       <h2 className="underline text-5xl py-4" id="infra">
         INFRASTRUCTURE & RELIABILITY
       </h2>
-      <div className="max-w-4xl mx-auto text-left text-2xl px-6 space-y-4">
+
+      {/* Pill badges */}
+      <div className="flex flex-wrap justify-center gap-2 py-4 px-6">
+        {BADGES.map((badge) => (
+          <span
+            key={badge}
+            className="border border-gray-700 rounded-sm px-3 py-1 text-sm tracking-wide opacity-70"
+          >
+            {badge}
+          </span>
+        ))}
+      </div>
+
+      <div className="max-w-4xl mx-auto text-left text-2xl px-6 space-y-4 bg-gray-900/50 border border-gray-800 rounded-md p-6">
         <p className="py-2">
           I focus on building backend systems and infrastructure that are
           reliable, observable, and easy to ship.

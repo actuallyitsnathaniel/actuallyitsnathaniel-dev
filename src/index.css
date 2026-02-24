@@ -659,3 +659,28 @@ code {
   white-space: nowrap;
   border-width: 0;
 }
+
+/* Respect prefers-reduced-motion: disable decorative animations */
+@media (prefers-reduced-motion: reduce) {
+  .crt {
+    animation: none;
+  }
+  .crt::after {
+    animation: none;
+    opacity: 0;
+  }
+  .crt .activity-log-content {
+    animation: none;
+  }
+  .arrow {
+    animation: none;
+  }
+  .log-line {
+    animation: none;
+    opacity: 1;
+  }
+  /* Mobile links float */
+  .animate-mobile-links {
+    animation: none;
+  }
+}

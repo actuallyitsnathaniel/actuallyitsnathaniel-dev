@@ -7,15 +7,15 @@ export const AboutMe = () => {
   return (
     <div
       ref={sectionRef}
-      className="flex text-center flex-col items-center justify-center text-xl"
+      className="flex text-center flex-col items-center justify-center text-xl py-10"
     >
       <h2 className="underline text-5xl p-5" id="about">
         ABOUT ME
       </h2>
 
-      <div className="max-w-4xl px-6">
+      <div className="max-w-4xl px-6 w-full">
         <h3 className="text-4xl font-bold py-4">PROFESSIONAL BACKGROUND</h3>
-        <div className="text-2xl text-justify space-y-4">
+        <div className="text-lg md:text-xl text-justify space-y-4 leading-relaxed">
           <p className="py-2">
             As a Full-Stack Software Engineer, I specialize in building
             scalable, performant web applications using modern JavaScript
@@ -47,7 +47,7 @@ export const AboutMe = () => {
         </div>
 
         <h3 className="text-4xl font-bold py-4 pt-8">BEYOND THE CODE</h3>
-        <p className="text-2xl text-justify py-4">
+        <p className="text-lg md:text-xl text-justify py-4 leading-relaxed border-l-2 border-gray-600 pl-5">
           I'm a growing Tolkien-buff who loves video games and music. I like to
           read challenging books and love the Great Works like Brothers K,
           Plato's Republic, The Abolition of Man, and many others. Feel free to
