@@ -10,7 +10,7 @@ export const CRTToggle = ({
       <input
         type="checkbox"
         onClick={HandleCRT}
-        className="appearance-none h-4 w-4 m-2 outline-3 outline-dashed outline-offset-2 bg-white checked:bg-transparent rounded-none"
+        className="appearance-none h-4 w-4 m-2 outline-3 outline-dashed outline-offset-2 bg-transparent checked:bg-white rounded-none"
       />
       <p className="flex uppercase text-xl align-middle m-1">CRT TOGGLE</p>
     </span>

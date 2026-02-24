@@ -18,7 +18,7 @@ import {
 } from "./context/ActivityLogContext";
 
 const AppContent = () => {
-  const [isCRT, setIsCRT] = useState(true);
+  const [isCRT, setIsCRT] = useState(false);
   const { log } = useActivityLog();
   const hasBooted = useRef(false);
 

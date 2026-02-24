@@ -505,7 +505,7 @@
   bottom: 0;
   right: 0;
   background:
-    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%),
     linear-gradient(
       90deg,
       rgba(255, 0, 0, 0.06),
@@ -514,12 +514,15 @@
     );
   z-index: 3;
   background-size:
-    100% 2px,
+    100% 4px,
     3px 100%;
   pointer-events: none;
 }
 .crt {
   animation: textShadow 1.6s infinite;
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.35),
+    0 0 2px rgba(255, 255, 255, 0.6);
 }
 
 ::-webkit-scrollbar {
