@@ -25,15 +25,14 @@ export const Header = () => {
         <img
           src={profilePic}
           alt="Nathaniel Bowman, Full-Stack Software Engineer - Professional headshot"
-          className="h-64 md:h-72 object-contain py-4 md:py-0 self-center md:flex-shrink-0"
+          className="h-64 md:h-72 object-contain py-4 md:py-0 self-center md:shrink-0"
           width="288"
           height="288"
           loading="eager"
         />
         <div className="flex flex-col items-center md:items-start md:text-left">
           <Bio />
-          {/* Mobile: inline links (desktop uses the fixed dock) */}
-          <div className="mt-4 md:hidden">
+          <div className="mt-4">
             <Links />
           </div>
         </div>
