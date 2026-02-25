@@ -164,7 +164,7 @@ const AppContent = () => {
         }`}
       >
         <ActivityLogBackground isCRT={isCRT} />
-        <CRTToggle {...{ HandleCRT }} />
+        <CRTToggle {...{ HandleCRT, isCRT }} />
         <Header />
         <hr className="border-t border-gray-800 max-w-4xl mx-auto w-full" />
         {/* TODO: ensure all really cool website projects are here. */}
