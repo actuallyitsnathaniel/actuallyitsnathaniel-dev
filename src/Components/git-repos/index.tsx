@@ -13,7 +13,12 @@ interface Repository {
   name: string;
   description: string;
   language: string;
+  pushed_at: string;
 }
+
+const CUTOFF_DATE = new Date("2021-12-31");
+const filterRecentRepos = (repos: Repository[]) =>
+  repos.filter((r) => new Date(r.pushed_at) > CUTOFF_DATE);
 
 export const GitRepoCard = () => {
   const [repos, setRepos] = useState<Repository[]>([]);
@@ -45,7 +50,8 @@ export const GitRepoCard = () => {
           }
         })
         .then((json) => {
-          setRepos(json);
+          const filtered = filterRecentRepos(json);
+          setRepos(filtered);
 
           localStorage.setItem("repos", JSON.stringify(json));
           log("info", `Cached ${json?.length || 0} repositories`);
@@ -60,7 +66,11 @@ export const GitRepoCard = () => {
     } else {
       log("info", "Loaded repos from cache");
       console.log("Repos already in localStorage.");
-      setRepos(Array.from(JSON.parse(localStorage.getItem("repos") as string)));
+      setRepos(
+        filterRecentRepos(
+          Array.from(JSON.parse(localStorage.getItem("repos") as string)),
+        ),
+      );
       console.log(JSON.parse(localStorage.getItem("repos") as string));
     }
   }, [log]);
@@ -75,7 +85,7 @@ export const GitRepoCard = () => {
         height="100"
       />
       <p className="text-center font-medium text-3xl">
-        Total Repositories: {repos.length}
+        Total Public Repositories: {repos.length}
       </p>
       <div className="flex flex-wrap justify-center">
         {repos.map((details: Repository) => {
@@ -101,6 +111,16 @@ export const GitRepoCard = () => {
             </a>
           );
         })}
+        <a
+          className="relative flex items-center justify-center duration-100 ease-in-out h-48 min-w-82.5 w-1/4 bg-gray-900 outline-solid outline-gray-600 font-medium rounded-md m-4 hover:brightness-125 hover:scale-105"
+          href="https://github.com/actuallyitsnathaniel"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className="text-[#4987d8] text-lg text-center px-4">
+            [ view all repos on github ]
+          </span>
+        </a>
       </div>
     </div>
   );
