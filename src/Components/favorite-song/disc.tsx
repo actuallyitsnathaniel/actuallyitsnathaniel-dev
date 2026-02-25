@@ -40,8 +40,8 @@ const Disc = ({
       >
         {/* Full-size background layer */}
         <div
-          className={`absolute inset-0 transition-all bg-black z-10
-            ${focused ? "bg-opacity-50 backdrop-blur-md opacity-100 visible" : "invisible opacity-0 bg-opacity-0 backdrop-blur-none"}`}
+          className={`absolute -inset-1 transition-all duration-50 brightness-25 z-10
+            ${focused ? "backdrop-blur-md opacity-100 visible" : "invisible opacity-0 backdrop-blur-none"}`}
         />
         {/* Icon layer, sits above background */}
         <PlatformLinks
@@ -61,6 +61,7 @@ const Disc = ({
           src={artwork}
           alt={title}
           loading="eager"
+          className="block"
         />
       </div>
       {/* Mobile hint */}

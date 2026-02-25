@@ -36,7 +36,7 @@ const PlatformLinks = ({
         >
           <SiSpotify
             size={80}
-            className="hover:text-green-400 transition-colors"
+            className="hover:text-[#1DB954] transition-colors"
           />
         </a>
       )}
@@ -49,7 +49,7 @@ const PlatformLinks = ({
         >
           <SiApplemusic
             size={80}
-            className="hover:text-pink-400 transition-colors"
+            className="hover:text-[#FF4E6B] transition-colors"
           />
         </a>
       )}
@@ -88,7 +88,7 @@ const PlatformLinks = ({
         >
           <SiYoutube
             size={80}
-            className="hover:text-red-500 transition-colors"
+            className="hover:text-[#fc0032] transition-colors"
           />
         </a>
       )}
