@@ -1,7 +1,7 @@
 # My First Site Using Vite + React, HTML, and CSS.
 
 <p align="center">
-  <img width="auto" height="450" src="https://github.com/actuallyitsnathaniel/actuallyitsnathaniel-dev/assets/38742706/4e7d3af0-cbdd-47b1-93b8-7fd4fbddfa99">
+  <img width="auto" height="450" src="https://github.com/user-attachments/assets/2f075a61-7044-41a4-b37f-6f6646d43737">
 </p>
 
 
