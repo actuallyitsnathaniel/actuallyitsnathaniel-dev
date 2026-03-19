@@ -1,4 +1,6 @@
+import { motion } from "framer-motion";
 import { useSectionVisibility } from "../hooks/useSectionVisibility";
+import { fadeUp, slideUp, stagger } from "../lib/animation";
 
 const cardClass =
   "outline outline-gray-600 hover:outline-gray-400 rounded-md m-4 p-6 text-left max-w-4xl mx-auto w-full transition-colors duration-150 cursor-pointer focus-within:outline focus-within:outline-gray-400";
@@ -11,13 +13,20 @@ const BackendWork = () => {
       ref={sectionRef}
       className="flex flex-wrap flex-col w-full text-center py-10"
     >
-      <h2 className="underline text-5xl py-4" id="backend-work">
-        SELECTED WORK (BACKEND & INFRA)
-      </h2>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, margin: "-80px" }}
+        variants={stagger}
+        className="flex flex-col gap-12 max-w-5xl mx-auto w-full"
+      >
+        <motion.h2 variants={fadeUp} className="underline text-5xl py-4" id="backend-work">
+          SELECTED WORK (BACKEND & INFRA)
+        </motion.h2>
 
-      <div className="flex flex-col items-center w-full px-4">
-        {/* Why this kind of role fits me callout */}
-        <div className={cardClass}>
+        <motion.div variants={stagger} className="flex flex-col items-center w-full px-4">
+          {/* Why this kind of role fits me callout */}
+          <motion.div variants={slideUp} className={cardClass}>
           <h3 className="text-3xl font-bold py-2">
             WHY THIS KIND OF ROLE FITS ME
           </h3>
@@ -35,10 +44,10 @@ const BackendWork = () => {
               and creative teams.
             </li>
           </ul>
-        </div>
+          </motion.div>
 
         {/* Card 1 — Jessica Lea Mayfield */}
-        <div className={cardClass}>
+          <motion.div variants={slideUp} className={cardClass}>
           <h3 className="text-3xl font-bold pb-2">
             <a
               href="https://jessicaleamayfieldofficial.com"
@@ -71,10 +80,10 @@ const BackendWork = () => {
               Built real-time integrations for tour dates and content updates.
             </li>
           </ul>
-        </div>
+          </motion.div>
 
         {/* Card 2 — Lightfeather.io enterprise work */}
-        <div className={cardClass}>
+          <motion.div variants={slideUp} className={cardClass}>
           <h3 className="text-3xl font-bold pb-2">
             <a
               href="https://lightfeather.io"
@@ -109,10 +118,10 @@ const BackendWork = () => {
               (Postgres/MongoDB) and targeted caching.
             </li>
           </ul>
-        </div>
+          </motion.div>
 
         {/* Card 3 — Music artist sites */}
-        <div className={cardClass}>
+          <motion.div variants={slideUp} className={cardClass}>
           <h3 className="text-3xl font-bold pb-2">
             Music Artist Sites
           </h3>
@@ -140,8 +149,9 @@ const BackendWork = () => {
               manual deploys.
             </li>
           </ul>
-        </div>
-      </div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };

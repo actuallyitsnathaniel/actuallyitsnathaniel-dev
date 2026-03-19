@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { WebsiteThumbnail } from "../Components/website-thumbnail";
 
 import sahilJindalThumbnail from "/src/assets/images/thumbnails/sahil-jindal.jpg";
@@ -9,6 +10,7 @@ import jlmThumbnail from "/src/assets/images/thumbnails/jlm-thumbnail.png";
 
 import GitRepoCardSet from "../Components/git-repos";
 import { useSectionVisibility } from "../hooks/useSectionVisibility";
+import { fadeUp, slideUp, stagger } from "../lib/animation";
 
 export const Projects = () => {
   const sectionRef = useSectionVisibility("Projects");
@@ -18,52 +20,73 @@ export const Projects = () => {
       ref={sectionRef}
       className="flex flex-wrap flex-col w-screen text-center py-10"
     >
-      <h2 className="underline text-5xl py-4" id="projects">
-        PROJECTS
-      </h2>
-      <div
-        id="site-thumbnails-wrapper"
-        className="flex flex-wrap w-screen justify-center py-10"
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, margin: "-80px" }}
+        variants={stagger}
+        className="flex flex-col gap-12 max-w-5xl mx-auto w-full"
       >
-        <WebsiteThumbnail
-          image={jlmThumbnail}
-          href="https://jessicaleamayfieldofficial.com"
-          alt="jessica-lea-mayfield-site"
-          label={"Jessica Lea Mayfield"}
-        />
-        <WebsiteThumbnail
-          image={sahilJindalThumbnail}
-          href="https://sahiljindal.com"
-          alt="sahil-jindal-site"
-          label={"Sahil Jindal"}
-        />
-        <WebsiteThumbnail
-          image={dwThumbnail}
-          href="https://davewilbertmusic.com"
-          alt="dave-wilbert-site"
-          label={"Dave Wilbert Music"}
-        />
-        <WebsiteThumbnail
-          image={johnWhiteThumbnail}
-          href="https://johnwhitesmusic.com"
-          alt="john-white-site"
-          label={"John White Music"}
-        />
-        <WebsiteThumbnail
-          image={rylandThumbnail}
-          href="https://weareryland.com"
-          alt="ryland-site"
-          label={"Ryland"}
-        />
-        {/* <WebsiteThumbnail
-          image={samDentonThumbnail}
-          href="https://sam-denton-site.vercel.app/"
-          alt="sam-denton-site"
-          label={"Sam Denton"}
-        /> */}
-      </div>
+        <motion.h2 variants={fadeUp} className="underline text-5xl py-4" id="projects">
+          PROJECTS
+        </motion.h2>
+        <motion.div
+          variants={stagger}
+          id="site-thumbnails-wrapper"
+          className="flex flex-wrap w-full justify-center py-10"
+        >
+          <motion.div variants={slideUp}>
+            <WebsiteThumbnail
+              image={jlmThumbnail}
+              href="https://jessicaleamayfieldofficial.com"
+              alt="jessica-lea-mayfield-site"
+              label={"Jessica Lea Mayfield"}
+            />
+          </motion.div>
+          <motion.div variants={slideUp}>
+            <WebsiteThumbnail
+              image={sahilJindalThumbnail}
+              href="https://sahiljindal.com"
+              alt="sahil-jindal-site"
+              label={"Sahil Jindal"}
+            />
+          </motion.div>
+          <motion.div variants={slideUp}>
+            <WebsiteThumbnail
+              image={dwThumbnail}
+              href="https://davewilbertmusic.com"
+              alt="dave-wilbert-site"
+              label={"Dave Wilbert Music"}
+            />
+          </motion.div>
+          <motion.div variants={slideUp}>
+            <WebsiteThumbnail
+              image={johnWhiteThumbnail}
+              href="https://johnwhitesmusic.com"
+              alt="john-white-site"
+              label={"John White Music"}
+            />
+          </motion.div>
+          <motion.div variants={slideUp}>
+            <WebsiteThumbnail
+              image={rylandThumbnail}
+              href="https://weareryland.com"
+              alt="ryland-site"
+              label={"Ryland"}
+            />
+          </motion.div>
+          {/* <WebsiteThumbnail
+            image={samDentonThumbnail}
+            href="https://sam-denton-site.vercel.app/"
+            alt="sam-denton-site"
+            label={"Sam Denton"}
+          /> */}
+        </motion.div>
 
-      <GitRepoCardSet />
+        <motion.div variants={fadeUp}>
+          <GitRepoCardSet />
+        </motion.div>
+      </motion.div>
       {/* <span className="p-10">
         <h3 className="underline text-4xl p-5">DELIVERABLES</h3>
         <p className="text-2xl">

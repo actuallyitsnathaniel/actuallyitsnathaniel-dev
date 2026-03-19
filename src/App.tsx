@@ -116,6 +116,20 @@ const AppContent = () => {
         description="Portfolio of Nathaniel Bowman - Senior Full-Stack & Backend Engineer specializing in Node.js, AWS, Postgres, CI/CD pipelines, and building tools for musicians and creative teams."
         jsonLd={{
           "@context": "https://schema.org",
+          "@graph": [
+          {
+          "@type": "WebSite",
+          "@id":
+            (import.meta.env.VITE_SITE_URL ||
+              "https://dev.actuallyitsnathaniel.com") + "/#website",
+          url:
+            import.meta.env.VITE_SITE_URL ||
+            "https://dev.actuallyitsnathaniel.com",
+          name: "Nathaniel Bowman",
+          description:
+            "Portfolio of Nathaniel Bowman - Senior Full-Stack & Backend Engineer",
+          },
+          {
           "@type": "Person",
           "@id":
             (import.meta.env.VITE_SITE_URL ||
@@ -155,6 +169,8 @@ const AppContent = () => {
           sameAs: [
             "https://github.com/actuallyitsnathaniel",
             "https://linkedin.com/in/actuallyitsnathaniel",
+          ],
+          },
           ],
         }}
       />

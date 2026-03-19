@@ -1,4 +1,6 @@
+import { motion } from "framer-motion";
 import { useSectionVisibility } from "../hooks/useSectionVisibility";
+import { fadeUp, slideUp, stagger } from "../lib/animation";
 
 const BADGES = [
   "Node.js · AWS · Postgres",
@@ -14,23 +16,31 @@ const InfraReliability = () => {
       ref={sectionRef}
       className="flex flex-wrap flex-col w-full text-center py-10"
     >
-      <h2 className="underline text-5xl py-4" id="infra">
-        INFRASTRUCTURE & RELIABILITY
-      </h2>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, margin: "-80px" }}
+        variants={stagger}
+        className="flex flex-col gap-12 max-w-5xl mx-auto w-full"
+      >
+        <motion.h2 variants={fadeUp} className="underline text-5xl py-4" id="infra">
+          INFRASTRUCTURE & RELIABILITY
+        </motion.h2>
 
-      {/* Pill badges */}
-      <div className="flex flex-wrap justify-center gap-2 py-4 px-6">
-        {BADGES.map((badge) => (
-          <span
-            key={badge}
-            className="border border-gray-700 rounded-sm px-3 py-1 text-sm tracking-wide opacity-70"
-          >
-            {badge}
-          </span>
-        ))}
-      </div>
+        {/* Pill badges */}
+        <motion.div variants={stagger} className="flex flex-wrap justify-center gap-2 py-4 px-6">
+          {BADGES.map((badge) => (
+            <motion.span
+              key={badge}
+              variants={slideUp}
+              className="border border-gray-700 rounded-sm px-3 py-1 text-sm tracking-wide opacity-70"
+            >
+              {badge}
+            </motion.span>
+          ))}
+        </motion.div>
 
-      <div className="max-w-4xl mx-auto text-left text-2xl px-6 space-y-4 bg-gray-900/50 border border-gray-800 rounded-md p-6">
+        <motion.div variants={fadeUp} className="max-w-4xl mx-auto text-left text-2xl px-6 space-y-4 bg-gray-900/50 border border-gray-800 rounded-md p-6">
         <p className="py-2">
           I focus on building backend systems and infrastructure that are
           reliable, observable, and easy to ship.
@@ -58,7 +68,8 @@ const InfraReliability = () => {
             responsive APIs.
           </li>
         </ul>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };

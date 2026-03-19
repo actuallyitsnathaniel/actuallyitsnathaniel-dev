@@ -1,5 +1,7 @@
+import { motion } from "framer-motion";
 import { useSectionVisibility } from "../hooks/useSectionVisibility";
 import FavoriteSong from "../Components/favorite-song";
+import { fadeUp, stagger } from "../lib/animation";
 
 export const AboutMe = () => {
   const sectionRef = useSectionVisibility("About Me");
@@ -9,13 +11,20 @@ export const AboutMe = () => {
       ref={sectionRef}
       className="flex text-center flex-col items-center justify-center text-xl py-10"
     >
-      <h2 className="underline text-5xl p-5" id="about">
-        ABOUT ME
-      </h2>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, margin: "-80px" }}
+        variants={stagger}
+        className="flex flex-col gap-12 max-w-4xl px-6 w-full"
+      >
+        <motion.h2 variants={fadeUp} className="underline text-5xl p-5" id="about">
+          ABOUT ME
+        </motion.h2>
 
-      <div className="max-w-4xl px-6 w-full">
-        <h3 className="text-4xl font-bold py-4">PROFESSIONAL BACKGROUND</h3>
-        <div className="text-lg md:text-xl text-justify space-y-4 leading-relaxed">
+        <motion.div variants={fadeUp}>
+          <h3 className="text-4xl font-bold py-4">PROFESSIONAL BACKGROUND</h3>
+          <div className="text-lg md:text-xl text-justify space-y-4 leading-relaxed">
           <p className="py-2">
             As a Full-Stack Software Engineer, I specialize in building
             scalable, performant web applications using modern JavaScript
@@ -44,10 +53,12 @@ export const AboutMe = () => {
             React developer, full-stack engineer, or AWS cloud architect, I
             deliver production-ready code that scales.
           </p>
-        </div>
+          </div>
+        </motion.div>
 
-        <h3 className="text-4xl font-bold py-4 pt-8">BEYOND THE CODE</h3>
-        <p className="text-lg md:text-xl text-justify py-4 leading-relaxed border-l-2 border-gray-600 pl-5">
+        <motion.div variants={fadeUp}>
+          <h3 className="text-4xl font-bold py-4 pt-8">BEYOND THE CODE</h3>
+          <p className="text-lg md:text-xl text-justify py-4 leading-relaxed border-l-2 border-gray-600 pl-5">
           I'm a growing Tolkien-buff who loves video games and music. I like to
           read challenging books and love the Great Works like Brothers K,
           Plato's Republic, The Abolition of Man, and many others. Feel free to
@@ -57,9 +68,13 @@ export const AboutMe = () => {
           background in music and audio production helps me design engineering
           solutions that serve real creative processes, not just abstract
           requirements.
-        </p>
-        <FavoriteSong />
-      </div>
+          </p>
+        </motion.div>
+
+        <motion.div variants={fadeUp}>
+          <FavoriteSong />
+        </motion.div>
+      </motion.div>
     </div>
   );
 };
