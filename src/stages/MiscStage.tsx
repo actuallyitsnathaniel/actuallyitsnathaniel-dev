@@ -22,12 +22,12 @@ export function MiscStage() {
           letterSpacing: "0.02em",
         }}
       >
-        // miscellaneous
+        miscellaneous
       </h2>
       <div className="lede">what's playing. what i'm into.</div>
 
       {/* transmission grid: 2-col → 1-col at sm (600px — use arbitrary breakpoint) */}
-      <div className="mt-2 grid grid-cols-[200px_1fr] gap-[36px] items-center pt-[28px] pb-3 max-[600px]:grid-cols-1 max-[600px]:gap-6 max-[600px]:pt-[18px]">
+      <div className="mt-2 grid grid-cols-[200px_1fr] gap-9 items-center pt-7 pb-3 max-[600px]:grid-cols-1 max-[600px]:gap-6 max-[600px]:pt-4.5">
         {/* vinyl — ALL vinyl classes STAY IN CSS */}
         <a
           className="vinyl"
@@ -53,18 +53,18 @@ export function MiscStage() {
         </a>
 
         <div>
-          <div className="text-accent text-[10.5px] tracking-[0.18em] uppercase mb-[6px]">
+          <div className="text-accent text-[10.5px] tracking-[0.18em] uppercase mb-1.5">
             currently obsessed with
           </div>
-          <div className="font-display font-normal text-[46px] leading-none m-0 mb-[6px] text-ink">
+          <div className="font-display font-normal text-[46px] leading-none m-0 mb-1.5 text-ink">
             {SONG.title}
           </div>
-          <div className="text-dim text-t14 tracking-[0.04em] mb-[18px]">
+          <div className="text-dim text-t14 tracking-[0.04em] mb-4.5">
             {SONG.artist}
           </div>
-          <div className="flex gap-[6px] flex-wrap mb-[22px]">
+          <div className="flex gap-1.5 flex-wrap mb-5.5">
             <a
-              className="inline-flex items-center px-[10px] py-[5px] bg-bg2 border border-rule2 rounded-[2px] text-[11px] tracking-[0.04em] text-dim transition-[color,border-color] duration-[120ms] no-underline hover:text-accent hover:border-[rgba(126,231,135,0.4)]"
+              className="inline-flex items-center px-2.5 py-1.25 bg-bg2 border border-rule2 rounded-xs text-[11px] tracking-[0.04em] text-dim transition-[color,border-color] duration-120 no-underline hover:text-accent hover:border-[rgba(126,231,135,0.4)]"
               href={SONG.spotify}
               target="_blank"
               rel="noopener noreferrer"
@@ -72,7 +72,7 @@ export function MiscStage() {
               spotify ↗
             </a>
             <a
-              className="inline-flex items-center px-[10px] py-[5px] bg-bg2 border border-rule2 rounded-[2px] text-[11px] tracking-[0.04em] text-dim transition-[color,border-color] duration-[120ms] no-underline hover:text-accent hover:border-[rgba(126,231,135,0.4)]"
+              className="inline-flex items-center px-2.5 py-1.25 bg-bg2 border border-rule2 rounded-xs text-[11px] tracking-[0.04em] text-dim transition-[color,border-color] duration-120 no-underline hover:text-accent hover:border-[rgba(126,231,135,0.4)]"
               href={SONG.apple}
               target="_blank"
               rel="noopener noreferrer"
@@ -80,7 +80,7 @@ export function MiscStage() {
               apple music ↗
             </a>
             <a
-              className="inline-flex items-center px-[10px] py-[5px] bg-bg2 border border-rule2 rounded-[2px] text-[11px] tracking-[0.04em] text-dim transition-[color,border-color] duration-[120ms] no-underline hover:text-accent hover:border-[rgba(126,231,135,0.4)]"
+              className="inline-flex items-center px-2.5 py-1.25 bg-bg2 border border-rule2 rounded-xs text-[11px] tracking-[0.04em] text-dim transition-[color,border-color] duration-120 no-underline hover:text-accent hover:border-[rgba(126,231,135,0.4)]"
               href={SONG.tidal}
               target="_blank"
               rel="noopener noreferrer"
@@ -88,7 +88,7 @@ export function MiscStage() {
               tidal ↗
             </a>
             <a
-              className="inline-flex items-center px-2.5 py-[5px] bg-bg2 border border-rule2 rounded-[2px] text-[11px] tracking-[0.04em] text-dim transition-[color,border-color] duration-[120ms] no-underline hover:text-accent hover:border-[rgba(126,231,135,0.4)]"
+              className="inline-flex items-center px-2.5 py-1.25 bg-bg2 border border-rule2 rounded-xs text-[11px] tracking-[0.04em] text-dim transition-[color,border-color] duration-120 no-underline hover:text-accent hover:border-[rgba(126,231,135,0.4)]"
               href={SONG.youtube}
               target="_blank"
               rel="noopener noreferrer"
@@ -96,8 +96,8 @@ export function MiscStage() {
               youtube ↗
             </a>
           </div>
-          <div className="pt-[14px] border-t border-dashed border-rule text-faint text-[10.5px] tracking-[0.06em] uppercase">
-            <span className="text-accent mr-[10px]">eof</span>
+          <div className="pt-3.5 border-t border-dashed border-rule text-faint text-[10.5px] tracking-[0.06em] uppercase">
+            <span className="text-accent mr-2.5">eof</span>
             transmission end · v3.0.0 · nathaniel bowman
           </div>
         </div>

@@ -20,19 +20,32 @@ function getMode(v: string): "/" | ":" | "~" {
 
 function getPlaceholder(current: SectionId): string {
   switch (current) {
-    case "toolbelt": return 'filter tools · try "aws"';
-    case "work":     return 'filter projects · try "jlm"';
-    case "infra":    return 'filter infra · try "cicd"';
-    default:         return "filter or :command";
+    case "toolbelt":
+      return 'filter tools · try "aws"';
+    case "work":
+      return 'filter projects · try "jlm"';
+    case "infra":
+      return 'filter infra · try "cicd"';
+    default:
+      return "filter or :command";
   }
 }
 
 export function FilterBar({
-  current, value, onChange, onNavigate, onCommand, onOpenHelp, onHighlight, inputRef,
+  current,
+  value,
+  onChange,
+  onNavigate,
+  onCommand,
+  onOpenHelp,
+  onHighlight,
+  inputRef,
 }: FilterBarProps) {
   const [mode, setMode] = useState<"/" | ":" | "~">(getMode(value));
 
-  useEffect(() => { setMode(getMode(value)); }, [value]);
+  useEffect(() => {
+    setMode(getMode(value));
+  }, [value]);
 
   const handleChange = (v: string) => {
     onChange(v);
@@ -47,9 +60,15 @@ export function FilterBar({
     const m = getMode(v);
     if (m === "/") {
       const query = v.toLowerCase().trim();
-      if (!query) { onHighlight(null); return; }
-      const match = SECTIONS.find(s =>
-        s.aliases.some(a => a.includes(query)) || s.id.includes(query) || s.label.includes(query)
+      if (!query) {
+        onHighlight(null);
+        return;
+      }
+      const match = SECTIONS.find(
+        (s) =>
+          s.aliases.some((a) => a.includes(query)) ||
+          s.id.includes(query) ||
+          s.label.includes(query),
       );
       onHighlight(match?.id ?? null);
     } else {
@@ -69,7 +88,11 @@ export function FilterBar({
       const v = value.trim();
 
       if (v.startsWith(":")) {
-        if (v === ":?" || v === ":help") { onOpenHelp(); onChange(""); return; }
+        if (v === ":?" || v === ":help") {
+          onOpenHelp();
+          onChange("");
+          return;
+        }
         onCommand(v);
         onChange("");
         return;
@@ -77,25 +100,35 @@ export function FilterBar({
 
       if (v.startsWith("~")) {
         const query = v.toLowerCase();
-        const match = SECTIONS.find(s =>
-          s.aliases.some(a => a === query || a.startsWith(query)) || s.path.startsWith(query)
+        const match = SECTIONS.find(
+          (s) =>
+            s.aliases.some((a) => a === query || a.startsWith(query)) ||
+            s.path.startsWith(query),
         );
-        if (match) { onNavigate(match.id); onChange(""); }
+        if (match) {
+          onNavigate(match.id);
+          onChange("");
+        }
         return;
       }
 
       const query = v.toLowerCase();
       if (!query) return;
 
-      const match = SECTIONS.find(s =>
-        s.aliases.some(a => a.includes(query)) || s.id.startsWith(query)
+      const match = SECTIONS.find(
+        (s) =>
+          s.aliases.some((a) => a.includes(query)) || s.id.startsWith(query),
       );
-      if (match) { onNavigate(match.id); onChange(""); onHighlight(null); }
+      if (match) {
+        onNavigate(match.id);
+        onChange("");
+        onHighlight(null);
+      }
     }
   };
 
   return (
-    <div className="flex items-center gap-[10px] px-[var(--pad-x)] py-2 border-b border-rule">
+    <div className="flex items-center gap-2.5 px-(--pad-x) py-2 border-b border-rule">
       <span
         className="text-accent text-[14px] font-medium shrink-0 select-none"
         aria-hidden="true"
@@ -106,7 +139,7 @@ export function FilterBar({
         ref={inputRef}
         type="text"
         value={value}
-        onChange={e => handleChange(e.target.value)}
+        onChange={(e) => handleChange(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder={getPlaceholder(current)}
         autoComplete="off"
@@ -121,9 +154,12 @@ export function FilterBar({
         tabIndex={0}
         aria-label="open shortcuts"
         onClick={onOpenHelp}
-        onKeyDown={e => e.key === "Enter" && onOpenHelp()}
+        onKeyDown={(e) => e.key === "Enter" && onOpenHelp()}
       >
-        <span className="inline-block border border-rule2 px-[5px] py-[1px] rounded-[2px] mr-[6px] text-[10px] text-dim">?</span>shortcuts
+        <span className="inline-block border border-rule2 px-1.25 py-px rounded-xs mr-1.5 text-[10px] text-dim">
+          ?
+        </span>
+        shortcuts
       </span>
     </div>
   );

@@ -203,7 +203,8 @@ export function WorkStage({
   };
 
   const visibleEntries = ENTRIES.filter(matchesEntry);
-  const autoExpand = query && visibleEntries.length === 1 ? visibleEntries[0].aliases[0] : null;
+  const autoExpand =
+    query && visibleEntries.length === 1 ? visibleEntries[0].aliases[0] : null;
 
   const handleToggle = (entry: WorkEntry) => {
     const isOpen = openEntries.includes(entry.aliases[0]);
@@ -219,7 +220,7 @@ export function WorkStage({
       <h2>work</h2>
       <div className="lede">selected projects · newest first.</div>
       <ol
-        className="list-none p-0 mt-[22px] border-t border-rule"
+        className="list-none p-0 mt-5.5 border-t border-rule"
         aria-label="project changelog"
       >
         {ENTRIES.map((entry) => {
@@ -235,7 +236,7 @@ export function WorkStage({
             >
               {/* cl-head — grid layout kept in CSS for sm media query grid-template-areas */}
               <div
-                className="cl-head grid gap-[18px] items-baseline px-1 py-4 cursor-pointer select-none"
+                className="cl-head grid gap-4.5 items-baseline px-1 py-4 cursor-pointer select-none"
                 role="button"
                 tabIndex={0}
                 aria-expanded={isOpen}
@@ -244,25 +245,41 @@ export function WorkStage({
                   (e.key === "Enter" || e.key === " ") && handleToggle(entry)
                 }
               >
-                <span className="cl-ver text-accent text-t12 tracking-[0.04em]">{entry.ver}</span>
-                <span className="cl-date text-faint text-[11px] tracking-[0.06em]">{entry.date}</span>
+                <span className="cl-ver text-accent text-t12 tracking-[0.04em]">
+                  {entry.ver}
+                </span>
+                <span className="cl-date text-faint text-[11px] tracking-[0.06em]">
+                  {entry.date}
+                </span>
                 <span className="cl-name text-ink text-t14">{entry.name}</span>
-                <span className="cl-tag text-dim text-[10.5px] tracking-[0.14em] uppercase px-2 py-[3px] bg-bg2 border border-rule2 rounded-[2px] justify-self-end">{entry.tag}</span>
-                <span className={`cl-toggle text-[11px] text-right transition-[color] duration-[120ms] ${isOpen ? "text-accent" : "text-faint"}`}>{isOpen ? "−" : "+"}</span>
+                <span className="cl-tag text-dim text-[10.5px] tracking-[0.14em] uppercase px-2 py-0.75 bg-bg2 border border-rule2 rounded-xs justify-self-end">
+                  {entry.tag}
+                </span>
+                <span
+                  className={`cl-toggle text-[11px] text-right transition-[color] duration-120 ${isOpen ? "text-accent" : "text-faint"}`}
+                >
+                  {isOpen ? "−" : "+"}
+                </span>
               </div>
-              <div className={`px-1 pb-[22px] ${isOpen ? "block" : "hidden"}`}>
-                <div className="flex gap-[22px] flex-wrap py-1 pb-[14px] text-[11.5px] text-dim border-b border-dashed border-rule mb-[14px]">
+              <div className={`px-1 pb-5.5 ${isOpen ? "block" : "hidden"}`}>
+                <div className="flex gap-5.5 flex-wrap py-1 pb-3.5 text-[11.5px] text-dim border-b border-dashed border-rule mb-3.5">
                   <span>
-                    <span className="text-faint uppercase tracking-[0.14em] text-[10px] mr-2">role</span>
+                    <span className="text-faint uppercase tracking-[0.14em] text-[10px] mr-2">
+                      role
+                    </span>
                     {entry.role}
                   </span>
                   <span>
-                    <span className="text-faint uppercase tracking-[0.14em] text-[10px] mr-2">stack</span>
+                    <span className="text-faint uppercase tracking-[0.14em] text-[10px] mr-2">
+                      stack
+                    </span>
                     {entry.stack}
                   </span>
                   {entry.liveUrl && (
                     <span>
-                      <span className="text-faint uppercase tracking-[0.14em] text-[10px] mr-2">live</span>
+                      <span className="text-faint uppercase tracking-[0.14em] text-[10px] mr-2">
+                        live
+                      </span>
                       <a
                         href={entry.liveUrl}
                         target="_blank"
@@ -280,10 +297,14 @@ export function WorkStage({
                       key={i}
                       className="grid grid-cols-[18px_1fr] gap-1 py-1 text-t14 leading-[1.55] text-pretty"
                     >
-                      <span className={`font-semibold ${b.type === "add" ? "text-accent" : "text-faint"}`}>
+                      <span
+                        className={`font-semibold ${b.type === "add" ? "text-accent" : "text-faint"}`}
+                      >
                         {b.type === "add" ? "+" : "~"}
                       </span>
-                      <span className={b.type === "note" ? "text-dim" : "text-ink"}>
+                      <span
+                        className={b.type === "note" ? "text-dim" : "text-ink"}
+                      >
                         {b.text}
                       </span>
                     </li>

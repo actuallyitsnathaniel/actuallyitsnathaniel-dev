@@ -100,13 +100,13 @@ export function InfraStage({ filter }: InfraStageProps) {
         systems i've shipped and maintained. metrics are real.
       </div>
       <div
-        className="mt-[18px] border border-rule rounded-[3px] overflow-hidden bg-bg1"
+        className="mt-4.5 border border-rule rounded-[3px] overflow-hidden bg-bg1"
         role="table"
         aria-label="infrastructure status"
       >
         {/* header row — hidden on mobile */}
         <div
-          className="grid grid-cols-[240px_1fr_160px] gap-[18px] px-4 py-[10px] bg-bg2 border-b border-rule text-[10px] tracking-[0.18em] uppercase text-faint md:hidden"
+          className="grid grid-cols-[240px_1fr_160px] gap-4.5 px-4 py-2.5 bg-bg2 border-b border-rule text-[10px] tracking-[0.18em] uppercase text-faint md:hidden"
           role="row"
         >
           <div>service</div>
@@ -119,27 +119,37 @@ export function InfraStage({ filter }: InfraStageProps) {
           return (
             <div
               key={row.aliases[0]}
-              className={`grid grid-cols-[240px_1fr_160px] gap-[18px] px-4 py-[14px] border-b border-rule last:border-b-0 items-center transition-[background] duration-[120ms] hover:bg-[rgba(255,255,255,0.012)] md:grid-cols-1 md:gap-[6px] md:px-[14px] ${visible ? "" : "hidden"}`}
+              className={`grid grid-cols-[240px_1fr_160px] gap-4.5 px-4 py-3.5 border-b border-rule last:border-b-0 items-center transition-[background] duration-120 hover:bg-[rgba(255,255,255,0.012)] md:grid-cols-1 md:gap-1.5 md:px-3.5 ${visible ? "" : "hidden"}`}
               data-status={row.status}
               data-aliases={row.aliases.join(",")}
               role="row"
             >
-              <div className="flex items-center gap-[10px]">
+              <div className="flex items-center gap-2.5">
                 {/* sb-dot color controlled by data-status CSS selectors */}
-                <span className="sb-dot w-2 h-2 rounded-full shrink-0" aria-hidden="true" />
+                <span
+                  className="sb-dot w-2 h-2 rounded-full shrink-0"
+                  aria-hidden="true"
+                />
                 <span className="text-ink text-t14">{row.name}</span>
-                <span className={`ml-auto text-[9.5px] tracking-[0.18em] uppercase md:ml-0 md:pl-[18px] ${row.status === "amber" ? "text-warn" : "text-faint"}`}>
+                <span
+                  className={`ml-auto text-[9.5px] tracking-[0.18em] uppercase md:ml-0 md:pl-4.5 ${row.status === "amber" ? "text-warn" : "text-faint"}`}
+                >
                   {row.stat}
                 </span>
               </div>
-              <div className="text-dim text-t14 leading-[1.5] text-pretty">
+              <div className="text-dim text-t14 leading-normal text-pretty">
                 {row.desc}
               </div>
-              <div className="text-right flex flex-col items-end gap-[2px] md:text-left md:items-start md:pl-[18px]">
-                <span className={`text-ink font-medium ${row.metric.qualitative ? "text-[12px] font-normal tracking-[0.14em] uppercase text-dim" : "text-t18"}`}>
+              <div className="text-right flex flex-col items-end gap-0.5 md:text-left md:items-start md:pl-4.5">
+                <span
+                  className={`text-ink font-medium ${row.metric.qualitative ? "text-[12px] font-normal tracking-[0.14em] uppercase text-dim" : "text-t18"}`}
+                >
                   {row.metric.v}
                   {row.metric.su && (
-                    <span className="text-faint text-[12px] font-normal ml-[1px]"> {row.metric.su}</span>
+                    <span className="text-faint text-[12px] font-normal ml-px">
+                      {" "}
+                      {row.metric.su}
+                    </span>
                   )}
                 </span>
                 {row.metric.u && (
@@ -152,8 +162,10 @@ export function InfraStage({ filter }: InfraStageProps) {
           );
         })}
       </div>
-      <p className="mt-[14px] text-[11px] text-faint">
-        <span className="text-accent uppercase tracking-[0.16em] text-[9.5px] mr-[10px]">note</span>
+      <p className="mt-3.5 text-[11px] text-faint">
+        <span className="text-accent uppercase tracking-[0.16em] text-[9.5px] mr-2.5">
+          note
+        </span>
         all metrics are real and defensible. enterprise rows show qualitative
         status.
       </p>
