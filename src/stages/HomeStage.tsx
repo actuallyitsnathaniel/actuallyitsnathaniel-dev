@@ -1,8 +1,37 @@
+import { useEffect, useState } from "react";
 import profilePic from "/src/assets/images/pfp_2023.png";
 import { useResumeDownload } from "../hooks/useResumeDownload";
+import { timeAgo } from "../utils/timeAgo";
+
+const CACHE_KEY = "ain_repos_v3";
+const CACHE_TTL = 60 * 60 * 1000;
 
 export function HomeStage() {
   const { downloadResume } = useResumeDownload();
+  const [lastPush, setLastPush] = useState<string | null>(null);
+
+  useEffect(() => {
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (cached) {
+      try {
+        const { data, ts } = JSON.parse(cached);
+        if (Date.now() - ts < CACHE_TTL && data[0]?.pushed_at) {
+          setLastPush(data[0].pushed_at);
+          return;
+        }
+      } catch {
+        /* ignore */
+      }
+    }
+    fetch(
+      "https://api.github.com/users/actuallyitsnathaniel/repos?per_page=1&sort=pushed",
+    )
+      .then((r) => r.json())
+      .then((data) => {
+        if (data[0]?.pushed_at) setLastPush(data[0].pushed_at);
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <div className="grid pb-8 border-b border-rule md:grid-cols-2 gap-10 md:w-4/5">
@@ -46,7 +75,7 @@ export function HomeStage() {
         <div className="flex gap-3.5 items-center text-t10 tracking-[0.12em] text-faint uppercase py-2 pb-4.5 border-t border-rule mt-4.5 flex-wrap">
           <span className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_6px_var(--accent)]" />
-            last deploy 3d ago
+            {lastPush ? `last push ${timeAgo(lastPush)}` : "last push …"}
           </span>
           <span>la</span>
           <span>pst</span>

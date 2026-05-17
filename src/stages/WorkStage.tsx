@@ -218,7 +218,7 @@ export function WorkStage({
   return (
     <div>
       <h2>work</h2>
-      <div className="lede">selected projects · newest first.</div>
+      <div className="lede">selected projects. newest first.</div>
       <ol
         className="list-none p-0 mt-5.5 border-t border-rule"
         aria-label="project changelog"

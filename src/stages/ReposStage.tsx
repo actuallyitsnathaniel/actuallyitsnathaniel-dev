@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useActivityLog } from "../context/ActivityLogContext";
+import { timeAgo } from "../utils/timeAgo";
 
 interface Repository {
   html_url: string;
@@ -13,16 +14,6 @@ interface Repository {
 
 const CACHE_KEY = "ain_repos_v3";
 const CACHE_TTL = 60 * 60 * 1000; // 1h
-
-function timeAgo(iso: string): string {
-  const diff = Date.now() - new Date(iso).getTime();
-  const days = Math.floor(diff / 86400000);
-  if (days === 0) return "today";
-  if (days === 1) return "yesterday";
-  if (days < 30) return `${days}d ago`;
-  const months = Math.floor(days / 30);
-  return `${months}mo ago`;
-}
 
 export function ReposStage() {
   const [repos, setRepos] = useState<Repository[] | null>(null);

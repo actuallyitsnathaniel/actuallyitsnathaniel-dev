@@ -24,7 +24,7 @@ export function MiscStage() {
       >
         miscellaneous
       </h2>
-      <div className="lede">what's playing. what i'm into.</div>
+      <div className="lede">more fun deets about me</div>
 
       {/* transmission grid: 2-col → 1-col at sm (600px — use arbitrary breakpoint) */}
       <div className="mt-2 grid grid-cols-[200px_1fr] gap-9 items-center pt-7 pb-3 max-[600px]:grid-cols-1 max-[600px]:gap-6 max-[600px]:pt-4.5">
@@ -97,8 +97,8 @@ export function MiscStage() {
             </a>
           </div>
           <div className="pt-3.5 border-t border-dashed border-rule text-faint text-[10.5px] tracking-[0.06em] uppercase">
-            <span className="text-accent mr-2.5">eof</span>
-            transmission end · v3.0.0 · nathaniel bowman
+            <span className="text-accent mr-2.5">eof</span>v3.0.0 · nathaniel
+            bowman
           </div>
         </div>
       </div>

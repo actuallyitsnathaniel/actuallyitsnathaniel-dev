@@ -8,7 +8,11 @@ export function AboutStage() {
         pipelines, observability, the load-bearing parts of the stack. on the
         side, i build sites and small tools for independent musicians, because
         the people who make my favorite records shouldn't have to fight their
-        own software.
+        own software.{" "}
+        <i>
+          the best engineering looks invisible — just as good production sits
+          behind a song instead of in front of it.
+        </i>
       </p>
 
       <div className="flex gap-2 flex-wrap mt-1.5">
@@ -55,10 +59,6 @@ export function AboutStage() {
           <span className="text-ink">react · node · aws · postgres</span>
         </div>
       </div>
-      <blockquote className="border-l-2 border-accent pl-4.5 py-2 m-0 text-ink text-t18 leading-[1.55] not-italic max-w-[56ch] text-pretty">
-        the best engineering looks invisible — just as good production sits
-        behind a song instead of in front of it.
-      </blockquote>
     </div>
   );
 }
