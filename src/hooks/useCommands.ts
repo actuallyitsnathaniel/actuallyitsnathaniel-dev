@@ -9,6 +9,7 @@ interface CommandContext {
   setTheme: (t: ThemeName) => void;
   openContact: () => void;
   openHelp: () => void;
+  openLog: () => void;
   downloadResume: () => void;
   logActivity: (type: LogType, msg: string) => void;
 }
@@ -77,6 +78,10 @@ export function useCommands(ctx: CommandContext) {
         navigator.clipboard.writeText(window.location.href).then(() => {
           ctx.logActivity("event", ":share · url copied to clipboard");
         });
+        return true;
+      case "log":
+        ctx.openLog();
+        ctx.logActivity("event", ":log · activity log opened");
         return true;
       case "?":
       case "help":

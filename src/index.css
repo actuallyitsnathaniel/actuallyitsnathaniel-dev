@@ -149,7 +149,7 @@ body::before {
   position: fixed;
   inset: 0;
   display: grid;
-  grid-template-rows: var(--band-status) var(--band-chips) 1fr;
+  grid-template-rows: var(--band-status) auto 1fr;
   overflow: hidden;
   z-index: 1;
 }
@@ -178,6 +178,7 @@ body::before {
   padding: 32px var(--pad-x) 40px;
   scrollbar-width: thin;
   scrollbar-color: var(--rule-2) transparent;
+  background: rgba(10, 10, 10, 0.1);
   opacity: 1;
   transform: translateY(0);
   transition:
@@ -296,6 +297,9 @@ body::before {
   :root {
     --band-status: 38px;
     --band-chips: 80px;
+  }
+  .stage {
+    padding: 20px 16px 32px;
   }
 }
 
@@ -543,11 +547,11 @@ body::before {
   line-height: 1.5;
 }
 .log-timestamp {
-  color: rgba(255, 255, 255, 0.1);
+  color: rgba(126, 231, 135, 0.13);
   margin-right: 8px;
 }
 .log-type {
-  color: rgba(255, 255, 255, 0.2);
+  color: rgba(126, 231, 135, 0.13);
   margin-right: 8px;
 }
 .log-message {

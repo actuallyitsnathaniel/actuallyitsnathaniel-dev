@@ -59,6 +59,7 @@ export function HelpOverlay({ open, onClose }: HelpOverlayProps) {
         <Row keys={<Kbd>:github</Kbd>} desc="open github profile" />
         <Row keys={<Kbd>:linkedin</Kbd>} desc="open linkedin" />
         <Row keys={<Kbd>:share</Kbd>} desc="copy url to clipboard" />
+        <Row keys={<Kbd>:log</Kbd>} desc="view full activity log" />
         <Row keys={<Kbd>:?</Kbd>} desc="this overlay" />
 
         <div className="mt-[14px] pt-[12px] border-t border-rule text-faint text-[11px] text-center">

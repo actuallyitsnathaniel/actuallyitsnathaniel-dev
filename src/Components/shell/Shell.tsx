@@ -11,6 +11,7 @@ import { ChipNav } from "./ChipNav";
 import { Stage } from "./Stage";
 import { HelpOverlay } from "./HelpOverlay";
 import { ContactOverlay } from "./ContactOverlay";
+import { LogOverlay } from "./LogOverlay";
 import { useResumeDownload } from "../../hooks/useResumeDownload";
 
 interface ShellProps {
@@ -31,6 +32,7 @@ export function Shell({
 }: ShellProps) {
   const [helpOpen, setHelpOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
+  const [logOpen, setLogOpen] = useState(false);
   const [highlightedSection, setHighlightedSection] = useState<SectionId | null>(null);
   const filterInputRef = useRef<HTMLInputElement | null>(null);
   const { log } = useActivityLog();
@@ -42,9 +44,11 @@ export function Shell({
 
   const openHelp = useCallback(() => setHelpOpen(true), []);
   const openContact = useCallback(() => setContactOpen(true), []);
+  const openLog = useCallback(() => setLogOpen(true), []);
   const closeOverlays = useCallback(() => {
     setHelpOpen(false);
     setContactOpen(false);
+    setLogOpen(false);
     setHighlightedSection(null);
   }, []);
   const focusFilter = useCallback(() => {
@@ -63,6 +67,7 @@ export function Shell({
     setTheme,
     openContact,
     openHelp,
+    openLog,
     downloadResume,
     logActivity,
   });
@@ -115,6 +120,7 @@ export function Shell({
       </div>
       <HelpOverlay open={helpOpen} onClose={() => setHelpOpen(false)} />
       <ContactOverlay open={contactOpen} onClose={() => setContactOpen(false)} />
+      <LogOverlay open={logOpen} onClose={() => setLogOpen(false)} />
     </>
   );
 }

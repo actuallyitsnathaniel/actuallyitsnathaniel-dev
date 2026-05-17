@@ -74,9 +74,9 @@ export function ToolbeltStage({ filter }: ToolbeltStageProps) {
       <h2>toolbelt</h2>
       <div className="lede">technologies i use, have used, and am learning.</div>
 
-      <div className="grid grid-cols-3 gap-0 border border-rule rounded-[3px] overflow-hidden mt-[22px] md:grid-cols-1">
+      <div className="grid grid-cols-1 gap-0 border border-rule rounded-[3px] overflow-hidden mt-[22px] md:grid-cols-3">
         {/* daily */}
-        <div className="px-[20px] py-[18px] border-r border-rule md:border-r-0 md:border-b">
+        <div className="px-[20px] py-[18px] border-b border-rule md:border-b-0 md:border-r">
           <div className="flex items-center gap-2 font-medium text-[10.5px] tracking-[0.16em] uppercase text-faint mb-[14px] pb-[10px] border-b border-rule">
             <span className="dot solid w-[7px] h-[7px] rounded-full bg-accent shadow-[0_0_6px_var(--accent)]" aria-hidden="true" />
             used daily
@@ -85,7 +85,7 @@ export function ToolbeltStage({ filter }: ToolbeltStageProps) {
         </div>
 
         {/* past */}
-        <div className="px-[20px] py-[18px] border-r border-rule md:border-r-0 md:border-b">
+        <div className="px-[20px] py-[18px] border-b border-rule md:border-b-0 md:border-r">
           <div className="flex items-center gap-2 font-medium text-[10.5px] tracking-[0.16em] uppercase text-faint mb-[14px] pb-[10px] border-b border-rule">
             <span className="dot hollow w-[7px] h-[7px] rounded-full border border-rule2 bg-transparent" aria-hidden="true" />
             used in past
@@ -94,7 +94,7 @@ export function ToolbeltStage({ filter }: ToolbeltStageProps) {
         </div>
 
         {/* learning */}
-        <div className="px-[20px] py-[18px] md:border-b-0">
+        <div className="px-[20px] py-[18px]">
           <div className="flex items-center gap-2 font-medium text-[10.5px] tracking-[0.16em] uppercase text-faint mb-[14px] pb-[10px] border-b border-rule">
             <span className="dot pulse-warn w-[7px] h-[7px] rounded-full bg-warn shadow-[0_0_6px_var(--warn)] animate-[tpulse_1.6s_infinite]" aria-hidden="true" />
             learning
