@@ -17,10 +17,9 @@ const SEO = ({
   type = "website",
   jsonLd,
 }: SEOProps) => {
-  // Use environment variables for URLs
   const siteUrl =
     import.meta.env.VITE_SITE_URL || "https://dev.actuallyitsnathaniel.com";
-  const isProduction = import.meta.env.VITE_IS_PRODUCTION === "true";
+  const isProduction = siteUrl === "https://dev.actuallyitsnathaniel.com";
 
   const finalUrl = url || siteUrl;
   const finalImage = image || `${siteUrl}/og-image.jpg`;
