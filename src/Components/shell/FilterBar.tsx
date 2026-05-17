@@ -95,8 +95,13 @@ export function FilterBar({
   };
 
   return (
-    <div className="filter">
-      <span className="prompt" aria-hidden="true">{mode}</span>
+    <div className="flex items-center gap-[10px] px-[var(--pad-x)] py-2 border-b border-rule">
+      <span
+        className="text-accent text-[14px] font-medium shrink-0 select-none"
+        aria-hidden="true"
+      >
+        {mode}
+      </span>
       <input
         ref={inputRef}
         type="text"
@@ -108,17 +113,17 @@ export function FilterBar({
         autoCorrect="off"
         spellCheck={false}
         aria-label="filter or command input"
+        className="flex-1 bg-transparent border-0 outline-none text-ink font-mono text-t14 lowercase p-0 placeholder:text-faint"
       />
       <span
-        className="hint"
+        className="shrink-0 text-faint text-[10px] tracking-[0.12em] uppercase cursor-pointer"
         role="button"
         tabIndex={0}
         aria-label="open shortcuts"
         onClick={onOpenHelp}
         onKeyDown={e => e.key === "Enter" && onOpenHelp()}
-        style={{ cursor: "pointer" }}
       >
-        <span className="kbd">?</span>shortcuts
+        <span className="inline-block border border-rule2 px-[5px] py-[1px] rounded-[2px] mr-[6px] text-[10px] text-dim">?</span>shortcuts
       </span>
     </div>
   );

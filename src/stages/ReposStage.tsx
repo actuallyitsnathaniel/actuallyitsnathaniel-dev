@@ -66,35 +66,52 @@ export function ReposStage() {
       <h2>repos</h2>
       <div className="lede">public work on github. sorted by recent activity.</div>
 
-      <div className="repo-grid" aria-label="github repositories">
+      <div
+        className="mt-[18px] grid grid-cols-2 gap-3 sm:grid-cols-1"
+        aria-label="github repositories"
+      >
         {repos === null ? (
-          [1, 2, 3, 4].map(i => <div key={i} className="repo-skel" aria-hidden="true" />)
+          [1, 2, 3, 4].map(i => (
+            <div
+              key={i}
+              className="repo-skel h-24 bg-bg1 border border-rule rounded-[3px] relative overflow-hidden"
+              aria-hidden="true"
+            />
+          ))
         ) : repos.length === 0 ? (
-          <div className="repo-empty">no repos found · check network or github rate limit</div>
+          <div className="col-span-2 p-[18px] text-[12px] text-faint border border-dashed border-rule2 rounded-[3px] text-center sm:col-span-1">
+            no repos found · check network or github rate limit
+          </div>
         ) : (
           (displayed ?? []).map(repo => (
             <a
               key={repo.id}
-              className="repo-card"
+              className="block bg-bg1 border border-rule rounded-[3px] px-4 py-[14px] transition-[border-color,background,transform] duration-150 text-inherit no-underline hover:border-rule2 hover:bg-[rgba(255,255,255,0.012)] hover:-translate-y-px"
               href={repo.html_url}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${repo.name} on github`}
             >
-              <div className="repo-name">
+              <div className="flex items-baseline gap-2 text-t14 text-link mb-[6px] break-words">
                 {repo.name}
-                <span className="ext">.git</span>
+                <span className="text-faint text-[10px]">.git</span>
               </div>
-              <div className="repo-desc">{repo.description ?? "—"}</div>
-              <div className="repo-meta">
+              <div className="text-dim text-[12.5px] leading-[1.5] min-h-[2.6em] line-clamp-2 overflow-hidden text-pretty mb-3">
+                {repo.description ?? "—"}
+              </div>
+              <div className="flex gap-[14px] items-center flex-wrap text-[10.5px] text-faint tracking-[0.04em]">
                 {repo.language && (
-                  <span className="lang">
-                    <span className="ld" aria-hidden="true" />
+                  <span className="inline-flex items-center gap-[6px]">
+                    <span className="w-2 h-2 rounded-full bg-accent" aria-hidden="true" />
                     {repo.language}
                   </span>
                 )}
-                {repo.stargazers_count > 0 && <span className="stars">{repo.stargazers_count}</span>}
-                <span className="when">{timeAgo(repo.pushed_at)}</span>
+                {repo.stargazers_count > 0 && (
+                  <span className="before:content-['★_'] before:text-accent">
+                    {repo.stargazers_count}
+                  </span>
+                )}
+                <span className="ml-auto">{timeAgo(repo.pushed_at)}</span>
               </div>
             </a>
           ))
@@ -102,16 +119,16 @@ export function ReposStage() {
       </div>
 
       {repos && repos.length > 4 && (
-        <div className="repo-foot">
+        <div className="mt-[14px] flex justify-between gap-3 flex-wrap text-t12">
           <button
-            className="repo-more"
+            className="bg-none border border-rule2 rounded-[2px] px-[11px] py-[6px] text-dim text-[11px] tracking-[0.06em] transition-[color,border-color] duration-[120ms] hover:text-accent hover:border-[rgba(126,231,135,0.4)]"
             onClick={() => setShowAll(v => !v)}
             aria-expanded={showAll}
           >
             {showAll ? "show less" : `show all · +${repos.length - 4}`}
           </button>
           <a
-            className="repo-gh"
+            className="text-faint text-[11px] self-center no-underline border-b-0 hover:text-accent hover:border-b-0"
             href="https://github.com/actuallyitsnathaniel"
             target="_blank"
             rel="noopener noreferrer"

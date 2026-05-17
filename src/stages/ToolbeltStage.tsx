@@ -38,19 +38,26 @@ export function ToolbeltStage({ filter }: ToolbeltStageProps) {
 
   const renderTool = (skill: Skill) => {
     const bucket = bucketSkill(skill);
-    let cls = "tool";
-    if (query) cls += matchesFilter(skill, query) ? " hit" : " dim";
+    const hit = query && matchesFilter(skill, query);
+    const dim = query && !matchesFilter(skill, query);
+
     return (
       <a
         key={skill.id}
         href={skill.href}
         target="_blank"
         rel="noopener noreferrer"
-        className={cls}
+        className={`tool inline-flex items-center gap-[6px] px-[9px] py-1 bg-bg2 border rounded-[2px] text-[11.5px] transition-[color,border-color,background] duration-[120ms] no-underline ${
+          hit
+            ? "border-accent text-ink bg-[rgba(126,231,135,0.04)]"
+            : dim
+            ? "border-rule2 text-dim opacity-20"
+            : "border-rule2 text-dim hover:text-ink hover:border-faint hover:bg-[rgba(255,255,255,0.02)]"
+        }`}
         data-b={bucket}
         aria-label={skill.name}
       >
-        <span className="d" aria-hidden="true" />
+        <span className="d w-[5px] h-[5px] rounded-full" aria-hidden="true" />
         {skill.name}
       </a>
     );
@@ -58,33 +65,41 @@ export function ToolbeltStage({ filter }: ToolbeltStageProps) {
 
   return (
     <div>
-      <div className="edu-row">
-        <span className="edu-k">edu</span>
-        <span className="edu-v">azusa pacific university · b.s. computer science</span>
-        <span className="edu-year">2021</span>
+      <div className="flex gap-3 items-baseline flex-wrap px-[14px] py-[10px] bg-bg2 border border-rule rounded-[2px] text-t12 tracking-[0.06em] text-dim mb-[18px]">
+        <span className="text-accent uppercase text-[10px] tracking-[0.16em]">edu</span>
+        <span className="text-ink">azusa pacific university · b.s. computer science</span>
+        <span className="text-faint">2021</span>
       </div>
 
       <h2>toolbelt</h2>
       <div className="lede">technologies i use, have used, and am learning.</div>
 
-      <div className="tool-grid">
-        <div className="tool-col">
-          <div className="tool-col-h">
-            <span className="dot solid" aria-hidden="true" />used daily
+      <div className="grid grid-cols-3 gap-0 border border-rule rounded-[3px] overflow-hidden mt-[22px] md:grid-cols-1">
+        {/* daily */}
+        <div className="px-[20px] py-[18px] border-r border-rule md:border-r-0 md:border-b">
+          <div className="flex items-center gap-2 font-medium text-[10.5px] tracking-[0.16em] uppercase text-faint mb-[14px] pb-[10px] border-b border-rule">
+            <span className="dot solid w-[7px] h-[7px] rounded-full bg-accent shadow-[0_0_6px_var(--accent)]" aria-hidden="true" />
+            used daily
           </div>
-          <div className="tool-list">{daily.map(renderTool)}</div>
+          <div className="flex flex-wrap gap-[5px]">{daily.map(renderTool)}</div>
         </div>
-        <div className="tool-col">
-          <div className="tool-col-h">
-            <span className="dot hollow" aria-hidden="true" />used in past
+
+        {/* past */}
+        <div className="px-[20px] py-[18px] border-r border-rule md:border-r-0 md:border-b">
+          <div className="flex items-center gap-2 font-medium text-[10.5px] tracking-[0.16em] uppercase text-faint mb-[14px] pb-[10px] border-b border-rule">
+            <span className="dot hollow w-[7px] h-[7px] rounded-full border border-rule2 bg-transparent" aria-hidden="true" />
+            used in past
           </div>
-          <div className="tool-list">{past.map(renderTool)}</div>
+          <div className="flex flex-wrap gap-[5px]">{past.map(renderTool)}</div>
         </div>
-        <div className="tool-col">
-          <div className="tool-col-h">
-            <span className="dot pulse-warn" aria-hidden="true" />learning
+
+        {/* learning */}
+        <div className="px-[20px] py-[18px] md:border-b-0">
+          <div className="flex items-center gap-2 font-medium text-[10.5px] tracking-[0.16em] uppercase text-faint mb-[14px] pb-[10px] border-b border-rule">
+            <span className="dot pulse-warn w-[7px] h-[7px] rounded-full bg-warn shadow-[0_0_6px_var(--warn)] animate-[tpulse_1.6s_infinite]" aria-hidden="true" />
+            learning
           </div>
-          <div className="tool-list">{learning.map(renderTool)}</div>
+          <div className="flex flex-wrap gap-[5px]">{learning.map(renderTool)}</div>
         </div>
       </div>
     </div>

@@ -100,46 +100,60 @@ export function InfraStage({ filter }: InfraStageProps) {
         systems i've shipped and maintained. metrics are real.
       </div>
       <div
-        className="status-board"
+        className="mt-[18px] border border-rule rounded-[3px] overflow-hidden bg-bg1"
         role="table"
         aria-label="infrastructure status"
       >
-        <div className="sb-head" role="row">
+        {/* header row — hidden on mobile */}
+        <div
+          className="grid grid-cols-[240px_1fr_160px] gap-[18px] px-4 py-[10px] bg-bg2 border-b border-rule text-[10px] tracking-[0.18em] uppercase text-faint md:hidden"
+          role="row"
+        >
           <div>service</div>
           <div>description</div>
-          <div className="sb-metric">metric</div>
+          <div className="text-right">metric</div>
         </div>
+
         {ROWS.map((row) => {
           const visible = matchesRow(row);
           return (
             <div
               key={row.aliases[0]}
-              className={`sb-row${visible ? "" : " hidden"}`}
+              className={`grid grid-cols-[240px_1fr_160px] gap-[18px] px-4 py-[14px] border-b border-rule last:border-b-0 items-center transition-[background] duration-[120ms] hover:bg-[rgba(255,255,255,0.012)] md:grid-cols-1 md:gap-[6px] md:px-[14px] ${visible ? "" : "hidden"}`}
               data-status={row.status}
               data-aliases={row.aliases.join(",")}
               role="row"
             >
-              <div className="sb-svc">
-                <span className="sb-dot" aria-hidden="true" />
-                <span className="sb-name">{row.name}</span>
-                <span className="sb-stat">{row.stat}</span>
+              <div className="flex items-center gap-[10px]">
+                {/* sb-dot color controlled by data-status CSS selectors */}
+                <span className="sb-dot w-2 h-2 rounded-full shrink-0" aria-hidden="true" />
+                <span className="text-ink text-t14">{row.name}</span>
+                <span className={`ml-auto text-[9.5px] tracking-[0.18em] uppercase md:ml-0 md:pl-[18px] ${row.status === "amber" ? "text-warn" : "text-faint"}`}>
+                  {row.stat}
+                </span>
               </div>
-              <div className="sb-desc">{row.desc}</div>
-              <div className="sb-metric">
-                <span className={`m-v${row.metric.qualitative ? " m-q" : ""}`}>
+              <div className="text-dim text-t14 leading-[1.5] text-pretty">
+                {row.desc}
+              </div>
+              <div className="text-right flex flex-col items-end gap-[2px] md:text-left md:items-start md:pl-[18px]">
+                <span className={`text-ink font-medium ${row.metric.qualitative ? "text-[12px] font-normal tracking-[0.14em] uppercase text-dim" : "text-t18"}`}>
                   {row.metric.v}
                   {row.metric.su && (
-                    <span className="m-su"> {row.metric.su}</span>
+                    <span className="text-faint text-[12px] font-normal ml-[1px]"> {row.metric.su}</span>
                   )}
                 </span>
-                {row.metric.u && <span className="m-u">{row.metric.u}</span>}
+                {row.metric.u && (
+                  <span className="text-faint text-[9.5px] tracking-[0.16em] uppercase">
+                    {row.metric.u}
+                  </span>
+                )}
               </div>
             </div>
           );
         })}
       </div>
-      <p className="sb-foot">
-        <span className="sb-foot-k">note</span>
+      <p className="mt-[14px] text-[11px] text-faint">
+        <span className="text-accent uppercase tracking-[0.16em] text-[9.5px] mr-[10px]">note</span>
         all metrics are real and defensible. enterprise rows show qualitative
         status.
       </p>

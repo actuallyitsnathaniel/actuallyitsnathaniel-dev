@@ -218,7 +218,10 @@ export function WorkStage({
     <div>
       <h2>work</h2>
       <div className="lede">selected projects · newest first.</div>
-      <ol className="changelog" aria-label="project changelog">
+      <ol
+        className="list-none p-0 mt-[22px] border-t border-rule"
+        aria-label="project changelog"
+      >
         {ENTRIES.map((entry) => {
           const alias = entry.aliases[0];
           const isOpen = openEntries.includes(alias) || autoExpand === alias;
@@ -227,11 +230,12 @@ export function WorkStage({
           return (
             <li
               key={alias}
-              className={`cl-entry${isOpen ? " open" : ""}`}
+              className={`border-b border-rule transition-[background] duration-150 ${isOpen ? "open" : ""} hover:bg-[rgba(255,255,255,0.012)]`}
               data-aliases={entry.aliases.join(",")}
             >
+              {/* cl-head — grid layout kept in CSS for sm media query grid-template-areas */}
               <div
-                className="cl-head"
+                className="cl-head grid gap-[18px] items-baseline px-1 py-4 cursor-pointer select-none"
                 role="button"
                 tabIndex={0}
                 aria-expanded={isOpen}
@@ -240,45 +244,52 @@ export function WorkStage({
                   (e.key === "Enter" || e.key === " ") && handleToggle(entry)
                 }
               >
-                <span className="cl-ver">{entry.ver}</span>
-                <span className="cl-date">{entry.date}</span>
-                <span className="cl-name">{entry.name}</span>
-                <span className="cl-tag">{entry.tag}</span>
-                <span className="cl-toggle">{isOpen ? "−" : "+"}</span>
+                <span className="cl-ver text-accent text-t12 tracking-[0.04em]">{entry.ver}</span>
+                <span className="cl-date text-faint text-[11px] tracking-[0.06em]">{entry.date}</span>
+                <span className="cl-name text-ink text-t14">{entry.name}</span>
+                <span className="cl-tag text-dim text-[10.5px] tracking-[0.14em] uppercase px-2 py-[3px] bg-bg2 border border-rule2 rounded-[2px] justify-self-end">{entry.tag}</span>
+                <span className={`cl-toggle text-[11px] text-right transition-[color] duration-[120ms] ${isOpen ? "text-accent" : "text-faint"}`}>{isOpen ? "−" : "+"}</span>
               </div>
-              <div className="cl-body">
-                <div className="cl-meta">
+              <div className={`px-1 pb-[22px] ${isOpen ? "block" : "hidden"}`}>
+                <div className="flex gap-[22px] flex-wrap py-1 pb-[14px] text-[11.5px] text-dim border-b border-dashed border-rule mb-[14px]">
                   <span>
-                    <span className="k">role</span>
+                    <span className="text-faint uppercase tracking-[0.14em] text-[10px] mr-2">role</span>
                     {entry.role}
                   </span>
                   <span>
-                    <span className="k">stack</span>
+                    <span className="text-faint uppercase tracking-[0.14em] text-[10px] mr-2">stack</span>
                     {entry.stack}
                   </span>
                   {entry.liveUrl && (
                     <span>
-                      <span className="k">live</span>
+                      <span className="text-faint uppercase tracking-[0.14em] text-[10px] mr-2">live</span>
                       <a
                         href={entry.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
+                        className="text-link"
                       >
                         {entry.liveUrl.replace("https://", "")} ↗
                       </a>
                     </span>
                   )}
                 </div>
-                <ul className="cl-changes">
+                <ul className="list-none p-0 mb-4">
                   {entry.bullets.map((b, i) => (
-                    <li key={i} className={b.type === "add" ? "add" : "note"}>
-                      <span className="sym">
+                    <li
+                      key={i}
+                      className="grid grid-cols-[18px_1fr] gap-1 py-1 text-t14 leading-[1.55] text-pretty"
+                    >
+                      <span className={`font-semibold ${b.type === "add" ? "text-accent" : "text-faint"}`}>
                         {b.type === "add" ? "+" : "~"}
                       </span>
-                      <span>{b.text}</span>
+                      <span className={b.type === "note" ? "text-dim" : "text-ink"}>
+                        {b.text}
+                      </span>
                     </li>
                   ))}
                 </ul>
+                {/* cl-shot — kept in CSS: complex diagonal stripe background */}
                 <div className="cl-shot" aria-hidden="true">
                   screenshot · {entry.name}
                 </div>
