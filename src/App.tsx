@@ -1,211 +1,125 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import "./index.css";
 
-import EducationAndSkills from "./Pages/EducationAndSkills";
-import InfraReliability from "./Pages/InfraReliability";
-import BackendWork from "./Pages/BackendWork";
-import AboutMe from "./Pages/AboutMe";
-import Projects from "./Pages/Projects";
-
-import { Footer } from "./Components/footer";
-import { Header } from "./Components/header";
+import { ActivityLogProvider, useActivityLog } from "./context/ActivityLogContext";
 import { ActivityLogBackground } from "./Components/activity-log-background";
-import { CRTToggle } from "./Components/crt-toggle";
+import { Shell } from "./Components/shell/Shell";
 import SEO from "./Components/seo";
-import {
-  ActivityLogProvider,
-  useActivityLog,
-} from "./context/ActivityLogContext";
+
+import { useRouter } from "./hooks/useRouter";
+import { useTheme } from "./hooks/useTheme";
+
+import { HomeStage } from "./stages/HomeStage";
+import { AboutStage } from "./stages/AboutStage";
+import { ToolbeltStage } from "./stages/ToolbeltStage";
+import { WorkStage } from "./stages/WorkStage";
+import { InfraStage } from "./stages/InfraStage";
+import { ReposStage } from "./stages/ReposStage";
+import { MiscStage } from "./stages/MiscStage";
+
+import type { RouterState } from "./hooks/useRouter";
+
+function renderStage(state: RouterState, onToggleEntry: (alias: string) => void) {
+  const { current, filter, openEntries } = state;
+  switch (current) {
+    case "home":     return <HomeStage />;
+    case "about":    return <AboutStage />;
+    case "toolbelt": return <ToolbeltStage filter={filter} />;
+    case "work":     return <WorkStage filter={filter} openEntries={openEntries} onToggleEntry={onToggleEntry} />;
+    case "infra":    return <InfraStage filter={filter} />;
+    case "repos":    return <ReposStage />;
+    case "misc":     return <MiscStage />;
+    default:         return <HomeStage />;
+  }
+}
 
 const AppContent = () => {
-  const [isCRT, setIsCRT] = useState(false);
+  const { state, go, setFilter, toggleEntry } = useRouter();
+  const { crt, toggleCrt, setTheme } = useTheme();
   const { log } = useActivityLog();
+  const isFirstRender = useRef(true);
   const hasBooted = useRef(false);
 
+  // Boot sequence — hasBooted guard inside effect handles StrictMode double-invoke
   useEffect(() => {
-    // Prevent double-run from React StrictMode
     if (hasBooted.current) return;
     hasBooted.current = true;
 
-    // Stagger the boot logs for effect
     const interval = 150;
-    const originalLog = log;
-    const delayedLogs: Array<() => void> = [];
+    const msgs: Array<[Parameters<typeof log>[0], string]> = [
+      ["system", "initializing terminal..."],
+      ["system", `platform: ${navigator.platform ?? "unknown"}`],
+      ["system", `browser: ${
+        navigator.userAgent.includes("Firefox") ? "firefox"
+        : navigator.userAgent.includes("Edg") ? "edge"
+        : navigator.userAgent.includes("Chrome") ? "chrome"
+        : navigator.userAgent.includes("Safari") ? "safari"
+        : "unknown"
+      }`],
+      ["system", `cpu cores: ${navigator.hardwareConcurrency ?? "unknown"}`],
+      ["system", `display: ${window.screen.width}x${window.screen.height} @${window.devicePixelRatio ?? 1}x`],
+      ["system", `locale: ${navigator.language ?? "unknown"}`],
+      ["system", "session ready · v3.0.0-c · ship"],
+    ];
+    msgs.forEach(([type, msg], i) => setTimeout(() => log(type, msg), i * interval));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    const delayedLog = (type: "system", message: string) => {
-      delayedLogs.push(() => originalLog(type, message));
-    };
-
-    // Temporarily replace log with delayed version
-    const tempLog = delayedLog as typeof log;
-
-    // Build the sequence
-    tempLog("system", "Initializing terminal...");
-
-    const platform = navigator.platform || "Unknown";
-    tempLog("system", `Platform: ${platform}`);
-
-    const ua = navigator.userAgent;
-    let browser = "Unknown";
-    if (ua.includes("Firefox")) browser = "Firefox";
-    else if (ua.includes("Edg")) browser = "Edge";
-    else if (ua.includes("Chrome")) browser = "Chrome";
-    else if (ua.includes("Safari")) browser = "Safari";
-    else if (ua.includes("Opera") || ua.includes("OPR")) browser = "Opera";
-    tempLog("system", `Browser: ${browser}`);
-
-    const cores = navigator.hardwareConcurrency || "Unknown";
-    tempLog("system", `CPU Cores: ${cores}`);
-
-    const memory = (navigator as Navigator & { deviceMemory?: number })
-      .deviceMemory;
-    tempLog("system", `Memory: ${memory ? `${memory}GB` : "Unknown"}`);
-
-    const width = window.screen.width;
-    const height = window.screen.height;
-    const dpr = window.devicePixelRatio || 1;
-    tempLog("system", `Display: ${width}x${height} @${dpr}x`);
-
-    const touchPoints = navigator.maxTouchPoints || 0;
-    const inputType = touchPoints > 0 ? "Touch" : "Desktop";
-    tempLog("system", `Input: ${inputType}`);
-
-    const locale = navigator.language || "Unknown";
-    tempLog("system", `Locale: ${locale}`);
-
-    const connection = (
-      navigator as Navigator & {
-        connection?: { effectiveType?: string };
-      }
-    ).connection;
-    const networkType = connection?.effectiveType || "Unknown";
-    tempLog("system", `Network: ${networkType}`);
-
-    tempLog("system", "Session ready");
-
-    // Execute with staggered timing
-    delayedLogs.forEach((fn, i) => {
-      setTimeout(fn, i * interval);
-    });
-
-    // Scroll to hash target on load
-    if (window.location.hash) {
-      const el = document.querySelector(window.location.hash);
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    }
-
-    // Click handler (after boot sequence)
-    const handleClick = (e: MouseEvent) => {
-      log("event", `Click @ (${e.clientX}, ${e.clientY})`);
-    };
-
-    document.addEventListener("click", handleClick);
-    return () => document.removeEventListener("click", handleClick);
-  }, [log]);
-
-  const HandleCRT = () => {
-    const newValue = !isCRT;
-    setIsCRT(newValue);
-    log("event", `CRT effect: ${newValue ? "enabled" : "disabled"}`);
-  };
+  // Mark that first render has happened (for Stage transition suppression)
+  const firstRender = isFirstRender.current;
+  isFirstRender.current = false;
 
   return (
     <>
       <SEO
-        title="Nathaniel Bowman - Senior Full-Stack & Backend Engineer"
-        description="Portfolio of Nathaniel Bowman - Senior Full-Stack & Backend Engineer specializing in Node.js, AWS, Postgres, CI/CD pipelines, and building tools for musicians and creative teams."
+        title="Nathaniel Bowman — full-stack · infra · music software"
+        description="nathaniel bowman — full-stack engineer, infra, and a soft spot for music software. day job at lightfeather; weekends are sites for musicians."
         jsonLd={{
           "@context": "https://schema.org",
           "@graph": [
-          {
-          "@type": "WebSite",
-          "@id":
-            (import.meta.env.VITE_SITE_URL ||
-              "https://dev.actuallyitsnathaniel.com") + "/#website",
-          url:
-            import.meta.env.VITE_SITE_URL ||
-            "https://dev.actuallyitsnathaniel.com",
-          name: "Nathaniel Bowman",
-          description:
-            "Portfolio of Nathaniel Bowman - Senior Full-Stack & Backend Engineer",
-          },
-          {
-          "@type": "Person",
-          "@id":
-            (import.meta.env.VITE_SITE_URL ||
-              "https://dev.actuallyitsnathaniel.com") + "/#person",
-          name: "Nathaniel Bowman",
-          url:
-            import.meta.env.VITE_SITE_URL ||
-            "https://dev.actuallyitsnathaniel.com",
-          image:
-            (import.meta.env.VITE_SITE_URL ||
-              "https://dev.actuallyitsnathaniel.com") + "/og-image.jpg",
-          description:
-            "Senior Full-Stack & Backend Engineer specializing in Node.js, AWS, Postgres, CI/CD pipelines, and building tools for musicians and creative teams.",
-          jobTitle: "Senior Full-Stack & Backend Engineer",
-          alumniOf: {
-            "@type": "CollegeOrUniversity",
-            name: "Azusa Pacific University",
-            url: "https://www.apu.edu/",
-          },
-          knowsAbout: [
-            "React",
-            "TypeScript",
-            "JavaScript",
-            "Node.js",
-            "Express",
-            "AWS",
-            "Firebase",
-            "Docker",
-            "MongoDB",
-            "PostgreSQL",
-            "CI/CD",
-            "Infrastructure",
-            "Performance Optimization",
-            "Web Development",
-            "Full-Stack Development",
-          ],
-          sameAs: [
-            "https://github.com/actuallyitsnathaniel",
-            "https://linkedin.com/in/actuallyitsnathaniel",
-          ],
-          },
+            {
+              "@type": "WebSite",
+              "@id": (import.meta.env.VITE_SITE_URL || "https://actuallyitsnathaniel.dev") + "/#website",
+              url: import.meta.env.VITE_SITE_URL || "https://actuallyitsnathaniel.dev",
+              name: "Nathaniel Bowman",
+              description: "nathaniel bowman — full-stack engineer, infra, and a soft spot for music software.",
+            },
+            {
+              "@type": "Person",
+              "@id": (import.meta.env.VITE_SITE_URL || "https://actuallyitsnathaniel.dev") + "/#person",
+              name: "Nathaniel Bowman",
+              url: import.meta.env.VITE_SITE_URL || "https://actuallyitsnathaniel.dev",
+              jobTitle: "Full-Stack Software Engineer",
+              alumniOf: { "@type": "CollegeOrUniversity", name: "Azusa Pacific University", url: "https://www.apu.edu/" },
+              sameAs: [
+                "https://github.com/actuallyitsnathaniel",
+                "https://linkedin.com/in/nathaniel-bowman",
+              ],
+            },
           ],
         }}
       />
-      <div
-        className={`flex flex-wrap overflow-clip flex-col text-white lowercase ${
-          isCRT && "crt"
-        }`}
+      <ActivityLogBackground isCRT={crt} />
+      <Shell
+        routerState={state}
+        go={go}
+        setFilter={setFilter}
+        toggleEntry={toggleEntry}
+        crt={crt}
+        onToggleCrt={toggleCrt}
+        setTheme={setTheme}
+        isFirstRender={firstRender}
       >
-        <ActivityLogBackground isCRT={isCRT} />
-        <CRTToggle {...{ HandleCRT, isCRT }} />
-        <Header />
-        <hr className="border-t border-gray-800 max-w-4xl mx-auto w-full" />
-        {/* TODO: ensure all really cool website projects are here. */}
-        <EducationAndSkills />
-        <hr className="border-t border-gray-800 max-w-4xl mx-auto w-full" />
-        <InfraReliability />
-        <hr className="border-t border-gray-800 max-w-4xl mx-auto w-full" />
-        <Projects />
-        <hr className="border-t border-gray-800 max-w-4xl mx-auto w-full" />
-        <BackendWork />
-        <hr className="border-t border-gray-800 max-w-4xl mx-auto w-full" />
-        <AboutMe />
-        <hr className="border-t border-gray-800 max-w-4xl mx-auto w-full" />
-        <Footer />
-      </div>
+        {renderStage}
+      </Shell>
     </>
   );
 };
 
-const App = () => {
-  return (
-    <ActivityLogProvider>
-      <AppContent />
-    </ActivityLogProvider>
-  );
-};
+const App = () => (
+  <ActivityLogProvider>
+    <AppContent />
+  </ActivityLogProvider>
+);
 
 export default App;
