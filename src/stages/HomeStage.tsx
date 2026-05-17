@@ -2,54 +2,83 @@ import { useEffect, useState } from "react";
 import profilePic from "/src/assets/images/pfp_2023.png";
 import { useResumeDownload } from "../hooks/useResumeDownload";
 import { timeAgo } from "../utils/timeAgo";
+import { ContribHeatmap } from "../Components/ContribHeatmap";
 
 const CACHE_KEY = "ain_repos_v3";
 const CACHE_TTL = 60 * 60 * 1000;
 
+interface ContribWeek {
+  contributionDays: { date: string; contributionCount: number }[];
+}
+
 export function HomeStage() {
   const { downloadResume } = useResumeDownload();
   const [lastPush, setLastPush] = useState<string | null>(null);
+  const [contribWeeks, setContribWeeks] = useState<ContribWeek[]>([]);
 
   useEffect(() => {
+    // last push — read from repos cache or fetch one repo
     const cached = localStorage.getItem(CACHE_KEY);
     if (cached) {
       try {
         const { data, ts } = JSON.parse(cached);
         if (Date.now() - ts < CACHE_TTL && data[0]?.pushed_at) {
           setLastPush(data[0].pushed_at);
-          return;
         }
       } catch {
         /* ignore */
       }
     }
-    fetch(
-      "https://api.github.com/users/actuallyitsnathaniel/repos?per_page=1&sort=pushed",
-    )
+    if (!lastPush) {
+      fetch(
+        "https://api.github.com/users/actuallyitsnathaniel/repos?per_page=1&sort=pushed",
+      )
+        .then((r) => r.json())
+        .then((data) => {
+          if (data[0]?.pushed_at) setLastPush(data[0].pushed_at);
+        })
+        .catch(() => {});
+    }
+
+    // contribution heatmap
+    fetch("/api/contributions")
       .then((r) => r.json())
-      .then((data) => {
-        if (data[0]?.pushed_at) setLastPush(data[0].pushed_at);
+      .then(({ weeks }) => {
+        if (Array.isArray(weeks)) setContribWeeks(weeks);
       })
       .catch(() => {});
-  }, []);
+  }, []); // intentionally empty — runs once on mount
 
   return (
     <div className="grid pb-8 border-b border-rule md:grid-cols-2 gap-10 md:w-4/5">
-      {/* portrait */}
-      <div className="relative w-55 h-55 rounded-xs overflow-hidden bg-bg2 border border-rule2 md:justify-self-end">
-        <img
-          src={profilePic}
-          alt="Nathaniel Bowman, Full-Stack Software Engineer"
-          width="220"
-          height="220"
-          loading="eager"
-          className="w-full h-full object-cover filter-[grayscale(0.15)_contrast(1.02)]"
-        />
-        {/* frame overlay — kept in CSS (.hero-portrait .frame) for complex gradient */}
-        <div
-          className="frame absolute inset-0 pointer-events-none"
-          aria-hidden="true"
-        />
+      {/* portrait + heatmap */}
+      <div className="flex flex-col items-start md:items-end gap-2">
+        <div className="hero-portrait relative w-55 h-55 rounded-xs overflow-hidden bg-bg2 border border-rule2">
+          <img
+            src={profilePic}
+            alt="Nathaniel Bowman, Full-Stack Software Engineer"
+            width="220"
+            height="220"
+            loading="eager"
+            className="w-full h-full object-cover filter-[grayscale(0.15)_contrast(1.02)]"
+          />
+          {/* frame overlay — kept in CSS (.hero-portrait .frame) for complex gradient */}
+          <div
+            className="frame absolute inset-0 pointer-events-none"
+            aria-hidden="true"
+          />
+        </div>
+
+        {/* heatmap + last push */}
+        <div className="w-55">
+          <ContribHeatmap weeks={contribWeeks} />
+          {lastPush && (
+            <div className="flex items-center gap-1.5 mt-2 text-t10 tracking-[0.12em] text-faint uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_6px_var(--accent)]" />
+              last push {timeAgo(lastPush)}
+            </div>
+          )}
+        </div>
       </div>
 
       {/* bio */}
@@ -69,16 +98,6 @@ export function HomeStage() {
           the day job is full-stack infrastructure at lightfeather — the kind of
           work that gets noticed only when it breaks. weekends are sites for
           musicians who shouldn't have to fight their own software.
-        </div>
-
-        {/* status row */}
-        <div className="flex gap-3.5 items-center text-t10 tracking-[0.12em] text-faint uppercase py-2 pb-4.5 border-t border-rule mt-4.5 flex-wrap">
-          <span className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_6px_var(--accent)]" />
-            {lastPush ? `last push ${timeAgo(lastPush)}` : "last push …"}
-          </span>
-          <span>la</span>
-          <span>pst</span>
         </div>
 
         {/* cta row */}
