@@ -81,7 +81,7 @@ server.listen(PORT, async () => {
     console.log('✅ Browser closed');
 
     // Extract the root div content - find content between <div id="root"> and </div> followed by any whitespace and script
-    const rootMatch = html.match(/<div id="root">([\s\S]*?)<\/div>[\s\n]*(?:<script|<!--|$)/);
+    html.match(/<div id="root">([\s\S]*?)<\/div>[\s\n]*(?:<script|<!--|$)/);
 
     if (!bodyContent || !bodyContent.trim()) {
       console.warn('⚠️  Warning: Could not extract rendered content. Root div appears empty.');

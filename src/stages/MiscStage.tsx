@@ -14,7 +14,14 @@ export function MiscStage() {
   return (
     <div>
       {/* misc-stage h2 overrides .stage h2 — kept as inline override */}
-      <h2 style={{ fontFamily: "var(--mono)", fontWeight: 500, fontSize: "var(--t-18)", letterSpacing: "0.02em" }}>
+      <h2
+        style={{
+          fontFamily: "var(--mono)",
+          fontWeight: 500,
+          fontSize: "var(--t-18)",
+          letterSpacing: "0.02em",
+        }}
+      >
         // miscellaneous
       </h2>
       <div className="lede">what's playing. what i'm into.</div>
@@ -81,7 +88,7 @@ export function MiscStage() {
               tidal ↗
             </a>
             <a
-              className="inline-flex items-center px-[10px] py-[5px] bg-bg2 border border-rule2 rounded-[2px] text-[11px] tracking-[0.04em] text-dim transition-[color,border-color] duration-[120ms] no-underline hover:text-accent hover:border-[rgba(126,231,135,0.4)]"
+              className="inline-flex items-center px-2.5 py-[5px] bg-bg2 border border-rule2 rounded-[2px] text-[11px] tracking-[0.04em] text-dim transition-[color,border-color] duration-[120ms] no-underline hover:text-accent hover:border-[rgba(126,231,135,0.4)]"
               href={SONG.youtube}
               target="_blank"
               rel="noopener noreferrer"
@@ -91,7 +98,7 @@ export function MiscStage() {
           </div>
           <div className="pt-[14px] border-t border-dashed border-rule text-faint text-[10.5px] tracking-[0.06em] uppercase">
             <span className="text-accent mr-[10px]">eof</span>
-            transmission end · v3.0.0-c · nathaniel bowman
+            transmission end · v3.0.0 · nathaniel bowman
           </div>
         </div>
       </div>

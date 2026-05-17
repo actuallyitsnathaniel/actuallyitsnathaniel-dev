@@ -17,7 +17,7 @@ function readFromUrl(): RouterState {
   return {
     current: sectionFromUrl(),
     filter: filterFromUrl(),
-    openEntries: entriesFromUrl().length ? entriesFromUrl() : defaultOpenEntries(sectionFromUrl()),
+    openEntries: entriesFromUrl().length ? entriesFromUrl() : defaultOpenEntries(),
   };
 }
 
@@ -49,7 +49,7 @@ export function useRouter() {
   const go = useCallback((id: SectionId, opts?: { replace?: boolean }) => {
     const sp = new URLSearchParams();
     if (id !== "home") sp.set("p", id);
-    const defaultEntries = defaultOpenEntries(id);
+    const defaultEntries = defaultOpenEntries();
     if (defaultEntries.length) sp.set("e", defaultEntries.join(","));
     const qs = sp.toString();
     const url = qs ? `?${qs}` : "/";

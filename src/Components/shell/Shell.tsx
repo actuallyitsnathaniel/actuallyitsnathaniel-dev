@@ -118,7 +118,7 @@ export function Shell({
           {children}
         </Stage>
       </div>
-      <HelpOverlay open={helpOpen} onClose={() => setHelpOpen(false)} />
+      <HelpOverlay open={helpOpen} />
       <ContactOverlay open={contactOpen} onClose={() => setContactOpen(false)} />
       <LogOverlay open={logOpen} onClose={() => setLogOpen(false)} />
     </>

@@ -37,6 +37,6 @@ export function entriesFromUrl(): string[] {
   return e ? e.split(",").filter(Boolean) : [];
 }
 
-export function defaultOpenEntries(_id: SectionId): string[] {
+export function defaultOpenEntries(): string[] {
   return [];
 }

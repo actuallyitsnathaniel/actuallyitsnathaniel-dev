@@ -1,6 +1,5 @@
 interface HelpOverlayProps {
   open: boolean;
-  onClose: () => void;
 }
 
 const Kbd = ({ children }: { children: React.ReactNode }) => (
@@ -16,7 +15,7 @@ const Row = ({ keys, desc, className }: { keys: React.ReactNode; desc: React.Rea
   </div>
 );
 
-export function HelpOverlay({ open, onClose }: HelpOverlayProps) {
+export function HelpOverlay({ open }: HelpOverlayProps) {
   return (
     <div
       className={`fixed inset-0 bg-[rgba(0,0,0,0.78)] z-[200] ${open ? "flex" : "hidden"} items-center justify-center backdrop-blur-[4px]`}

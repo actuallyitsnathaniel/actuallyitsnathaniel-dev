@@ -39,7 +39,6 @@ export function Stage({ state, onToggleEntry, children, isFirstRender }: StagePr
     } else {
       setDisplayed(d => ({ ...d, state }));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.current, state.filter, state.openEntries]);
 
   return (

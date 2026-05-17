@@ -89,7 +89,7 @@ const AppContent = () => {
         `display: ${window.screen.width}x${window.screen.height} @${window.devicePixelRatio ?? 1}x`,
       ],
       ["system", `locale: ${navigator.language ?? "unknown"}`],
-      ["system", "session ready · v3.0.0-c · ship"],
+      ["system", "session ready · v3.0.0 · ship"],
     ];
     msgs.forEach(([type, msg], i) =>
       setTimeout(() => log(type, msg), i * interval),

@@ -9,6 +9,15 @@ export default tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
+    files: ["**/*.cjs", "scripts/**/*.js", "*.config.*"],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+        ...globals.browser,
+      },
+    },
+  },
+  {
     files: ["**/*.{ts,tsx}"],
     plugins: {
       react: reactPlugin,
