@@ -78,22 +78,12 @@ export function ToolbeltStage({ filter }: ToolbeltStageProps) {
 
   return (
     <div>
-      <div className="flex gap-3 items-baseline flex-wrap px-3.5 py-2.5 bg-bg2 border border-rule rounded-xs text-t12 tracking-[0.06em] text-dim mb-4.5">
-        <span className="text-accent uppercase text-[10px] tracking-[0.16em]">
-          edu
-        </span>
-        <span className="text-ink">
-          azusa pacific university · b.s. computer science
-        </span>
-        <span className="text-faint">2021</span>
-      </div>
-
       <h2>toolbelt</h2>
       <div className="lede">
         technologies i use, have used, and am learning.
       </div>
 
-      <div className="grid grid-cols-1 gap-0 border border-rule rounded-[3px] overflow-hidden mt-5.5 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-0 border border-rule rounded-[3px] overflow-hidden mt-5.5 md:grid-cols-3 lede">
         {/* daily */}
         <div className="px-5 py-4.5 border-b border-rule md:border-b-0 md:border-r">
           <div className="flex items-center gap-2 font-medium text-[10.5px] tracking-[0.16em] uppercase text-faint mb-3.5 pb-2.5 border-b border-rule">
@@ -131,6 +121,15 @@ export function ToolbeltStage({ filter }: ToolbeltStageProps) {
             {learning.map(renderTool)}
           </div>
         </div>
+      </div>
+      <div className="flex gap-3 items-baseline flex-wrap px-3.5 py-2.5 bg-bg2 border border-rule rounded-xs text-t12 tracking-[0.06em] text-dim mb-4.5">
+        <span className="text-accent uppercase text-[10px] tracking-[0.16em]">
+          edu
+        </span>
+        <span className="text-ink">
+          azusa pacific university · b.s. computer science
+        </span>
+        <span className="text-faint">2021</span>
       </div>
     </div>
   );

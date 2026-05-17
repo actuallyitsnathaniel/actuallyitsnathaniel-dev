@@ -97,7 +97,7 @@ export function InfraStage({ filter }: InfraStageProps) {
     <div>
       <h2>infra</h2>
       <div className="lede">
-        systems i've shipped and maintained. metrics are real.
+        real systems with metrics i've shipped and maintained.
       </div>
       <div
         className="mt-4.5 border border-rule rounded-[3px] overflow-hidden bg-bg1"

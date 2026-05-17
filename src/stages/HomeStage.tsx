@@ -5,9 +5,9 @@ export function HomeStage() {
   const { downloadResume } = useResumeDownload();
 
   return (
-    <div className="grid grid-cols-[220px_1fr] gap-10 items-start pb-8 border-b border-rule md:grid-cols-1 md:gap-7">
+    <div className="grid pb-8 border-b border-rule md:grid-cols-2 gap-10 md:w-4/5">
       {/* portrait */}
-      <div className="relative w-55 h-55 rounded-xs overflow-hidden bg-bg2 border border-rule2">
+      <div className="relative w-55 h-55 rounded-xs overflow-hidden bg-bg2 border border-rule2 md:justify-self-end">
         <img
           src={profilePic}
           alt="Nathaniel Bowman, Full-Stack Software Engineer"
@@ -21,17 +21,10 @@ export function HomeStage() {
           className="frame absolute inset-0 pointer-events-none"
           aria-hidden="true"
         />
-        <div
-          className="absolute left-2 bottom-1.5 text-[9px] tracking-[0.18em] text-dim uppercase"
-          aria-hidden="true"
-        >
-          <span className="w-1.25 h-1.25 rounded-full bg-accent inline-block mr-1.25 align-[1px] shadow-[0_0_6px_var(--accent)] animate-[pulse_2.4s_infinite]" />
-          id · 0421
-        </div>
       </div>
 
       {/* bio */}
-      <div>
+      <div className="justify-self-start">
         <div className="text-t12 text-faint tracking-[0.02em] mb-2">
           // software engineer · ↑1 → 2026
         </div>
