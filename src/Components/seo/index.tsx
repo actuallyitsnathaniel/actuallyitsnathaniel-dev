@@ -10,8 +10,8 @@ interface SEOProps {
 }
 
 const SEO = ({
-  title = "Nathaniel Bowman - Senior Full-Stack & Backend Engineer",
-  description = "Portfolio of Nathaniel Bowman - Senior Full-Stack & Backend Engineer specializing in Node.js, AWS, Postgres, CI/CD pipelines, and building tools for musicians and creative teams.",
+  title = "Nathaniel Bowman - Senior Full-Stack Engineer",
+  description = "Portfolio of Nathaniel Bowman - Senior Full-Stack Engineer specializing in Node.js, AWS, Postgres, CI/CD pipelines, and building tools for musicians and creative teams.",
   image,
   url,
   type = "website",
