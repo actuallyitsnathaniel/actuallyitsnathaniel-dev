@@ -37,7 +37,14 @@ export function useCommands(ctx: CommandContext) {
         ctx.logActivity("event", ":crt · toggled");
         return true;
       case "theme":
-        if (["green", "amber", "mono"].includes(arg)) {
+        if ([
+          "green", "amber", "mono",
+          "red", "orange", "yellow", "lime", "teal", "cyan",
+          "sky", "blue", "indigo", "violet", "purple", "fuchsia",
+          "pink", "rose", "slate", "zinc",
+          "gold", "coral", "mint", "lavender", "peach",
+          "sage", "dusk", "ember", "frost", "neon",
+        ].includes(arg)) {
           ctx.setTheme(arg as ThemeName);
           ctx.logActivity("event", `:theme ${arg}`);
         }

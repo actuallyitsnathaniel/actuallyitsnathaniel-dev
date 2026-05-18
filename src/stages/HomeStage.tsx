@@ -105,7 +105,7 @@ export function HomeStage() {
         {/* cta row */}
         <div className="flex gap-2 flex-wrap">
           <button
-            className="inline-flex items-center gap-2 px-3.5 py-2.25 border border-accent rounded-[3px] bg-accent text-black text-t12 tracking-[0.04em] font-medium transition-[color,border-color,background,transform] duration-150 hover:bg-[#92ee9c] hover:border-[#92ee9c] hover:-translate-y-px no-underline border-b-accent"
+            className="inline-flex items-center gap-2 px-3.5 py-2.25 border border-accent rounded-[3px] bg-accent text-black text-t12 tracking-[0.04em] font-medium transition-[color,border-color,background,transform] duration-150 hover:bg-[color-mix(in_srgb,var(--accent)_80%,white)] hover:border-[color-mix(in_srgb,var(--accent)_80%,white)] hover:-translate-y-px no-underline border-b-accent"
             onClick={downloadResume}
             aria-label="download résumé PDF"
           >

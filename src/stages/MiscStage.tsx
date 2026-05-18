@@ -64,7 +64,7 @@ export function MiscStage() {
           </div>
           <div className="flex gap-1.5 flex-wrap mb-5.5">
             <a
-              className="inline-flex items-center px-2.5 py-1.25 bg-bg2 border border-rule2 rounded-xs text-[11px] tracking-[0.04em] text-dim transition-[color,border-color] duration-120 no-underline hover:text-accent hover:border-[rgba(126,231,135,0.4)]"
+              className="inline-flex items-center px-2.5 py-1.25 bg-bg2 border border-rule2 rounded-xs text-[11px] tracking-[0.04em] text-dim transition-[color,border-color] duration-120 no-underline hover:text-accent hover:border-[color-mix(in_srgb,var(--accent)_40%,transparent)]"
               href={SONG.spotify}
               target="_blank"
               rel="noopener noreferrer"
@@ -72,7 +72,7 @@ export function MiscStage() {
               spotify ↗
             </a>
             <a
-              className="inline-flex items-center px-2.5 py-1.25 bg-bg2 border border-rule2 rounded-xs text-[11px] tracking-[0.04em] text-dim transition-[color,border-color] duration-120 no-underline hover:text-accent hover:border-[rgba(126,231,135,0.4)]"
+              className="inline-flex items-center px-2.5 py-1.25 bg-bg2 border border-rule2 rounded-xs text-[11px] tracking-[0.04em] text-dim transition-[color,border-color] duration-120 no-underline hover:text-accent hover:border-[color-mix(in_srgb,var(--accent)_40%,transparent)]"
               href={SONG.apple}
               target="_blank"
               rel="noopener noreferrer"
@@ -80,7 +80,7 @@ export function MiscStage() {
               apple music ↗
             </a>
             <a
-              className="inline-flex items-center px-2.5 py-1.25 bg-bg2 border border-rule2 rounded-xs text-[11px] tracking-[0.04em] text-dim transition-[color,border-color] duration-120 no-underline hover:text-accent hover:border-[rgba(126,231,135,0.4)]"
+              className="inline-flex items-center px-2.5 py-1.25 bg-bg2 border border-rule2 rounded-xs text-[11px] tracking-[0.04em] text-dim transition-[color,border-color] duration-120 no-underline hover:text-accent hover:border-[color-mix(in_srgb,var(--accent)_40%,transparent)]"
               href={SONG.tidal}
               target="_blank"
               rel="noopener noreferrer"
@@ -88,7 +88,7 @@ export function MiscStage() {
               tidal ↗
             </a>
             <a
-              className="inline-flex items-center px-2.5 py-1.25 bg-bg2 border border-rule2 rounded-xs text-[11px] tracking-[0.04em] text-dim transition-[color,border-color] duration-120 no-underline hover:text-accent hover:border-[rgba(126,231,135,0.4)]"
+              className="inline-flex items-center px-2.5 py-1.25 bg-bg2 border border-rule2 rounded-xs text-[11px] tracking-[0.04em] text-dim transition-[color,border-color] duration-120 no-underline hover:text-accent hover:border-[color-mix(in_srgb,var(--accent)_40%,transparent)]"
               href={SONG.youtube}
               target="_blank"
               rel="noopener noreferrer"

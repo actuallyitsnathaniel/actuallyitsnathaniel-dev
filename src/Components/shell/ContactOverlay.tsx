@@ -17,8 +17,8 @@ function CopyButton({ value }: { value: string }) {
     <button
       className={`text-[10px] tracking-[0.12em] uppercase border px-2 py-0.75 rounded-xs transition-[color,border-color] duration-120 ${
         ok
-          ? "text-accent border-[rgba(126,231,135,0.4)]"
-          : "text-faint border-rule2 hover:text-accent hover:border-[rgba(126,231,135,0.4)]"
+          ? "text-accent border-[color-mix(in_srgb,var(--accent)_40%,transparent)]"
+          : "text-faint border-rule2 hover:text-accent hover:border-[color-mix(in_srgb,var(--accent)_40%,transparent)]"
       }`}
       onClick={copy}
     >

@@ -34,7 +34,7 @@ export function ToolbeltStage({ filter }: ToolbeltStageProps) {
         rel="noopener noreferrer"
         className={`tool inline-flex items-center gap-1.5 px-2.25 py-1 bg-bg2 border rounded-xs text-[11.5px] transition-[color,border-color,background] duration-120 no-underline ${
           hit
-            ? "border-accent text-ink bg-[rgba(126,231,135,0.04)]"
+            ? "border-accent text-ink bg-[color-mix(in_srgb,var(--accent)_4%,transparent)]"
             : dim
               ? "border-rule2 text-dim opacity-20"
               : "border-rule2 text-dim hover:text-ink hover:border-faint hover:bg-[rgba(255,255,255,0.02)]"

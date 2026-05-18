@@ -125,7 +125,7 @@ export function ReposStage() {
       {repos && repos.length > 4 && (
         <div className="mt-3.5 flex justify-between gap-3 flex-wrap text-t12">
           <button
-            className="bg-none border border-rule2 rounded-xs px-2.75 py-1.5 text-dim text-[11px] tracking-[0.06em] transition-[color,border-color] duration-120 hover:text-accent hover:border-[rgba(126,231,135,0.4)]"
+            className="bg-none border border-rule2 rounded-xs px-2.75 py-1.5 text-dim text-[11px] tracking-[0.06em] transition-[color,border-color] duration-120 hover:text-accent hover:border-[color-mix(in_srgb,var(--accent)_40%,transparent)]"
             onClick={() => setShowAll((v) => !v)}
             aria-expanded={showAll}
           >

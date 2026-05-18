@@ -40,7 +40,7 @@ export function StatusBar({ current, crt, onToggleCrt }: StatusBarProps) {
         <button
           className={`border border-rule2 px-2.25 py-0.75 rounded-xs text-[10px] tracking-[0.14em] uppercase transition-[color,border-color] duration-150 ${
             crt
-              ? "text-accent border-[rgba(126,231,135,0.4)]"
+              ? "text-accent border-[color-mix(in_srgb,var(--accent)_40%,transparent)]"
               : "text-faint hover:text-ink hover:border-ink"
           }`}
           onClick={onToggleCrt}

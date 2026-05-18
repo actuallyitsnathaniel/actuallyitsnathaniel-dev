@@ -22,13 +22,14 @@ interface ShellProps {
   crt: boolean;
   onToggleCrt: () => void;
   setTheme: (t: ThemeName) => void;
+  currentTheme: ThemeName;
   isFirstRender: boolean;
   children: (state: RouterState, onToggleEntry: (alias: string) => void) => React.ReactNode;
 }
 
 export function Shell({
   routerState, go, setFilter, toggleEntry,
-  crt, onToggleCrt, setTheme, isFirstRender, children,
+  crt, onToggleCrt, setTheme, currentTheme, isFirstRender, children,
 }: ShellProps) {
   const [helpOpen, setHelpOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
@@ -118,7 +119,12 @@ export function Shell({
           {children}
         </Stage>
       </div>
-      <HelpOverlay open={helpOpen} />
+      <HelpOverlay
+        open={helpOpen}
+        onClose={() => setHelpOpen(false)}
+        setTheme={setTheme}
+        currentTheme={currentTheme}
+      />
       <ContactOverlay open={contactOpen} onClose={() => setContactOpen(false)} />
       <LogOverlay open={logOpen} onClose={() => setLogOpen(false)} />
     </>

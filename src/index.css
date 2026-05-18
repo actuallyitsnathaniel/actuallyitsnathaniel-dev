@@ -81,6 +81,32 @@ body[data-theme="mono"] .sb-dot,
 body[data-theme="mono"] .status-row .dot {
   box-shadow: none !important;
 }
+body[data-theme="red"]      { --accent: #f87171; }
+body[data-theme="orange"]   { --accent: #fb923c; }
+body[data-theme="yellow"]   { --accent: #facc15; }
+body[data-theme="lime"]     { --accent: #a3e635; }
+body[data-theme="teal"]     { --accent: #2dd4bf; }
+body[data-theme="cyan"]     { --accent: #22d3ee; }
+body[data-theme="sky"]      { --accent: #38bdf8; }
+body[data-theme="blue"]     { --accent: #60a5fa; }
+body[data-theme="indigo"]   { --accent: #818cf8; }
+body[data-theme="violet"]   { --accent: #a78bfa; }
+body[data-theme="purple"]   { --accent: #c084fc; }
+body[data-theme="fuchsia"]  { --accent: #e879f9; }
+body[data-theme="pink"]     { --accent: #f472b6; }
+body[data-theme="rose"]     { --accent: #fb7185; }
+body[data-theme="slate"]    { --accent: #94a3b8; }
+body[data-theme="zinc"]     { --accent: #a1a1aa; }
+body[data-theme="gold"]     { --accent: #d4a843; }
+body[data-theme="coral"]    { --accent: #ff6b6b; }
+body[data-theme="mint"]     { --accent: #00e5cc; }
+body[data-theme="lavender"] { --accent: #b39ddb; }
+body[data-theme="peach"]    { --accent: #ffab76; }
+body[data-theme="sage"]     { --accent: #8fb996; }
+body[data-theme="dusk"]     { --accent: #9b8ea8; }
+body[data-theme="ember"]    { --accent: #e8613a; }
+body[data-theme="frost"]    { --accent: #a8d8ea; }
+body[data-theme="neon"]     { --accent: #39ff14; }
 
 /* ============================================================
    base reset
@@ -137,7 +163,7 @@ body::before {
   pointer-events: none;
   background: radial-gradient(
     ellipse 120% 80% at 50% -10%,
-    rgba(126, 231, 135, 0.025),
+    color-mix(in srgb, var(--accent) 2.5%, transparent),
     transparent 60%
   );
 }
@@ -396,7 +422,7 @@ body::before {
   background: linear-gradient(
     90deg,
     transparent 0,
-    rgba(126, 231, 135, 0.04) 50%,
+    color-mix(in srgb, var(--accent) 4%, transparent) 50%,
     transparent 100%
   );
   animation: skel 1.4s infinite;
@@ -429,7 +455,7 @@ body::before {
     repeating-radial-gradient(circle at center, #0d0d0d 0 1px, #060606 1px 3px),
     radial-gradient(
       circle at 30% 30%,
-      rgba(126, 231, 135, 0.08),
+      color-mix(in srgb, var(--accent) 8%, transparent),
       transparent 50%
     ),
     #050505;
@@ -501,7 +527,7 @@ body::before {
 .activity-log-content {
   font-family: var(--mono);
   font-size: 10.5px;
-  color: rgba(126, 231, 135, 0.13);
+  color: color-mix(in srgb, var(--accent) 13%, transparent);
   padding: 20px;
   line-height: 1.8;
   display: flex;
@@ -534,15 +560,15 @@ body::before {
   line-height: 1.5;
 }
 .log-timestamp {
-  color: rgba(126, 231, 135, 0.13);
+  color: color-mix(in srgb, var(--accent) 13%, transparent);
   margin-right: 8px;
 }
 .log-type {
-  color: rgba(126, 231, 135, 0.13);
+  color: color-mix(in srgb, var(--accent) 13%, transparent);
   margin-right: 8px;
 }
 .log-message {
-  color: rgba(126, 231, 135, 0.13);
+  color: color-mix(in srgb, var(--accent) 13%, transparent);
 }
 @keyframes fadeInLog {
   from {

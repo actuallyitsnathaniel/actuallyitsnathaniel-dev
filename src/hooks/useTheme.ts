@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 
-export type ThemeName = "green" | "amber" | "mono";
+export type ThemeName =
+  | "green" | "amber" | "mono"
+  | "red" | "orange" | "yellow" | "lime" | "teal" | "cyan"
+  | "sky" | "blue" | "indigo" | "violet" | "purple" | "fuchsia"
+  | "pink" | "rose" | "slate" | "zinc"
+  | "gold" | "coral" | "mint" | "lavender" | "peach"
+  | "sage" | "dusk" | "ember" | "frost" | "neon";
 
 export function useTheme() {
   const [theme, setThemeState] = useState<ThemeName>(

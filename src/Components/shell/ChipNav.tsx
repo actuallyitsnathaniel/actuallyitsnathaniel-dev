@@ -30,10 +30,10 @@ export function ChipNav({
 
         if (isActive) {
           className =
-            "chip active inline-flex items-center gap-1.5 px-2.5 py-1 border rounded-xs text-[11.5px] tracking-[0.02em] transition-[color,border-color,background] duration-150 text-accent border-[rgba(126,231,135,0.35)] bg-[rgba(126,231,135,0.04)]";
+            "chip active inline-flex items-center gap-1.5 px-2.5 py-1 border rounded-xs text-[11.5px] tracking-[0.02em] transition-[color,border-color,background] duration-150 text-accent border-[color-mix(in_srgb,var(--accent)_35%,transparent)] bg-[color-mix(in_srgb,var(--accent)_4%,transparent)]";
         } else if (hasFocus && isMatch) {
           className =
-            "chip match inline-flex items-center gap-1.5 px-2.5 py-1 border rounded-xs text-[11.5px] tracking-[0.02em] transition-[color,border-color,background] duration-150 text-accent border-[rgba(126,231,135,0.4)] bg-[rgba(126,231,135,0.06)]";
+            "chip match inline-flex items-center gap-1.5 px-2.5 py-1 border rounded-xs text-[11.5px] tracking-[0.02em] transition-[color,border-color,background] duration-150 text-accent border-[color-mix(in_srgb,var(--accent)_40%,transparent)] bg-[color-mix(in_srgb,var(--accent)_6%,transparent)]";
         } else if (hasFocus) {
           className =
             "chip dim inline-flex items-center gap-1.5 px-2.5 py-1 bg-bg1 border border-rule rounded-xs text-dim text-[11.5px] tracking-[0.02em] transition-[color,border-color,background] duration-150 opacity-30";
@@ -58,21 +58,21 @@ export function ChipNav({
         |
       </span>
       <button
-        className="chip cmd inline-flex items-center gap-1.5 px-2.5 py-1 bg-bg1 border border-rule rounded-xs text-faint text-[11.5px] tracking-[0.02em] opacity-60 transition-[color,border-color,background,opacity] duration-150 hover:text-accent hover:border-[rgba(126,231,135,0.3)] hover:opacity-100"
+        className="chip cmd inline-flex items-center gap-1.5 px-2.5 py-1 bg-bg1 border border-rule rounded-xs text-faint text-[11.5px] tracking-[0.02em] opacity-60 transition-[color,border-color,background,opacity] duration-150 hover:text-accent hover:border-[color-mix(in_srgb,var(--accent)_30%,transparent)] hover:opacity-100"
         onClick={() => onCommand(":resume")}
         aria-label="download résumé"
       >
         :resume
       </button>
       <button
-        className="chip cmd inline-flex items-center gap-1.5 px-2.5 py-1 bg-bg1 border border-rule rounded-xs text-faint text-[11.5px] tracking-[0.02em] opacity-60 transition-[color,border-color,background,opacity] duration-150 hover:text-accent hover:border-[rgba(126,231,135,0.3)] hover:opacity-100"
+        className="chip cmd inline-flex items-center gap-1.5 px-2.5 py-1 bg-bg1 border border-rule rounded-xs text-faint text-[11.5px] tracking-[0.02em] opacity-60 transition-[color,border-color,background,opacity] duration-150 hover:text-accent hover:border-[color-mix(in_srgb,var(--accent)_30%,transparent)] hover:opacity-100"
         onClick={() => onCommand(":contact")}
         aria-label="open contact info"
       >
         :contact
       </button>
       <button
-        className="chip cmd inline-flex items-center gap-1.5 px-2.5 py-1 bg-bg1 border border-rule rounded-xs text-faint text-[11.5px] tracking-[0.02em] opacity-60 transition-[color,border-color,background,opacity] duration-150 hover:text-accent hover:border-[rgba(126,231,135,0.3)] hover:opacity-100"
+        className="chip cmd inline-flex items-center gap-1.5 px-2.5 py-1 bg-bg1 border border-rule rounded-xs text-faint text-[11.5px] tracking-[0.02em] opacity-60 transition-[color,border-color,background,opacity] duration-150 hover:text-accent hover:border-[color-mix(in_srgb,var(--accent)_30%,transparent)] hover:opacity-100"
         onClick={() => onCommand(":log")}
         aria-label="view activity log"
       >

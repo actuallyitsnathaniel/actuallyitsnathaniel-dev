@@ -55,7 +55,7 @@ function renderStage(
 
 const AppContent = () => {
   const { state, go, setFilter, toggleEntry } = useRouter();
-  const { crt, toggleCrt, setTheme } = useTheme();
+  const { theme, crt, toggleCrt, setTheme } = useTheme();
   const { log } = useActivityLog();
   const isFirstRender = useRef(true);
   const hasBooted = useRef(false);
@@ -152,6 +152,7 @@ const AppContent = () => {
         crt={crt}
         onToggleCrt={toggleCrt}
         setTheme={setTheme}
+        currentTheme={theme}
         isFirstRender={firstRender}
       >
         {renderStage}
