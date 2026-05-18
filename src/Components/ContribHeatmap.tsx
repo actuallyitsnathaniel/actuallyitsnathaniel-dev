@@ -24,9 +24,9 @@ function intensity(count: number): 0 | 1 | 2 | 3 | 4 {
 
 const CELL_COLORS: Record<number, string> = {
   0: "bg-bg2",
-  1: "bg-[color-mix(in_srgb,var(--accent)_18%,transparent)]",
-  2: "bg-[color-mix(in_srgb,var(--accent)_38%,transparent)]",
-  3: "bg-[color-mix(in_srgb,var(--accent)_65%,transparent)]",
+  1: "bg-[color-mix(in_srgb,var(--accent)_35%,transparent)]",
+  2: "bg-[color-mix(in_srgb,var(--accent)_64%,transparent)]",
+  3: "bg-[color-mix(in_srgb,var(--accent)_100%,transparent)]",
   4: "bg-[var(--accent)]",
 };
 
@@ -34,6 +34,9 @@ const SKELETON_COLS = 52;
 const SKELETON_CELLS = SKELETON_COLS * 7;
 
 const BASE_NOISE = Array.from({ length: SKELETON_CELLS }, () => Math.random());
+
+// per-row stagger offsets: each of the 7 rows reveals slightly ahead or behind
+const ROW_STAGGER = Array.from({ length: 7 }, () => (Math.random() - 0.5) * 16);
 
 export function ContribHeatmap({ weeks, loading = false }: Props) {
   const offsetRef = useRef(0);
@@ -52,10 +55,6 @@ export function ContribHeatmap({ weeks, loading = false }: Props) {
     realColumns.push(paddedDays.slice(i, i + 7));
   }
   numColsRef.current = realColumns.length || SKELETON_COLS;
-
-  const noiseCeil = days.length
-    ? Math.max(1, Math.floor(intensity(Math.max(...days.map((d) => d.contributionCount))) / 2))
-    : 2;
 
   // single rAF loop — starts on mount, never restarts
   useEffect(() => {
@@ -95,7 +94,9 @@ export function ContribHeatmap({ weeks, loading = false }: Props) {
       if (remaining === 0) {
         dataReadyRef.current = true;
       } else {
-        const t = setTimeout(() => { dataReadyRef.current = true; }, remaining);
+        const t = setTimeout(() => {
+          dataReadyRef.current = true;
+        }, remaining);
         return () => clearTimeout(t);
       }
     }
@@ -113,12 +114,17 @@ export function ContribHeatmap({ weeks, loading = false }: Props) {
   const revealedUpTo = Math.floor(revealRef.current);
 
   return (
-    <div className="mt-2.5 w-full" style={gridStyle} aria-label="GitHub contribution heatmap" role="img">
+    <div
+      className="mt-2.5 w-full"
+      style={gridStyle}
+      aria-label="GitHub contribution heatmap"
+      role="img"
+    >
       {Array.from({ length: SKELETON_CELLS }).map((_, i) => {
         const ci = Math.floor(i / 7);
         const di = i % 7;
 
-        if (ci < revealedUpTo) {
+        if (ci < revealedUpTo - ROW_STAGGER[di]) {
           // revealed — show real data
           const day = realColumns[ci]?.[di] ?? null;
           if (!day) {
@@ -144,8 +150,15 @@ export function ContribHeatmap({ weeks, loading = false }: Props) {
         // unrevealed — animated noise wave
         const shiftedCol = (ci + Math.floor(offset)) % SKELETON_COLS;
         const baseVal = BASE_NOISE[shiftedCol * 7 + di];
-        const wave = 0.5 + 0.5 * Math.sin((ci / SKELETON_COLS) * Math.PI * 4 - (offset / SKELETON_COLS) * Math.PI * 4);
-        const lvl = Math.min(4, Math.round(baseVal * wave * noiseCeil)) as 0 | 1 | 2 | 3 | 4;
+        const wave =
+          0.5 +
+          0.5 *
+            Math.sin(
+              (ci / SKELETON_COLS) * Math.PI * 4 -
+                (offset / SKELETON_COLS) * Math.PI * 4,
+            );
+        const threshold = 0.9 - wave * 0.15;
+        const lvl = (baseVal > threshold ? 1 : 0) as 0 | 1 | 2 | 3 | 4;
         return (
           <div
             key={i}
