@@ -72,7 +72,7 @@ export function HomeStage() {
         </div>
 
         {/* heatmap + last push */}
-        <div className="w-full justify-items-end">
+        <div className="w-full md:justify-items-end">
           <ContribHeatmap weeks={contribWeeks} loading={contribLoading} />
           {lastPush && (
             <div className="flex items-center gap-1.5 mt-2 text-t10 tracking-[0.12em] text-faint uppercase">
