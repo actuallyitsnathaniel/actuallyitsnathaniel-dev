@@ -36,9 +36,12 @@ const SKELETON_CELLS = SKELETON_COLS * 7;
 const BASE_NOISE = Array.from({ length: SKELETON_CELLS }, () => Math.random());
 
 export function ContribHeatmap({ weeks, loading = false }: Props) {
-  const [offset, setOffset] = useState(0);
-  const [revealCol, setRevealCol] = useState(-1);
+  const offsetRef = useRef(0);
+  const revealRef = useRef(-1);
+  const dataReadyRef = useRef(false);
+  const numColsRef = useRef(SKELETON_COLS);
   const rafRef = useRef<number>(0);
+  const [, setTick] = useState(0);
 
   const days = weeks.flatMap((w) => w.contributionDays);
   const remainder = days.length % 7;
@@ -48,40 +51,45 @@ export function ContribHeatmap({ weeks, loading = false }: Props) {
   for (let i = 0; i < paddedDays.length; i += 7) {
     realColumns.push(paddedDays.slice(i, i + 7));
   }
-  const numCols = realColumns.length || SKELETON_COLS;
+  numColsRef.current = realColumns.length || SKELETON_COLS;
 
   const noiseCeil = days.length
     ? Math.max(1, Math.floor(intensity(Math.max(...days.map((d) => d.contributionCount))) / 2))
     : 2;
 
-  // noise wave while loading
+  // single rAF loop — starts on mount, never restarts
   useEffect(() => {
-    if (!loading) return;
-    setRevealCol(-1);
     let last = 0;
-    function tick(now: number) {
-      if (now - last > 50) {
-        setOffset((o) => (o + 1) % SKELETON_COLS);
-        last = now;
+    function frame(now: number) {
+      const dt = now - last;
+      last = now;
+
+      // noise wave always advances
+      offsetRef.current = (offsetRef.current + dt * 0.02) % SKELETON_COLS;
+
+      // reveal wave advances once data is ready
+      if (dataReadyRef.current && revealRef.current < numColsRef.current) {
+        if (revealRef.current < 0) revealRef.current = 0;
+        revealRef.current += dt / 12;
       }
-      rafRef.current = requestAnimationFrame(tick);
+
+      // stop loop once reveal is complete
+      if (revealRef.current >= numColsRef.current) {
+        setTick((t) => t + 1);
+        return;
+      }
+
+      setTick((t) => t + 1);
+      rafRef.current = requestAnimationFrame(frame);
     }
-    rafRef.current = requestAnimationFrame(tick);
+    rafRef.current = requestAnimationFrame(frame);
     return () => cancelAnimationFrame(rafRef.current);
-  }, [loading]);
+  }, []);
 
-  // kick off reveal wave once data arrives
+  // signal data ready without restarting the loop
   useEffect(() => {
-    if (loading) return;
-    setRevealCol(0);
+    if (!loading) dataReadyRef.current = true;
   }, [loading]);
-
-  // advance reveal wave one column at a time
-  useEffect(() => {
-    if (revealCol < 0 || revealCol >= numCols) return;
-    const id = setTimeout(() => setRevealCol((c) => c + 1), 12);
-    return () => clearTimeout(id);
-  }, [revealCol, numCols]);
 
   const gridStyle = {
     display: "grid",
@@ -91,14 +99,17 @@ export function ContribHeatmap({ weeks, loading = false }: Props) {
     gap: "1px",
   };
 
+  const offset = offsetRef.current;
+  const revealedUpTo = Math.floor(revealRef.current);
+
   return (
     <div className="mt-2.5 w-full" style={gridStyle} aria-label="GitHub contribution heatmap" role="img">
       {Array.from({ length: SKELETON_CELLS }).map((_, i) => {
         const ci = Math.floor(i / 7);
         const di = i % 7;
-        const revealed = revealCol >= 0 && ci < revealCol;
 
-        if (revealed) {
+        if (ci < revealedUpTo) {
+          // revealed — show real data
           const day = realColumns[ci]?.[di] ?? null;
           if (!day) {
             return (
@@ -120,8 +131,8 @@ export function ContribHeatmap({ weeks, loading = false }: Props) {
           );
         }
 
-        // noise
-        const shiftedCol = (ci + offset) % SKELETON_COLS;
+        // unrevealed — animated noise wave
+        const shiftedCol = (ci + Math.floor(offset)) % SKELETON_COLS;
         const baseVal = BASE_NOISE[shiftedCol * 7 + di];
         const wave = 0.5 + 0.5 * Math.sin((ci / SKELETON_COLS) * Math.PI * 4 - (offset / SKELETON_COLS) * Math.PI * 4);
         const lvl = Math.min(4, Math.round(baseVal * wave * noiseCeil)) as 0 | 1 | 2 | 3 | 4;
