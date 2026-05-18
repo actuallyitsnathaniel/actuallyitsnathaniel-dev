@@ -20,17 +20,21 @@ function getMode(v: string): "/" | ":" | "~" {
   return "/";
 }
 
-function getPlaceholder(current: SectionId, focused: boolean, isMobile: boolean): string {
-  if (isMobile && !focused) return "tap for pages";
+function getPlaceholder(
+  current: SectionId,
+  focused: boolean,
+  isMobile: boolean,
+): string {
+  if (isMobile && !focused) return "tap for /pages and :commands";
   switch (current) {
     case "toolbelt":
-      return 'filter tools · try "aws"';
+      return 'navigate, filter tools, or :command · try "aws"';
     case "work":
-      return 'filter projects · try "jlm"';
+      return 'navigate, filter projects, or :command · try "jlm"';
     case "infra":
-      return 'filter infra · try "cicd"';
+      return 'navigate, filter infra, or :command · try "cicd"';
     default:
-      return "filter or :command";
+      return "navigate, filter, or :command";
   }
 }
 

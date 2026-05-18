@@ -173,6 +173,52 @@ const ENTRIES: WorkEntry[] = [
       },
     ],
   },
+  {
+    ver: "v0.0.2",
+    date: "2021",
+    name: "cube",
+    tag: "mobile · satellite telemetry · apu space research",
+    role: "mobile engineer",
+    stack: "react native · typescript · google cloud platform",
+    aliases: ["cube", "cubesat", "satellite", "telemetry", "apu", "space"],
+    bullets: [
+      {
+        type: "add",
+        text: "mobile app parsing live telemetry from a CubeSat to user smartphones — built with react native and typescript.",
+      },
+      {
+        type: "add",
+        text: "integrated google cloud platform for data relay between satellite hardware and the mobile client.",
+      },
+      {
+        type: "note",
+        text: "built as part of azusa pacific university's space research program — production-adjacent hardware constraints.",
+      },
+    ],
+  },
+  {
+    ver: "v0.0.1",
+    date: "2019",
+    name: "fiber path tool",
+    tag: "tooling · google apps script · apu it",
+    role: "developer",
+    stack: "google apps script · javascript · google sheets",
+    aliases: ["fiber", "fiberpath", "gsheets", "appsscript", "apu", "network"],
+    bullets: [
+      {
+        type: "add",
+        text: "database parsing tool inside google sheets — iterates fiber optic cabling documentation and generates the interconnected route between any two locations.",
+      },
+      {
+        type: "add",
+        text: "custom menu injected directly into the google sheets ui via apps script — zero external tooling required for end users.",
+      },
+      {
+        type: "note",
+        text: "first production tool. written during university it work before formal engineering experience.",
+      },
+    ],
+  },
 ];
 
 interface WorkStageProps {

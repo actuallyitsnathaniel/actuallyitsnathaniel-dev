@@ -3,7 +3,7 @@ export function AboutStage() {
     <div className="grid grid-cols-1 gap-5.5">
       <h2>about</h2>
       <p>
-        i build backend infrastructure for systems that can't afford to fall
+        i build full-stack systems with an emphasis on infrastructure and craftsmanship for systems that can't afford to fall
         over. four years in production at lightfeather — serverless aws, ci/cd
         pipelines, observability, the load-bearing parts of the stack. on the
         side, i build sites and small tools for independent musicians, because

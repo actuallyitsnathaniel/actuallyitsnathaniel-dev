@@ -32,7 +32,7 @@ export function ToolbeltStage({ filter }: ToolbeltStageProps) {
         href={skill.href}
         target="_blank"
         rel="noopener noreferrer"
-        className={`tool inline-flex items-center gap-1.5 px-2.25 py-1 bg-bg2 border rounded-xs text-[11.5px] transition-[color,border-color,background] duration-120 no-underline ${
+        className={`tool inline-flex items-center gap-2 px-3 py-1.5 bg-bg2 border rounded-xs text-[12.5px] transition-[color,border-color,background] duration-120 no-underline ${
           hit
             ? "border-accent text-ink bg-[color-mix(in_srgb,var(--accent)_4%,transparent)]"
             : dim
@@ -41,6 +41,10 @@ export function ToolbeltStage({ filter }: ToolbeltStageProps) {
         }`}
         aria-label={skill.name}
       >
+        <skill.icon
+          className={`w-3.5 h-3.5 shrink-0 ${hit ? "text-accent" : "text-faint"}`}
+          aria-hidden="true"
+        />
         {skill.name}
       </a>
     );
