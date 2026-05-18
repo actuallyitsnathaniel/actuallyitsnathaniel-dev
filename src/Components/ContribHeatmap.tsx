@@ -36,10 +36,16 @@ const SKELETON_CELLS = SKELETON_COLS * 7;
 const BASE_NOISE = Array.from({ length: SKELETON_CELLS }, () => Math.random());
 
 // per-cell reveal jitter: each cell reveals at a slightly different point in the sweep
-const REVEAL_JITTER = Array.from({ length: SKELETON_CELLS }, () => (Math.random() - 0.5) * 18);
+const REVEAL_JITTER = Array.from(
+  { length: SKELETON_CELLS },
+  () => (Math.random() - 0.5) * 18,
+);
 
 // per-cell random phase so each lit cell pulses independently
-const PULSE_PHASE = Array.from({ length: SKELETON_CELLS }, () => Math.random() * Math.PI * 2);
+const PULSE_PHASE = Array.from(
+  { length: SKELETON_CELLS },
+  () => Math.random() * Math.PI * 2,
+);
 
 export function ContribHeatmap({ weeks, loading = false }: Props) {
   const offsetRef = useRef(0);
@@ -151,7 +157,8 @@ export function ContribHeatmap({ weeks, loading = false }: Props) {
         }
 
         // unrevealed — animated noise wave
-        const shiftedCol = (ci - Math.floor(offset) + SKELETON_COLS * 4) % SKELETON_COLS;
+        const shiftedCol =
+          (ci - Math.floor(offset) + SKELETON_COLS * 4) % SKELETON_COLS;
         const baseVal = BASE_NOISE[shiftedCol * 7 + di];
         const wave =
           0.5 +
@@ -160,11 +167,12 @@ export function ContribHeatmap({ weeks, loading = false }: Props) {
               (ci / SKELETON_COLS) * Math.PI * 4 -
                 (offset / SKELETON_COLS) * Math.PI * 4,
             );
-        const threshold = 0.9 - wave * 0.15;
+        const threshold = 0.78 - wave * 0.15;
         const lvl = (baseVal > threshold ? 1 : 0) as 0 | 1 | 2 | 3 | 4;
-        const pulse = lvl === 1
-          ? 0.45 + 0.55 * Math.sin(offset * 0.18 + PULSE_PHASE[i])
-          : 1;
+        const pulse =
+          lvl === 1
+            ? 0.72 + 0.28 * Math.sin(offset * 0.001 + PULSE_PHASE[i])
+            : 1;
         return (
           <div
             key={i}
