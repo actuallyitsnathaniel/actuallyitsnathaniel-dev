@@ -50,10 +50,10 @@ export function HomeStage() {
   }, []); // intentionally empty — runs once on mount
 
   return (
-    <div className="grid pb-8 border-b border-rule md:grid-cols-2 gap-10 md:w-4/5">
+    <div className="grid pb-8 border-b border-rule md:grid-cols-2 gap-10 md:w-4/5 justify-items-end">
       {/* portrait + heatmap */}
-      <div className="flex flex-col items-start md:items-end gap-2">
-        <div className="hero-portrait relative w-55 h-55 rounded-xs overflow-hidden bg-bg2 border border-rule2">
+      <div className="flex flex-col items-start md:items-end gap-2 w-55">
+        <div className="hero-portrait relative w-full h-55 rounded-xs overflow-hidden bg-bg2 border border-rule2">
           <img
             src={profilePic}
             alt="Nathaniel Bowman, Full-Stack Software Engineer"
@@ -70,7 +70,7 @@ export function HomeStage() {
         </div>
 
         {/* heatmap + last push */}
-        <div className="w-55">
+        <div className="w-full justify-items-end">
           <ContribHeatmap weeks={contribWeeks} />
           {lastPush && (
             <div className="flex items-center gap-1.5 mt-2 text-t10 tracking-[0.12em] text-faint uppercase">

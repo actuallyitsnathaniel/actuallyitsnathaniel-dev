@@ -16,6 +16,7 @@ dist/
 .env
 .env.*
 !.env.development
+.env.local
 
 # Logs
 logs/
@@ -62,3 +63,4 @@ Thumbs.db
 # Project-specific ignores
 src/assets/files/repos.json
 git-repo-card-example.png
+.env*.local

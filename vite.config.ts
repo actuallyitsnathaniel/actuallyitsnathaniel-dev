@@ -9,11 +9,9 @@ export default defineConfig(({ mode }) => {
   return {
     define: {
       "process.env.REACT_APP_GIT_USERNAME": JSON.stringify(
-        env.REACT_APP_GIT_USERNAME
+        env.REACT_APP_GIT_USERNAME,
       ),
-      "process.env.REACT_APP_GIT_TOKEN": JSON.stringify(
-        env.REACT_APP_GIT_TOKEN
-      ),
+      "process.env.VITE_GIT_TOKEN": JSON.stringify(env.VITE_GIT_TOKEN),
     },
     base: "/",
     plugins: [
