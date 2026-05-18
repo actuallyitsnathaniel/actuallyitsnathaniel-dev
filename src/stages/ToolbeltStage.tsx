@@ -53,12 +53,12 @@ export function ToolbeltStage({ filter }: ToolbeltStageProps) {
   return (
     <div>
       <h2>toolbelt</h2>
-      <div className="lede">technologies i work with.</div>
+      <div className="lede">
+        technologies i work with. filter what you want^
+      </div>
 
       <div className="border border-rule rounded-[3px] px-5 py-4.5 mt-5.5">
-        <div className="flex flex-wrap gap-1.25">
-          {skills.map(renderTool)}
-        </div>
+        <div className="flex flex-wrap gap-1.25">{skills.map(renderTool)}</div>
       </div>
 
       <div className="flex gap-3 items-baseline flex-wrap px-3.5 py-2.5 bg-bg2 border border-rule rounded-xs text-t12 tracking-[0.06em] text-dim mb-4.5">
