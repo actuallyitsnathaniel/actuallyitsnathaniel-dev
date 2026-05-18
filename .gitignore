@@ -64,3 +64,4 @@ Thumbs.db
 src/assets/files/repos.json
 git-repo-card-example.png
 .env*.local
+.vercel
