@@ -15,6 +15,7 @@ export function HomeStage() {
   const { downloadResume } = useResumeDownload();
   const [lastPush, setLastPush] = useState<string | null>(null);
   const [contribWeeks, setContribWeeks] = useState<ContribWeek[]>([]);
+  const [contribLoading, setContribLoading] = useState(true);
 
   useEffect(() => {
     // last push — read from repos cache or fetch one repo
@@ -46,7 +47,8 @@ export function HomeStage() {
       .then(({ weeks }) => {
         if (Array.isArray(weeks)) setContribWeeks(weeks);
       })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => setContribLoading(false));
   }, []); // intentionally empty — runs once on mount
 
   return (
@@ -71,7 +73,7 @@ export function HomeStage() {
 
         {/* heatmap + last push */}
         <div className="w-full justify-items-end">
-          <ContribHeatmap weeks={contribWeeks} />
+          <ContribHeatmap weeks={contribWeeks} loading={contribLoading} />
           {lastPush && (
             <div className="flex items-center gap-1.5 mt-2 text-t10 tracking-[0.12em] text-faint uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_6px_var(--accent)]" />
