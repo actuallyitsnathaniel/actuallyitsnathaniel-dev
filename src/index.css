@@ -440,82 +440,6 @@ body::before {
   }
 }
 
-/* ============================================================
-   vinyl (complex gradients + animation — all stays in CSS)
-============================================================ */
-.vinyl {
-  position: relative;
-  display: block;
-  width: 200px;
-  height: 200px;
-  margin: 0 auto;
-  border-bottom: 0;
-}
-.vinyl-disc {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background:
-    repeating-radial-gradient(circle at center, #0d0d0d 0 1px, #060606 1px 3px),
-    radial-gradient(
-      circle at 30% 30%,
-      color-mix(in srgb, var(--accent) 8%, transparent),
-      transparent 50%
-    ),
-    #050505;
-  box-shadow:
-    0 0 0 1px var(--rule-2),
-    0 12px 32px rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: spin 11s linear infinite;
-}
-.vinyl:hover .vinyl-disc {
-  animation-play-state: paused;
-}
-.vinyl-label {
-  width: 78px;
-  height: 78px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 1px solid var(--rule-2);
-}
-.vinyl-label img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.vinyl-spindle {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: 8px;
-  height: 8px;
-  background: var(--bg-0);
-  border-radius: 50%;
-  border: 1px solid var(--rule-2);
-}
-.vinyl-needle {
-  position: absolute;
-  top: 14px;
-  right: 6px;
-  width: 1px;
-  height: 64px;
-  background: linear-gradient(180deg, var(--accent), var(--rule-2));
-  transform-origin: top right;
-  transform: rotate(28deg);
-  opacity: 0.7;
-}
-@keyframes spin {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
 /* ============================================================
    activity log · ambient background overlay (preserved)
@@ -694,9 +618,6 @@ body.crt-on {
   body.crt-on {
     animation: none;
   }
-  .vinyl-disc {
-    animation: none !important;
-  }
   .log-line {
     animation: none;
     opacity: 1;
@@ -770,9 +691,6 @@ body.crt-on {
     display: block !important;
   }
   .cl-toggle {
-    display: none !important;
-  }
-  .vinyl {
     display: none !important;
   }
   .repo-more,

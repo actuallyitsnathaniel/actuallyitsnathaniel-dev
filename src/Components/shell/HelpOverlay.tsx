@@ -2,35 +2,35 @@ import { useState } from "react";
 import type { ThemeName } from "../../hooks/useTheme";
 
 const THEME_HEX: Record<ThemeName, string> = {
-  green:    "#7ee787",
-  amber:    "#ffb86c",
-  mono:     "#c8c8c8",
-  red:      "#f87171",
-  orange:   "#fb923c",
-  yellow:   "#facc15",
-  lime:     "#a3e635",
-  teal:     "#2dd4bf",
-  cyan:     "#22d3ee",
-  sky:      "#38bdf8",
-  blue:     "#60a5fa",
-  indigo:   "#818cf8",
-  violet:   "#a78bfa",
-  purple:   "#c084fc",
-  fuchsia:  "#e879f9",
-  pink:     "#f472b6",
-  rose:     "#fb7185",
-  slate:    "#94a3b8",
-  zinc:     "#a1a1aa",
-  gold:     "#d4a843",
-  coral:    "#ff6b6b",
-  mint:     "#00e5cc",
+  green: "#7ee787",
+  amber: "#ffb86c",
+  mono: "#c8c8c8",
+  red: "#f87171",
+  orange: "#fb923c",
+  yellow: "#facc15",
+  lime: "#a3e635",
+  teal: "#2dd4bf",
+  cyan: "#22d3ee",
+  sky: "#38bdf8",
+  blue: "#60a5fa",
+  indigo: "#818cf8",
+  violet: "#a78bfa",
+  purple: "#c084fc",
+  fuchsia: "#e879f9",
+  pink: "#f472b6",
+  rose: "#fb7185",
+  slate: "#94a3b8",
+  zinc: "#a1a1aa",
+  gold: "#d4a843",
+  coral: "#ff6b6b",
+  mint: "#00e5cc",
   lavender: "#b39ddb",
-  peach:    "#ffab76",
-  sage:     "#8fb996",
-  dusk:     "#9b8ea8",
-  ember:    "#e8613a",
-  frost:    "#a8d8ea",
-  neon:     "#39ff14",
+  peach: "#ffab76",
+  sage: "#8fb996",
+  dusk: "#9b8ea8",
+  ember: "#e8613a",
+  frost: "#a8d8ea",
+  neon: "#39ff14",
 };
 
 const ALL_THEMES = Object.keys(THEME_HEX) as ThemeName[];
@@ -65,7 +65,12 @@ const Row = ({
   </div>
 );
 
-export function HelpOverlay({ open, onClose, setTheme, currentTheme }: HelpOverlayProps) {
+export function HelpOverlay({
+  open,
+  onClose,
+  setTheme,
+  currentTheme,
+}: HelpOverlayProps) {
   const [themesExpanded, setThemesExpanded] = useState(false);
 
   return (
@@ -188,9 +193,11 @@ export function HelpOverlay({ open, onClose, setTheme, currentTheme }: HelpOverl
             <Kbd>:theme</Kbd>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-dim text-[12px]">{ALL_THEMES.length} colors</span>
+            <span className="text-dim text-[12px]">
+              {ALL_THEMES.length} colors
+            </span>
             <button
-              className="text-[10px] tracking-[0.1em] uppercase border border-rule2 px-1.5 py-px rounded-xs text-faint transition-[color,border-color] duration-120 hover:text-accent hover:border-[color-mix(in_srgb,var(--accent)_40%,transparent)]"
+              className="text-[10px] tracking-widest uppercase border border-rule2 px-1.5 py-px rounded-xs text-faint transition-[color,border-color] duration-120 hover:text-accent hover:border-[color-mix(in_srgb,var(--accent)_40%,transparent)]"
               onClick={() => setThemesExpanded((v) => !v)}
               aria-expanded={themesExpanded}
             >
@@ -200,7 +207,7 @@ export function HelpOverlay({ open, onClose, setTheme, currentTheme }: HelpOverl
         </div>
 
         {themesExpanded && (
-          <div className="mt-1 mb-1.5 grid grid-cols-3 gap-1.5 pl-[110px]">
+          <div className="mt-1 mb-1.5 grid grid-cols-3 gap-1.5 pl-27.5">
             {ALL_THEMES.map((t) => {
               const isActive = currentTheme === t;
               return (

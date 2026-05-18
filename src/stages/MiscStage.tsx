@@ -28,28 +28,22 @@ export function MiscStage() {
 
       {/* transmission grid: 2-col → 1-col at sm (600px — use arbitrary breakpoint) */}
       <div className="mt-2 grid grid-cols-[200px_1fr] gap-9 items-center pt-7 pb-3 max-[600px]:grid-cols-1 max-[600px]:gap-6 max-[600px]:pt-4.5">
-        {/* vinyl — ALL vinyl classes STAY IN CSS */}
         <a
-          className="vinyl"
-          href={SONG.spotify}
+          href={"https://skrillex.lnk.to/KoraEP"}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={`listen to ${SONG.title} by ${SONG.artist} on spotify`}
+          aria-label={`listen to ${SONG.title} by ${SONG.artist}`}
+          className="block w-50 rounded-sm overflow-hidden border border-rule2 shrink-0"
         >
-          <div className="vinyl-disc">
-            <div className="vinyl-label">
-              <img
-                src={SONG.artwork}
-                alt={`${SONG.title} album artwork`}
-                width="78"
-                height="78"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          </div>
-          <div className="vinyl-spindle" aria-hidden="true" />
-          <div className="vinyl-needle" aria-hidden="true" />
+          <img
+            src={SONG.artwork}
+            alt={`${SONG.title} album artwork`}
+            width="200"
+            height="200"
+            loading="lazy"
+            decoding="async"
+            className="w-full h-auto block"
+          />
         </a>
 
         <div>
