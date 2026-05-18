@@ -1,4 +1,9 @@
 import { useActivityLog } from "../context/ActivityLogContext";
+import shotJlm from "../assets/images/work/jlm.webp";
+import shotSahil from "../assets/images/work/sahil.webp";
+import shotDave from "../assets/images/work/dave.webp";
+import shotJohn from "../assets/images/work/john.webp";
+import shotRyland from "../assets/images/work/ryland.webp";
 
 interface WorkEntry {
   ver: string;
@@ -8,6 +13,7 @@ interface WorkEntry {
   role: string;
   stack: string;
   liveUrl?: string;
+  screenshot?: string;
   bullets: Array<{ type: "add" | "note"; text: string }>;
   aliases: string[];
 }
@@ -22,6 +28,7 @@ const ENTRIES: WorkEntry[] = [
     stack:
       "react · typescript · vite · tailwindcss · strapi · railway · supabase · vercel",
     liveUrl: "https://jessicaleamayfieldofficial.com",
+    screenshot: shotJlm,
     aliases: ["jlm", "jessica", "mayfield"],
     bullets: [
       {
@@ -59,6 +66,7 @@ const ENTRIES: WorkEntry[] = [
     stack:
       "react · typescript · vite · tailwindcss · strapi · railway · supabase · vercel",
     liveUrl: "https://sahiljindal.com",
+    screenshot: shotSahil,
     aliases: ["sahil", "jindal", "composer"],
     bullets: [
       {
@@ -87,6 +95,7 @@ const ENTRIES: WorkEntry[] = [
     role: "full-stack engineer · designer",
     stack: "shopify · liquid · custom theme · bandsintown api",
     liveUrl: "https://davewilbertmusic.com",
+    screenshot: shotDave,
     aliases: ["dave", "wilbert", "shopify", "liquid"],
     bullets: [
       {
@@ -124,6 +133,7 @@ const ENTRIES: WorkEntry[] = [
     stack:
       "react · typescript · vite · tailwindcss · strapi · railway · supabase · vercel · bandsintown api",
     liveUrl: "https://johnwhitemusic.com",
+    screenshot: shotJohn,
     aliases: ["john", "white", "songwriter"],
     bullets: [
       {
@@ -153,6 +163,7 @@ const ENTRIES: WorkEntry[] = [
     stack:
       "react · typescript · vite · tailwindcss · strapi · railway · supabase · vercel · bandsintown api",
     liveUrl: "https://rylandband.com",
+    screenshot: shotRyland,
     aliases: ["ryland", "band", "origin"],
     bullets: [
       {
@@ -357,8 +368,21 @@ export function WorkStage({
                   ))}
                 </ul>
                 {/* cl-shot — kept in CSS: complex diagonal stripe background */}
-                <div className="cl-shot" aria-hidden="true">
-                  screenshot · {entry.name}
+                <div
+                  className="cl-shot"
+                  aria-hidden="true"
+                  style={
+                    entry.screenshot
+                      ? {
+                          backgroundImage: `url(${entry.screenshot})`,
+                          backgroundSize: "contain",
+                          backgroundPosition: "center top",
+                          backgroundRepeat: "no-repeat",
+                        }
+                      : undefined
+                  }
+                >
+                  {!entry.screenshot && `screenshot · ${entry.name}`}
                 </div>
               </div>
             </li>
