@@ -47,6 +47,8 @@
 
   --accent: #7ee787;
   --link: var(--accent);
+  --color-accent: var(--accent);
+  --color-link: var(--accent);
   --warn: #ffb86c;
   --error: #ff7a7a;
 
@@ -131,13 +133,15 @@ body {
   overflow: hidden; /* viewport-fit — no page scroll, ever */
 }
 
-a {
-  color: var(--link);
-  text-decoration: none;
-  border-bottom: 1px dashed transparent;
-}
-a:hover {
-  border-bottom-color: var(--link);
+@layer base {
+  a {
+    color: var(--link);
+    text-decoration: none;
+    border-bottom: 1px dashed color-mix(in srgb, var(--link) 40%, transparent);
+  }
+  a:hover {
+    border-bottom-color: var(--link);
+  }
 }
 button {
   font: inherit;

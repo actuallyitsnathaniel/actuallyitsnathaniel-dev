@@ -132,7 +132,7 @@ export function ReposStage() {
             {showAll ? "show less" : `show all · +${repos.length - 4}`}
           </button>
           <a
-            className="text-faint text-[11px] self-center no-underline border-b-0 hover:text-accent hover:border-b-0"
+            className="text-faint text-[11px] self-center no-underline hover:text-accent"
             href="https://github.com/actuallyitsnathaniel"
             target="_blank"
             rel="noopener noreferrer"

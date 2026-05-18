@@ -49,7 +49,7 @@ export function ContactOverlay({ open, onClose }: ContactOverlayProps) {
           </span>
           <a
             href="mailto:nathanielrbowman@gmail.com"
-            className="text-link border-b border-dashed border-transparent hover:border-link break-all"
+            className="break-all"
           >
             nathanielrbowman@gmail.com
           </a>
@@ -64,7 +64,7 @@ export function ContactOverlay({ open, onClose }: ContactOverlayProps) {
             href="https://github.com/actuallyitsnathaniel"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-link border-b border-dashed border-transparent hover:border-link break-all"
+            className="break-all"
           >
             github.com/actuallyitsnathaniel ↗
           </a>
@@ -79,7 +79,7 @@ export function ContactOverlay({ open, onClose }: ContactOverlayProps) {
             href="https://linkedin.com/in/nathaniel-bowman"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-link border-b border-dashed border-transparent hover:border-link break-all"
+            className="break-all"
           >
             linkedin.com/in/nathaniel-bowman ↗
           </a>
