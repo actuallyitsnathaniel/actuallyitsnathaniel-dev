@@ -9,6 +9,7 @@ interface FilterBarProps {
   onCommand: (cmd: string) => boolean;
   onOpenHelp: () => void;
   onHighlight: (id: SectionId | null) => void;
+  onFocusChange?: (focused: boolean) => void;
   inputRef: React.RefObject<HTMLInputElement | null>;
 }
 
@@ -18,7 +19,8 @@ function getMode(v: string): "/" | ":" | "~" {
   return "/";
 }
 
-function getPlaceholder(current: SectionId): string {
+function getPlaceholder(current: SectionId, focused: boolean, isMobile: boolean): string {
+  if (isMobile && !focused) return "tap for pages";
   switch (current) {
     case "toolbelt":
       return 'filter tools · try "aws"';
@@ -31,6 +33,17 @@ function getPlaceholder(current: SectionId): string {
   }
 }
 
+function useIsMobile() {
+  const [mobile, setMobile] = useState(() => window.innerWidth < 640);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    const update = () => setMobile(mq.matches);
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return mobile;
+}
+
 export function FilterBar({
   current,
   value,
@@ -39,9 +52,21 @@ export function FilterBar({
   onCommand,
   onOpenHelp,
   onHighlight,
+  onFocusChange,
   inputRef,
 }: FilterBarProps) {
   const [mode, setMode] = useState<"/" | ":" | "~">(getMode(value));
+  const [focused, setFocused] = useState(false);
+  const isMobile = useIsMobile();
+
+  const handleFocus = () => {
+    setFocused(true);
+    onFocusChange?.(true);
+  };
+  const handleBlur = () => {
+    setFocused(false);
+    onFocusChange?.(false);
+  };
 
   useEffect(() => {
     setMode(getMode(value));
@@ -141,7 +166,9 @@ export function FilterBar({
         value={value}
         onChange={(e) => handleChange(e.target.value)}
         onKeyDown={handleKeyDown}
-        placeholder={getPlaceholder(current)}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        placeholder={getPlaceholder(current, focused, isMobile)}
         autoComplete="off"
         autoCorrect="off"
         spellCheck={false}

@@ -35,6 +35,7 @@ export function Shell({
   const [contactOpen, setContactOpen] = useState(false);
   const [logOpen, setLogOpen] = useState(false);
   const [highlightedSection, setHighlightedSection] = useState<SectionId | null>(null);
+  const [filterFocused, setFilterFocused] = useState(false);
   const filterInputRef = useRef<HTMLInputElement | null>(null);
   const { log } = useActivityLog();
   const { downloadResume } = useResumeDownload();
@@ -102,14 +103,17 @@ export function Shell({
             onCommand={handleFilterCommand}
             onOpenHelp={openHelp}
             onHighlight={setHighlightedSection}
+            onFocusChange={setFilterFocused}
             inputRef={filterInputRef}
           />
-          <ChipNav
-            current={routerState.current}
-            onNavigate={navigate}
-            onCommand={handleChipCommand}
-            highlightedSection={routerState.filter && !routerState.filter.startsWith(":") && !routerState.filter.startsWith("~") ? highlightedSection : undefined}
-          />
+          <div className={filterFocused ? "" : "max-sm:hidden"}>
+            <ChipNav
+              current={routerState.current}
+              onNavigate={navigate}
+              onCommand={handleChipCommand}
+              highlightedSection={routerState.filter && !routerState.filter.startsWith(":") && !routerState.filter.startsWith("~") ? highlightedSection : undefined}
+            />
+          </div>
         </div>
         <Stage
           state={routerState}

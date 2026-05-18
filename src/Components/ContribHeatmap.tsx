@@ -86,9 +86,19 @@ export function ContribHeatmap({ weeks, loading = false }: Props) {
     return () => cancelAnimationFrame(rafRef.current);
   }, []);
 
-  // signal data ready without restarting the loop
+  // signal data ready — enforce 1.5s minimum animation time
+  const loadStartRef = useRef(Date.now());
   useEffect(() => {
-    if (!loading) dataReadyRef.current = true;
+    if (!loading) {
+      const elapsed = Date.now() - loadStartRef.current;
+      const remaining = Math.max(0, 1500 - elapsed);
+      if (remaining === 0) {
+        dataReadyRef.current = true;
+      } else {
+        const t = setTimeout(() => { dataReadyRef.current = true; }, remaining);
+        return () => clearTimeout(t);
+      }
+    }
   }, [loading]);
 
   const gridStyle = {
