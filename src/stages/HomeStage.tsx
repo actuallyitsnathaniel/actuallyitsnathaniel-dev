@@ -86,7 +86,7 @@ export function HomeStage() {
       {/* bio */}
       <div className="justify-self-start">
         <div className="text-t12 text-faint tracking-[0.02em] mb-2">
-          // software engineer · ↑1 → 2026
+          // software engineer · ↑2020 → PRESENT
         </div>
         <h1>
           nathaniel
