@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { ThemeName } from "../../hooks/useTheme";
 
 const THEME_HEX: Record<ThemeName, string> = {
@@ -40,6 +40,7 @@ interface HelpOverlayProps {
   onClose: () => void;
   setTheme: (t: ThemeName) => void;
   currentTheme: ThemeName;
+  openThemePicker?: boolean;
 }
 
 const Kbd = ({ children }: { children: React.ReactNode }) => (
@@ -70,12 +71,34 @@ export function HelpOverlay({
   onClose,
   setTheme,
   currentTheme,
+  openThemePicker = false,
 }: HelpOverlayProps) {
   const [themesExpanded, setThemesExpanded] = useState(false);
+  const themeRowRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (open && openThemePicker) {
+      setThemesExpanded(true);
+    }
+    if (!open) setThemesExpanded(false);
+  }, [open, openThemePicker]);
+
+  useEffect(() => {
+    if (open && openThemePicker && themesExpanded) {
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => {
+          themeRowRef.current?.scrollIntoView({
+            block: "start",
+            behavior: "smooth",
+          });
+        }),
+      );
+    }
+  }, [open, openThemePicker, themesExpanded]);
 
   return (
     <div
-      className={`fixed inset-0 bg-[rgba(0,0,0,0.78)] z-200 ${open ? "flex" : "hidden"} items-center justify-center backdrop-blur-xs`}
+      className={`fixed inset-0 bg-[rgba(0,0,0,0.78)] z-200 ${open ? "flex" : "hidden"} items-center justify-center backdrop-blur-xs flex-col`}
       aria-modal={open}
       role="dialog"
       aria-label="keyboard shortcuts"
@@ -188,7 +211,10 @@ export function HelpOverlay({
         <Row keys={<Kbd>:crt</Kbd>} desc="toggle scanlines + phosphor" />
 
         {/* :theme row with expandable swatch picker */}
-        <div className="grid grid-cols-[110px_1fr] gap-3.5 py-1.5 text-[13px] text-dim">
+        <div
+          ref={themeRowRef}
+          className="grid grid-cols-[110px_1fr] gap-3.5 py-1.5 text-[13px] text-dim"
+        >
           <div className="flex gap-1 items-center">
             <Kbd>:theme</Kbd>
           </div>
@@ -197,7 +223,7 @@ export function HelpOverlay({
               {ALL_THEMES.length} colors
             </span>
             <button
-              className="text-[10px] tracking-widest uppercase border border-rule2 px-1.5 py-px rounded-xs text-faint transition-[color,border-color] duration-120 hover:text-accent hover:border-[color-mix(in_srgb,var(--accent)_40%,transparent)]"
+              className="text-[10px] outline outline-[color-mix(in_srgb,var(--accent)_28%,var(--rule-2))] tracking-widest uppercase px-1.5 py-px rounded-xs text-faint transition-[color,border-color] duration-120 hover:text-accent hover:border-[color-mix(in_srgb,var(--accent)_40%,transparent)]"
               onClick={() => setThemesExpanded((v) => !v)}
               aria-expanded={themesExpanded}
             >
@@ -240,10 +266,9 @@ export function HelpOverlay({
         <Row keys={<Kbd>:share</Kbd>} desc="copy url to clipboard" />
         <Row keys={<Kbd>:log</Kbd>} desc="view full activity log" />
         <Row keys={<Kbd>:?</Kbd>} desc="this overlay" />
-
-        <div className="mt-3.5 pt-3 border-t border-rule text-accent opacity-50 text-[11px] text-center">
-          esc to close
-        </div>
+      </div>
+      <div className="mt-3.5 pt-3 border-t border-rule text-accent opacity-50 text-[11px] text-center">
+        esc to close
       </div>
     </div>
   );

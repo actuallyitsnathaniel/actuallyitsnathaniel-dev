@@ -4,6 +4,7 @@ interface ChipNavProps {
   current: SectionId;
   onNavigate: (id: SectionId) => void;
   onCommand: (cmd: string) => void;
+  onOpenThemePicker: () => void;
   highlightedSection?: SectionId | null;
 }
 
@@ -11,6 +12,7 @@ export function ChipNav({
   current,
   onNavigate,
   onCommand,
+  onOpenThemePicker,
   highlightedSection,
 }: ChipNavProps) {
   return (
@@ -70,6 +72,13 @@ export function ChipNav({
         aria-label="open contact info"
       >
         :contact
+      </button>
+      <button
+        className="chip cmd inline-flex items-center gap-1.5 px-2.5 py-1 bg-bg1 border border-rule rounded-xs text-faint text-[11.5px] tracking-[0.02em] opacity-60 transition-[color,border-color,background,opacity] duration-150 hover:text-accent hover:border-[color-mix(in_srgb,var(--accent)_30%,transparent)] hover:opacity-100"
+        onClick={onOpenThemePicker}
+        aria-label="update theme"
+      >
+        :theme
       </button>
       <button
         className="chip cmd inline-flex items-center gap-1.5 px-2.5 py-1 bg-bg1 border border-rule rounded-xs text-faint text-[11.5px] tracking-[0.02em] opacity-60 transition-[color,border-color,background,opacity] duration-150 hover:text-accent hover:border-[color-mix(in_srgb,var(--accent)_30%,transparent)] hover:opacity-100"

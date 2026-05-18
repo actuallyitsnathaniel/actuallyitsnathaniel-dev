@@ -32,6 +32,7 @@ export function Shell({
   crt, onToggleCrt, setTheme, currentTheme, isFirstRender, children,
 }: ShellProps) {
   const [helpOpen, setHelpOpen] = useState(false);
+  const [helpOpenWithThemes, setHelpOpenWithThemes] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
   const [logOpen, setLogOpen] = useState(false);
   const [highlightedSection, setHighlightedSection] = useState<SectionId | null>(null);
@@ -44,7 +45,8 @@ export function Shell({
     log(type, msg);
   }, [log]);
 
-  const openHelp = useCallback(() => setHelpOpen(true), []);
+  const openHelp = useCallback(() => { setHelpOpenWithThemes(false); setHelpOpen(true); }, []);
+  const openHelpThemePicker = useCallback(() => { setHelpOpenWithThemes(true); setHelpOpen(true); }, []);
   const openContact = useCallback(() => setContactOpen(true), []);
   const openLog = useCallback(() => setLogOpen(true), []);
   const closeOverlays = useCallback(() => {
@@ -115,6 +117,7 @@ export function Shell({
               current={routerState.current}
               onNavigate={navigate}
               onCommand={handleChipCommand}
+              onOpenThemePicker={openHelpThemePicker}
               highlightedSection={routerState.filter && !routerState.filter.startsWith(":") && !routerState.filter.startsWith("~") ? highlightedSection : undefined}
             />
           </div>
@@ -129,9 +132,10 @@ export function Shell({
       </div>
       <HelpOverlay
         open={helpOpen}
-        onClose={() => setHelpOpen(false)}
+        onClose={() => { setHelpOpen(false); setHelpOpenWithThemes(false); }}
         setTheme={setTheme}
         currentTheme={currentTheme}
+        openThemePicker={helpOpenWithThemes}
       />
       <ContactOverlay open={contactOpen} onClose={() => setContactOpen(false)} />
       <LogOverlay open={logOpen} onClose={() => setLogOpen(false)} />
