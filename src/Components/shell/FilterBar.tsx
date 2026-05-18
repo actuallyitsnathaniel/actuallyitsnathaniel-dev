@@ -10,6 +10,7 @@ interface FilterBarProps {
   onOpenHelp: () => void;
   onHighlight: (id: SectionId | null) => void;
   onFocusChange?: (focused: boolean) => void;
+  onCollapse?: () => void;
   inputRef: React.RefObject<HTMLInputElement | null>;
 }
 
@@ -53,6 +54,7 @@ export function FilterBar({
   onOpenHelp,
   onHighlight,
   onFocusChange,
+  onCollapse,
   inputRef,
 }: FilterBarProps) {
   const [mode, setMode] = useState<"/" | ":" | "~">(getMode(value));
@@ -105,6 +107,7 @@ export function FilterBar({
     if (e.key === "Escape") {
       onChange("");
       onHighlight(null);
+      onCollapse?.();
       (e.target as HTMLInputElement).blur();
       return;
     }

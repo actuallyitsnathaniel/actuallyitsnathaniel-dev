@@ -35,7 +35,7 @@ export function Shell({
   const [contactOpen, setContactOpen] = useState(false);
   const [logOpen, setLogOpen] = useState(false);
   const [highlightedSection, setHighlightedSection] = useState<SectionId | null>(null);
-  const [filterFocused, setFilterFocused] = useState(false);
+  const [chipNavVisible, setChipNavVisible] = useState(false);
   const filterInputRef = useRef<HTMLInputElement | null>(null);
   const { log } = useActivityLog();
   const { downloadResume } = useResumeDownload();
@@ -52,6 +52,7 @@ export function Shell({
     setContactOpen(false);
     setLogOpen(false);
     setHighlightedSection(null);
+    setChipNavVisible(false);
   }, []);
   const focusFilter = useCallback(() => {
     filterInputRef.current?.focus();
@@ -60,6 +61,8 @@ export function Shell({
   const navigate = useCallback((id: SectionId) => {
     go(id);
     setHighlightedSection(null);
+    setChipNavVisible(false);
+    filterInputRef.current?.blur();
     log("system", `cd ${id === "home" ? "~/" : `~/` + id}`);
   }, [go, log]);
 
@@ -103,10 +106,11 @@ export function Shell({
             onCommand={handleFilterCommand}
             onOpenHelp={openHelp}
             onHighlight={setHighlightedSection}
-            onFocusChange={setFilterFocused}
+            onFocusChange={(focused) => { if (focused) setChipNavVisible(true); }}
+            onCollapse={() => setChipNavVisible(false)}
             inputRef={filterInputRef}
           />
-          <div className={filterFocused ? "" : "max-sm:hidden"}>
+          <div className={chipNavVisible ? "" : "max-sm:hidden"}>
             <ChipNav
               current={routerState.current}
               onNavigate={navigate}

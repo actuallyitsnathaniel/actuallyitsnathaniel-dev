@@ -46,7 +46,7 @@
   --rule-2: #2a2a2a;
 
   --accent: #7ee787;
-  --link: #79c0ff;
+  --link: var(--accent);
   --warn: #ffb86c;
   --error: #ff7a7a;
 
@@ -67,13 +67,13 @@
   --pad-x: clamp(16px, 4vw, 48px);
 }
 
-/* theme overrides */
+/* theme overrides — set both --accent and --color-accent so Tailwind's
+   @layer theme token (on :root) is overridden at body level too */
 body[data-theme="amber"] {
-  --accent: #ffb86c;
+  --accent: #ffb86c; --color-accent: #ffb86c; --color-link: #ffb86c;
 }
 body[data-theme="mono"] {
-  --accent: #c8c8c8;
-  --link: #c8c8c8;
+  --accent: #c8c8c8; --color-accent: #c8c8c8; --color-link: #c8c8c8;
 }
 body[data-theme="mono"] .pulse,
 body[data-theme="mono"] .hero-portrait .id .dot,
@@ -81,32 +81,32 @@ body[data-theme="mono"] .sb-dot,
 body[data-theme="mono"] .status-row .dot {
   box-shadow: none !important;
 }
-body[data-theme="red"]      { --accent: #f87171; }
-body[data-theme="orange"]   { --accent: #fb923c; }
-body[data-theme="yellow"]   { --accent: #facc15; }
-body[data-theme="lime"]     { --accent: #a3e635; }
-body[data-theme="teal"]     { --accent: #2dd4bf; }
-body[data-theme="cyan"]     { --accent: #22d3ee; }
-body[data-theme="sky"]      { --accent: #38bdf8; }
-body[data-theme="blue"]     { --accent: #60a5fa; }
-body[data-theme="indigo"]   { --accent: #818cf8; }
-body[data-theme="violet"]   { --accent: #a78bfa; }
-body[data-theme="purple"]   { --accent: #c084fc; }
-body[data-theme="fuchsia"]  { --accent: #e879f9; }
-body[data-theme="pink"]     { --accent: #f472b6; }
-body[data-theme="rose"]     { --accent: #fb7185; }
-body[data-theme="slate"]    { --accent: #94a3b8; }
-body[data-theme="zinc"]     { --accent: #a1a1aa; }
-body[data-theme="gold"]     { --accent: #d4a843; }
-body[data-theme="coral"]    { --accent: #ff6b6b; }
-body[data-theme="mint"]     { --accent: #00e5cc; }
-body[data-theme="lavender"] { --accent: #b39ddb; }
-body[data-theme="peach"]    { --accent: #ffab76; }
-body[data-theme="sage"]     { --accent: #8fb996; }
-body[data-theme="dusk"]     { --accent: #9b8ea8; }
-body[data-theme="ember"]    { --accent: #e8613a; }
-body[data-theme="frost"]    { --accent: #a8d8ea; }
-body[data-theme="neon"]     { --accent: #39ff14; }
+body[data-theme="red"]      { --accent: #f87171; --color-accent: #f87171; --color-link: #f87171; }
+body[data-theme="orange"]   { --accent: #fb923c; --color-accent: #fb923c; --color-link: #fb923c; }
+body[data-theme="yellow"]   { --accent: #facc15; --color-accent: #facc15; --color-link: #facc15; }
+body[data-theme="lime"]     { --accent: #a3e635; --color-accent: #a3e635; --color-link: #a3e635; }
+body[data-theme="teal"]     { --accent: #2dd4bf; --color-accent: #2dd4bf; --color-link: #2dd4bf; }
+body[data-theme="cyan"]     { --accent: #22d3ee; --color-accent: #22d3ee; --color-link: #22d3ee; }
+body[data-theme="sky"]      { --accent: #38bdf8; --color-accent: #38bdf8; --color-link: #38bdf8; }
+body[data-theme="blue"]     { --accent: #60a5fa; --color-accent: #60a5fa; --color-link: #60a5fa; }
+body[data-theme="indigo"]   { --accent: #818cf8; --color-accent: #818cf8; --color-link: #818cf8; }
+body[data-theme="violet"]   { --accent: #a78bfa; --color-accent: #a78bfa; --color-link: #a78bfa; }
+body[data-theme="purple"]   { --accent: #c084fc; --color-accent: #c084fc; --color-link: #c084fc; }
+body[data-theme="fuchsia"]  { --accent: #e879f9; --color-accent: #e879f9; --color-link: #e879f9; }
+body[data-theme="pink"]     { --accent: #f472b6; --color-accent: #f472b6; --color-link: #f472b6; }
+body[data-theme="rose"]     { --accent: #fb7185; --color-accent: #fb7185; --color-link: #fb7185; }
+body[data-theme="slate"]    { --accent: #94a3b8; --color-accent: #94a3b8; --color-link: #94a3b8; }
+body[data-theme="zinc"]     { --accent: #a1a1aa; --color-accent: #a1a1aa; --color-link: #a1a1aa; }
+body[data-theme="gold"]     { --accent: #d4a843; --color-accent: #d4a843; --color-link: #d4a843; }
+body[data-theme="coral"]    { --accent: #ff6b6b; --color-accent: #ff6b6b; --color-link: #ff6b6b; }
+body[data-theme="mint"]     { --accent: #00e5cc; --color-accent: #00e5cc; --color-link: #00e5cc; }
+body[data-theme="lavender"] { --accent: #b39ddb; --color-accent: #b39ddb; --color-link: #b39ddb; }
+body[data-theme="peach"]    { --accent: #ffab76; --color-accent: #ffab76; --color-link: #ffab76; }
+body[data-theme="sage"]     { --accent: #8fb996; --color-accent: #8fb996; --color-link: #8fb996; }
+body[data-theme="dusk"]     { --accent: #9b8ea8; --color-accent: #9b8ea8; --color-link: #9b8ea8; }
+body[data-theme="ember"]    { --accent: #e8613a; --color-accent: #e8613a; --color-link: #e8613a; }
+body[data-theme="frost"]    { --accent: #a8d8ea; --color-accent: #a8d8ea; --color-link: #a8d8ea; }
+body[data-theme="neon"]     { --accent: #39ff14; --color-accent: #39ff14; --color-link: #39ff14; }
 
 /* ============================================================
    base reset
