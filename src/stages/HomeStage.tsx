@@ -54,13 +54,13 @@ export function HomeStage() {
   return (
     <div className="grid pb-8 border-b border-rule md:grid-cols-2 gap-10 md:w-4/5 md:justify-items-end">
       {/* portrait + heatmap */}
-      <div className="flex flex-col items-start md:items-end gap-2 w-55">
-        <div className="hero-portrait relative w-full h-55 rounded-xs overflow-hidden bg-bg2 border border-rule2">
+      <div className="flex flex-col items-start md:items-end gap-2 w-68 md:w-90">
+        <div className="hero-portrait relative w-full h-auto rounded-xs overflow-hidden bg-bg2 border border-rule2">
           <img
             src={profilePic}
             alt="Nathaniel Bowman, Full-Stack Software Engineer"
-            width="220"
-            height="220"
+            width="auto"
+            height="auto"
             loading="eager"
             className="w-full h-full object-cover filter-[grayscale(0.15)_contrast(1.02)]"
           />

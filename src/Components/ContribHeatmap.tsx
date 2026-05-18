@@ -35,8 +35,11 @@ const SKELETON_CELLS = SKELETON_COLS * 7;
 
 const BASE_NOISE = Array.from({ length: SKELETON_CELLS }, () => Math.random());
 
-// per-row stagger offsets: each of the 7 rows reveals slightly ahead or behind
-const ROW_STAGGER = Array.from({ length: 7 }, () => (Math.random() - 0.5) * 16);
+// per-cell reveal jitter: each cell reveals at a slightly different point in the sweep
+const REVEAL_JITTER = Array.from({ length: SKELETON_CELLS }, () => (Math.random() - 0.5) * 18);
+
+// per-cell random phase so each lit cell pulses independently
+const PULSE_PHASE = Array.from({ length: SKELETON_CELLS }, () => Math.random() * Math.PI * 2);
 
 export function ContribHeatmap({ weeks, loading = false }: Props) {
   const offsetRef = useRef(0);
@@ -111,7 +114,7 @@ export function ContribHeatmap({ weeks, loading = false }: Props) {
   };
 
   const offset = offsetRef.current;
-  const revealedUpTo = Math.floor(revealRef.current);
+  const revealProgress = revealRef.current;
 
   return (
     <div
@@ -124,7 +127,7 @@ export function ContribHeatmap({ weeks, loading = false }: Props) {
         const ci = Math.floor(i / 7);
         const di = i % 7;
 
-        if (ci < revealedUpTo - ROW_STAGGER[di]) {
+        if (revealRef.current >= 0 && ci < revealProgress - REVEAL_JITTER[i]) {
           // revealed — show real data
           const day = realColumns[ci]?.[di] ?? null;
           if (!day) {
@@ -148,7 +151,7 @@ export function ContribHeatmap({ weeks, loading = false }: Props) {
         }
 
         // unrevealed — animated noise wave
-        const shiftedCol = (ci + Math.floor(offset)) % SKELETON_COLS;
+        const shiftedCol = (ci - Math.floor(offset) + SKELETON_COLS * 4) % SKELETON_COLS;
         const baseVal = BASE_NOISE[shiftedCol * 7 + di];
         const wave =
           0.5 +
@@ -159,11 +162,14 @@ export function ContribHeatmap({ weeks, loading = false }: Props) {
             );
         const threshold = 0.9 - wave * 0.15;
         const lvl = (baseVal > threshold ? 1 : 0) as 0 | 1 | 2 | 3 | 4;
+        const pulse = lvl === 1
+          ? 0.45 + 0.55 * Math.sin(offset * 0.18 + PULSE_PHASE[i])
+          : 1;
         return (
           <div
             key={i}
             className={`rounded-[0.5px] ${CELL_COLORS[lvl]}`}
-            style={{ aspectRatio: "1" }}
+            style={{ aspectRatio: "1", opacity: pulse }}
           />
         );
       })}
