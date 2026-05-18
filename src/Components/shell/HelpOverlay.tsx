@@ -43,7 +43,7 @@ interface HelpOverlayProps {
 }
 
 const Kbd = ({ children }: { children: React.ReactNode }) => (
-  <span className="inline-block border border-rule2 px-1.5 py-px rounded-xs text-[11px] text-ink bg-bg2">
+  <span className="inline-block border border-[color-mix(in_srgb,var(--accent)_28%,var(--rule-2))] px-1.5 py-px rounded-xs text-[11px] text-ink bg-bg2">
     {children}
   </span>
 );
@@ -83,8 +83,8 @@ export function HelpOverlay({
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="bg-bg1 border border-rule2 rounded-sm w-[min(440px,92vw)] px-7 py-6 max-h-[80vh] overflow-y-auto">
-        <h3 className="m-0 mb-4 font-mono text-[11px] tracking-[0.18em] uppercase text-faint">
+      <div className="bg-bg1 border border-[color-mix(in_srgb,var(--accent)_22%,var(--rule-2))] rounded-sm w-[min(440px,92vw)] px-7 py-6 max-h-[80vh] overflow-y-auto">
+        <h3 className="m-0 mb-4 font-mono text-[11px] tracking-[0.18em] uppercase text-accent opacity-70">
           keyboard shortcuts
         </h3>
 
@@ -160,7 +160,7 @@ export function HelpOverlay({
         />
 
         <div className="mt-3.5 pt-3 border-t border-rule">
-          <div className="text-faint text-[10px] tracking-[0.14em] uppercase">
+          <div className="text-accent opacity-55 text-[10px] tracking-[0.14em] uppercase">
             input modes
           </div>
         </div>
@@ -179,7 +179,7 @@ export function HelpOverlay({
         <Row keys={<Kbd>?</Kbd>} desc="this overlay" />
 
         <div className="mt-3.5 pt-3 border-t border-rule">
-          <div className="text-faint text-[10px] tracking-[0.14em] uppercase">
+          <div className="text-accent opacity-55 text-[10px] tracking-[0.14em] uppercase">
             commands
           </div>
         </div>
@@ -241,7 +241,7 @@ export function HelpOverlay({
         <Row keys={<Kbd>:log</Kbd>} desc="view full activity log" />
         <Row keys={<Kbd>:?</Kbd>} desc="this overlay" />
 
-        <div className="mt-3.5 pt-3 border-t border-rule text-faint text-[11px] text-center">
+        <div className="mt-3.5 pt-3 border-t border-rule text-accent opacity-50 text-[11px] text-center">
           esc to close
         </div>
       </div>
