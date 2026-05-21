@@ -47,6 +47,8 @@ const PULSE_PHASE = Array.from(
   () => Math.random() * Math.PI * 2,
 );
 
+const MAX_JITTER = 9; // half of REVEAL_JITTER spread (18 / 2)
+
 export function ContribHeatmap({ weeks, loading = false }: Props) {
   const offsetRef = useRef(0);
   const revealRef = useRef(-1);
@@ -63,7 +65,8 @@ export function ContribHeatmap({ weeks, loading = false }: Props) {
   for (let i = 0; i < paddedDays.length; i += 7) {
     realColumns.push(paddedDays.slice(i, i + 7));
   }
-  numColsRef.current = realColumns.length || SKELETON_COLS;
+  const visibleColumns = realColumns.slice(-SKELETON_COLS);
+  numColsRef.current = visibleColumns.length || SKELETON_COLS;
 
   // single rAF loop — starts on mount, never restarts
   useEffect(() => {
@@ -76,13 +79,13 @@ export function ContribHeatmap({ weeks, loading = false }: Props) {
       offsetRef.current = (offsetRef.current + dt * 0.02) % SKELETON_COLS;
 
       // reveal wave advances once data is ready
-      if (dataReadyRef.current && revealRef.current < numColsRef.current) {
+      if (dataReadyRef.current && revealRef.current < numColsRef.current + MAX_JITTER) {
         if (revealRef.current < 0) revealRef.current = 0;
         revealRef.current += dt / 12;
       }
 
       // stop loop once reveal is complete
-      if (revealRef.current >= numColsRef.current) {
+      if (revealRef.current >= numColsRef.current + MAX_JITTER) {
         setTick((t) => t + 1);
         return;
       }
@@ -135,7 +138,7 @@ export function ContribHeatmap({ weeks, loading = false }: Props) {
 
         if (revealRef.current >= 0 && ci < revealProgress - REVEAL_JITTER[i]) {
           // revealed — show real data
-          const day = realColumns[ci]?.[di] ?? null;
+          const day = visibleColumns[ci]?.[di] ?? null;
           if (!day) {
             return (
               <div
