@@ -87,6 +87,13 @@ export function ChipNav({
       >
         :log
       </button>
+      <button
+        className="chip cmd inline-flex items-center gap-1.5 px-2.5 py-1 bg-bg1 border border-rule rounded-xs text-faint text-[11.5px] tracking-[0.02em] opacity-60 transition-[color,border-color,background,opacity] duration-150 hover:text-accent hover:border-[color-mix(in_srgb,var(--accent)_30%,transparent)] hover:opacity-100"
+        onClick={() => onCommand(":share")}
+        aria-label="share the current url"
+      >
+        :share
+      </button>
     </div>
   );
 }

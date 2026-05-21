@@ -124,7 +124,10 @@ export function useCommands(ctx: CommandContext) {
           return true;
         case "share":
           navigator.clipboard.writeText(window.location.href).then(() => {
-            ctx.logActivity("event", ":share · url copied to clipboard");
+            ctx.logActivity(
+              "event",
+              ":share · current url copied to clipboard",
+            );
           });
           return true;
         case "log":

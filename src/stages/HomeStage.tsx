@@ -73,11 +73,14 @@ export function HomeStage() {
 
         {/* heatmap + last push */}
         <div className="w-full md:justify-items-end">
+          <span className="text-faint uppercase flex justify-self-start translate-y-2">
+            personal code activity:
+          </span>
           <ContribHeatmap weeks={contribWeeks} loading={contribLoading} />
           {lastPush && (
             <div className="flex items-center gap-1.5 mt-2 text-t10 tracking-[0.12em] text-faint uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_6px_var(--accent)]" />
-              last push {timeAgo(lastPush)}
+              last push – {timeAgo(lastPush)}
             </div>
           )}
         </div>
