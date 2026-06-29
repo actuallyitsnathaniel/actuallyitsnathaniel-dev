@@ -1,9 +1,9 @@
 import { useActivityLog } from "../context/ActivityLogContext";
-import shotJlm from "../assets/images/work/jlm.webp";
-import shotSahil from "../assets/images/work/sahil.webp";
-import shotDave from "../assets/images/work/dave.webp";
-import shotJohn from "../assets/images/work/john.webp";
-import shotRyland from "../assets/images/work/ryland.webp";
+import shotJlm from "../assets/images/work/jlm.webm";
+import shotSahil from "../assets/images/work/sahil.webm";
+import shotDave from "../assets/images/work/dave.webm";
+import shotJohn from "../assets/images/work/john.webm";
+import shotRyland from "../assets/images/work/ryland.webm";
 
 interface WorkEntry {
   ver: string;
@@ -368,21 +368,19 @@ export function WorkStage({
                   ))}
                 </ul>
                 {/* cl-shot — kept in CSS: complex diagonal stripe background */}
-                <div
-                  className="cl-shot"
-                  aria-hidden="true"
-                  style={
-                    entry.screenshot
-                      ? {
-                          backgroundImage: `url(${entry.screenshot})`,
-                          backgroundSize: "contain",
-                          backgroundPosition: "center top",
-                          backgroundRepeat: "no-repeat",
-                        }
-                      : undefined
-                  }
-                >
-                  {!entry.screenshot && `screenshot · ${entry.name}`}
+                <div className="cl-shot" aria-hidden="true">
+                  {entry.screenshot ? (
+                    <video
+                      src={entry.screenshot}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="cl-shot-video"
+                    />
+                  ) : (
+                    `screenshot · ${entry.name}`
+                  )}
                 </div>
               </div>
             </li>
