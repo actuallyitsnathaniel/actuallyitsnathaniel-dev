@@ -17,7 +17,7 @@ npm i
 
 ## MCP Server
 
-`api/mcp.ts` exposes a Model Context Protocol server at **`https://actuallyitsnathaniel.dev/api/mcp`** (Node runtime, Streamable HTTP transport) with 6 tools: `search_projects`, `get_toolbelt`, `get_about`, `get_resume`, `get_contact`, `get_github_activity`. No auth — every tool reads data that's already public on the site.
+`api/mcp.ts` exposes a Model Context Protocol server at **`https://dev.actuallyitsnathaniel.com/api/mcp`** (Node runtime, Streamable HTTP transport) with 6 tools: `search_projects`, `get_toolbelt`, `get_about`, `get_resume`, `get_contact`, `get_github_activity`. No auth — every tool reads data that's already public on the site.
 
 To test it:
 
@@ -42,7 +42,7 @@ Workaround for Claude Desktop: bypass the web connector flow with a local [`mcp-
   "mcpServers": {
     "nathaniel-portfolio": {
       "command": "npx",
-      "args": ["-y", "mcp-remote", "https://actuallyitsnathaniel.dev/api/mcp"]
+      "args": ["-y", "mcp-remote", "https://dev.actuallyitsnathaniel.com/api/mcp"]
     }
   }
 }

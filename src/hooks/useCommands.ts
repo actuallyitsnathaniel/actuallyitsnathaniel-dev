@@ -132,7 +132,7 @@ export function useCommands(ctx: CommandContext) {
           return true;
         case "mcp":
           navigator.clipboard
-            .writeText("https://actuallyitsnathaniel.dev/api/mcp")
+            .writeText("https://dev.actuallyitsnathaniel.com/api/mcp")
             .then(() => {
               ctx.logActivity(
                 "event",

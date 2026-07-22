@@ -152,7 +152,7 @@ function buildServer() {
       annotations: READ_ONLY,
     },
     safe(async () => ({
-      content: [{ type: "text", text: "https://actuallyitsnathaniel.dev/api/resume" }],
+      content: [{ type: "text", text: "https://dev.actuallyitsnathaniel.com/api/resume" }],
     })),
   );
 
