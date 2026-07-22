@@ -114,6 +114,14 @@ const ROWS: InfraRow[] = [
     metric: { v: "enterprise", qualitative: true, u: "vault · multi-env" },
     aliases: ["vault", "secrets", "credentials", "security", "hashicorp"],
   },
+  {
+    status: "green",
+    name: "mcp server",
+    stat: "operational",
+    desc: "this site exposes a Model Context Protocol server at /api/mcp — any MCP client (claude, etc.) can query project history, toolbelt, resume, and contact info directly.",
+    metric: { v: "6", su: "tools", u: "streamable http" },
+    aliases: ["mcp", "modelcontextprotocol", "agent", "ai", "claude"],
+  },
 ];
 
 interface InfraStageProps {

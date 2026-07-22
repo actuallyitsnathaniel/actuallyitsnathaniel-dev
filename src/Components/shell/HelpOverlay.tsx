@@ -264,6 +264,7 @@ export function HelpOverlay({
         <Row keys={<Kbd>:github</Kbd>} desc="open github profile" />
         <Row keys={<Kbd>:linkedin</Kbd>} desc="open linkedin" />
         <Row keys={<Kbd>:share</Kbd>} desc="copy url to clipboard" />
+        <Row keys={<Kbd>:mcp</Kbd>} desc="copy mcp server endpoint" />
         <Row keys={<Kbd>:log</Kbd>} desc="view full activity log" />
         <Row keys={<Kbd>:?</Kbd>} desc="this overlay" />
       </div>

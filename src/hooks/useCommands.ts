@@ -130,6 +130,16 @@ export function useCommands(ctx: CommandContext) {
             );
           });
           return true;
+        case "mcp":
+          navigator.clipboard
+            .writeText("https://actuallyitsnathaniel.dev/api/mcp")
+            .then(() => {
+              ctx.logActivity(
+                "event",
+                ":mcp · MCP server endpoint copied — for AI agents/clients",
+              );
+            });
+          return true;
         case "log":
           ctx.openLog();
           ctx.logActivity("event", ":log · activity log opened");
