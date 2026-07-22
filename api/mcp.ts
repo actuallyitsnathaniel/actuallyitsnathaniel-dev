@@ -2,9 +2,9 @@ import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import { z } from "zod";
-import { PROJECTS } from "../src/lib/projects";
-import { ABOUT } from "../src/lib/about";
-import { skills } from "../src/Components/skills/skills-data";
+import { PROJECTS } from "../src/lib/projects.js";
+import { ABOUT } from "../src/lib/about.js";
+import { SKILLS } from "../src/lib/skills.js";
 
 const GH_QUERY = `
   query($login: String!) {
@@ -110,7 +110,7 @@ function buildServer() {
     },
     safe(async ({ query }: { query?: string }) => {
       const q = query?.toLowerCase().trim() ?? "";
-      const matches = skills.filter(
+      const matches = SKILLS.filter(
         (s) =>
           !q ||
           s.name.toLowerCase().includes(q) ||
