@@ -1,7 +1,6 @@
-export const config = { runtime: "edge" };
-
+import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
+import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import { z } from "zod";
 import { PROJECTS } from "../src/lib/projects";
 import { ABOUT } from "../src/lib/about";
@@ -221,25 +220,21 @@ function buildServer() {
   return server;
 }
 
-export default async function handler(req: Request): Promise<Response> {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+
   if (req.method === "OPTIONS") {
-    return new Response(null, {
-      status: 204,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, mcp-session-id, mcp-protocol-version",
-      },
-    });
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS");
+    res.setHeader(
+      "Access-Control-Allow-Headers",
+      "Content-Type, mcp-session-id, mcp-protocol-version",
+    );
+    res.status(204).end();
+    return;
   }
 
   const server = buildServer();
-  const transport = new WebStandardStreamableHTTPServerTransport({
-    sessionIdGenerator: undefined,
-  });
+  const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
   await server.connect(transport);
-
-  const res = await transport.handleRequest(req);
-  res.headers.set("Access-Control-Allow-Origin", "*");
-  return res;
+  await transport.handleRequest(req, res, req.body);
 }

@@ -1,16 +1,33 @@
 import assert from "node:assert/strict";
+import http from "node:http";
+import type { AddressInfo } from "node:net";
 import handler from "../api/mcp.ts";
+
+// handler is a Node (req, res) Vercel Function — exercise it over a real
+// HTTP server rather than mocking IncomingMessage/ServerResponse by hand.
+const server = http.createServer((req, res) => {
+  let body = "";
+  req.on("data", (chunk) => (body += chunk));
+  req.on("end", () => {
+    (req as unknown as { body: unknown }).body = body ? JSON.parse(body) : undefined;
+    handler(req as never, res as never).catch((e) => {
+      console.error(e);
+      res.statusCode = 500;
+      res.end();
+    });
+  });
+});
+await new Promise<void>((resolve) => server.listen(0, resolve));
+const base = `http://localhost:${(server.address() as AddressInfo).port}/api/mcp`;
 
 let nextId = 1;
 
 async function rpc(method: string, params?: unknown) {
-  const res = await handler(
-    new Request("http://localhost/api/mcp", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json, text/event-stream" },
-      body: JSON.stringify({ jsonrpc: "2.0", id: nextId++, method, params }),
-    }),
-  );
+  const res = await fetch(base, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json, text/event-stream" },
+    body: JSON.stringify({ jsonrpc: "2.0", id: nextId++, method, params }),
+  });
   const raw = await res.text();
   const line = raw.split("\n").find((l) => l.startsWith("data: "));
   assert.ok(line, `expected an SSE data line in response, got: ${raw}`);
@@ -60,7 +77,9 @@ async function main() {
   console.log("mcp: all checks passed");
 }
 
-main().catch((e) => {
-  console.error(e);
-  process.exit(1);
-});
+main()
+  .catch((e) => {
+    console.error(e);
+    process.exitCode = 1;
+  })
+  .finally(() => server.close());
