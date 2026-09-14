@@ -44,6 +44,7 @@ import {
 import { FaJava } from "react-icons/fa";
 import { HarnessIcon } from "../icons/HarnessIcon";
 import { ClaudeIcon } from "../icons/ClaudeIcon";
+import { UnqorkIcon } from "../icons/UnqorkIcon";
 import type { Skill } from "../../types/skill.types";
 
 export const skills: Skill[] = [
@@ -548,6 +549,27 @@ export const skills: Skill[] = [
       "merchant tools",
     ],
     color: "#95bf47",
+  },
+  {
+    id: "unqork",
+    name: "Unqork",
+    icon: UnqorkIcon,
+    href: "https://www.credly.com/badges/5d0058f6-76f3-4f9a-ba0e-09986557bf7c/public_url",
+    category: "tools",
+    keywords: [
+      "unqork",
+      "creator",
+      "certification",
+      "certified",
+      "no-code",
+      "low-code",
+      "enterprise",
+      "academy",
+      "credly",
+      "visual",
+      "configuration",
+    ],
+    color: "#75D6DB",
   },
   {
     id: "claude-code",

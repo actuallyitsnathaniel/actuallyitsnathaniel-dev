@@ -13,6 +13,7 @@ export const ABOUT = {
     "the best engineering looks invisible — just as good production sits behind a song instead of in front of it.",
   facts: [
     { label: "edu", value: "azusa pacific university · b.s. computer science · 2021" },
+    { label: "cert", value: "unqork creator · 2026" },
     { label: "exp", value: "4 yrs production · lightfeather.io" },
     { label: "loc", value: "los angeles · pst" },
     { label: "stack", value: "react · node · aws · postgres" },
