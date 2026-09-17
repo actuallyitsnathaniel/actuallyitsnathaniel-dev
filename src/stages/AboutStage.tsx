@@ -7,7 +7,6 @@ export function AboutStage() {
       <p>
         {ABOUT.bio} <i>{ABOUT.tagline}</i>
       </p>
-
       <div className="flex gap-2 flex-wrap mt-1.5">
         {ABOUT.facts.map((fact) => (
           <div
@@ -25,6 +24,17 @@ export function AboutStage() {
           </div>
         ))}
       </div>
+      <section
+        id="note"
+        className="grid grid-cols-1 gap-1 pt-5.5 mt-2 border-t border-rule"
+      >
+        <h3 className="font-display font-normal text-t18 leading-tight m-0 mb-2 text-ink tracking-[0.02em]">
+          {ABOUT.noteTitle}
+        </h3>
+        {ABOUT.note.map((paragraph) => (
+          <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+        ))}
+      </section>
     </div>
   );
 }

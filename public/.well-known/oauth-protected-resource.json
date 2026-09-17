@@ -1,0 +1,9 @@
+{
+  "resource": "https://dev.actuallyitsnathaniel.com/api/v1",
+  "resource_name": "Nathaniel Bowman public API",
+  "resource_logo_uri": "https://dev.actuallyitsnathaniel.com/logo512.png",
+  "authorization_servers": ["https://dev.actuallyitsnathaniel.com/"],
+  "scopes_supported": ["api.read"],
+  "bearer_methods_supported": ["header"],
+  "resource_documentation": "https://dev.actuallyitsnathaniel.com/auth.md"
+}

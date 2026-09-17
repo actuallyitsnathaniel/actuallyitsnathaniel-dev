@@ -4,6 +4,7 @@ import {
   defaultOpenEntries,
   entriesFromUrl,
   filterFromUrl,
+  SECTION_MAP,
   sectionFromUrl,
 } from "../lib/sections";
 
@@ -21,60 +22,60 @@ function readFromUrl(): RouterState {
   };
 }
 
-function syncEntriesToUrl(entries: string[]) {
-  const sp = new URLSearchParams(window.location.search);
+function hrefFor(id: SectionId, filter: string, entries: string[]): string {
+  const path = SECTION_MAP[id].href;
+  const sp = new URLSearchParams();
+  if (filter) sp.set("f", filter);
   if (entries.length) sp.set("e", entries.join(","));
-  else sp.delete("e");
   const qs = sp.toString();
-  history.replaceState({}, "", qs ? `?${qs}` : window.location.pathname);
+  return qs ? `${path}?${qs}` : path;
+}
+
+function syncUrl(id: SectionId, filter: string, entries: string[], replace: boolean) {
+  const url = hrefFor(id, filter, entries);
+  if (replace) history.replaceState({}, "", url);
+  else history.pushState({}, "", url);
 }
 
 let filterTimer: ReturnType<typeof setTimeout> | null = null;
-
-function debouncedSyncFilter(filter: string) {
-  if (filterTimer) clearTimeout(filterTimer);
-  filterTimer = setTimeout(() => {
-    const sp = new URLSearchParams(window.location.search);
-    if (filter) sp.set("f", filter);
-    else sp.delete("f");
-    const qs = sp.toString();
-    history.replaceState({}, "", qs ? `?${qs}` : window.location.pathname);
-  }, 280);
-}
 
 export function useRouter() {
   const [state, setState] = useState<RouterState>(readFromUrl);
   const isFirstMount = useRef(true);
 
   const go = useCallback((id: SectionId, opts?: { replace?: boolean }) => {
-    const sp = new URLSearchParams();
-    if (id !== "home") sp.set("p", id);
     const defaultEntries = defaultOpenEntries();
-    if (defaultEntries.length) sp.set("e", defaultEntries.join(","));
-    const qs = sp.toString();
-    const url = qs ? `?${qs}` : "/";
-    if (opts?.replace) history.replaceState({}, "", url);
-    else history.pushState({}, "", url);
+    syncUrl(id, "", defaultEntries, !!opts?.replace);
     setState({ current: id, filter: "", openEntries: defaultEntries });
   }, []);
 
   const setFilter = useCallback((f: string) => {
-    setState(s => ({ ...s, filter: f }));
-    debouncedSyncFilter(f);
+    setState((s) => {
+      if (filterTimer) clearTimeout(filterTimer);
+      filterTimer = setTimeout(() => syncUrl(s.current, f, s.openEntries, true), 280);
+      return { ...s, filter: f };
+    });
   }, []);
 
   const toggleEntry = useCallback((alias: string) => {
-    setState(s => {
+    setState((s) => {
       const next = s.openEntries.includes(alias)
-        ? s.openEntries.filter(a => a !== alias)
+        ? s.openEntries.filter((a) => a !== alias)
         : [...s.openEntries, alias];
-      syncEntriesToUrl(next);
+      syncUrl(s.current, s.filter, next, true);
       return { ...s, openEntries: next };
     });
   }, []);
 
   useEffect(() => {
     isFirstMount.current = false;
+    const sp = new URLSearchParams(window.location.search);
+    if (sp.has("p")) {
+      const id = sectionFromUrl();
+      sp.delete("p");
+      const qs = sp.toString();
+      history.replaceState({}, "", SECTION_MAP[id].href + (qs ? `?${qs}` : ""));
+    }
     const onPop = () => setState(readFromUrl());
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);

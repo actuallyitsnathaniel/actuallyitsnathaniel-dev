@@ -1,0 +1,15 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "actuallyitsnathaniel",
+  "version": "1.0.0",
+  "description": "MCP servers and skills for Nathaniel Bowman's public portfolio API.",
+  "author": {
+    "name": "Nathaniel Bowman",
+    "email": "nathanielrbowman@gmail.com",
+    "url": "https://dev.actuallyitsnathaniel.com"
+  },
+  "homepage": "https://dev.actuallyitsnathaniel.com",
+  "repository": "https://github.com/actuallyitsnathaniel/actuallyitsnathaniel-dev",
+  "license": "UNLICENSED",
+  "keywords": ["mcp", "portfolio", "nathaniel-bowman", "actuallyitsnathaniel"]
+}

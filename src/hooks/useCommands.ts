@@ -7,7 +7,6 @@ interface CommandContext {
   go: (id: SectionId) => void;
   toggleCrt: () => void;
   setTheme: (t: ThemeName) => void;
-  openContact: () => void;
   openHelp: () => void;
   openLog: () => void;
   downloadResume: () => void;
@@ -30,8 +29,8 @@ export function useCommands(ctx: CommandContext) {
           ctx.logActivity("event", ":resume · download requested");
           return true;
         case "contact":
-          ctx.openContact();
-          ctx.logActivity("event", ":contact · panel opened");
+          ctx.go("contact");
+          ctx.logActivity("system", "cd ~/contact");
           return true;
         case "crt":
           ctx.toggleCrt();
@@ -79,19 +78,6 @@ export function useCommands(ctx: CommandContext) {
           ctx.go("home");
           ctx.logActivity("system", "cd ~/");
           return true;
-        case "about":
-        case "toolbelt":
-        case "work":
-        case "infra":
-        case "repos":
-        case "misc": {
-          const section = SECTIONS.find((s) => s.id === name);
-          if (section) {
-            ctx.go(section.id as SectionId);
-            ctx.logActivity("system", `cd ~/${name}`);
-          }
-          return true;
-        }
         case "back":
           history.back();
           return true;
@@ -149,9 +135,16 @@ export function useCommands(ctx: CommandContext) {
           ctx.openHelp();
           ctx.logActivity("event", ":? · shortcuts opened");
           return true;
-        default:
+        default: {
+          const section = SECTIONS.find((s) => s.id === name);
+          if (section) {
+            ctx.go(section.id);
+            ctx.logActivity("system", `cd ${section.path}`);
+            return true;
+          }
           ctx.logActivity("system", `unknown command: :${name}`);
           return true;
+        }
       }
     },
     [ctx],

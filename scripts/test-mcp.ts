@@ -61,6 +61,11 @@ async function main() {
 
   const about = await callTool("get_about");
   assert.ok(about.content[0].text.includes("lightfeather"));
+  assert.ok(about.content[0].text.includes("generating code is cheap"));
+  assert.ok(
+    !about.content[0].text.includes("leftover-human"),
+    "get_about must not include the long human-only note",
+  );
 
   const resume = await callTool("get_resume");
   assert.ok(resume.content[0].text.startsWith("https://"));
@@ -73,6 +78,14 @@ async function main() {
 
   const unknown = await callTool("not_a_real_tool");
   assert.ok(unknown.isError, "calling an unknown tool should come back as a tool error, not throw");
+
+  const { agentFiles } = await import("../src/lib/pages.ts");
+  const aboutMd = agentFiles()["/about.md"] ?? "";
+  assert.ok(aboutMd.includes("generating code is cheap"));
+  assert.ok(
+    !aboutMd.includes("leftover-human"),
+    "/about.md must not include the long human-only note",
+  );
 
   console.log("mcp: all checks passed");
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { SECTIONS, type SectionId } from "../../lib/sections";
+import { CHIP_SECTIONS, SECTIONS, type SectionId } from "../../lib/sections";
 
 interface FilterBarProps {
   current: SectionId;
@@ -95,7 +95,7 @@ export function FilterBar({
         onHighlight(null);
         return;
       }
-      const match = SECTIONS.find(
+      const match = CHIP_SECTIONS.find(
         (s) =>
           s.aliases.some((a) => a.includes(query)) ||
           s.id.includes(query) ||
@@ -147,7 +147,7 @@ export function FilterBar({
       const query = v.toLowerCase();
       if (!query) return;
 
-      const match = SECTIONS.find(
+      const match = CHIP_SECTIONS.find(
         (s) =>
           s.aliases.some((a) => a.includes(query)) || s.id.startsWith(query),
       );

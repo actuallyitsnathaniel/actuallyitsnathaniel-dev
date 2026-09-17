@@ -1,0 +1,321 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Nathaniel Bowman public API",
+    "summary": "Read-only portfolio API for actuallyitsnathaniel",
+    "description": "Public REST surface for Nathaniel Bowman (actuallyitsnathaniel). Bio, projects, skills, resume, and contact. No API key. Sandbox is the same read-only data.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Nathaniel Bowman",
+      "email": "nathanielrbowman@gmail.com",
+      "url": "https://dev.actuallyitsnathaniel.com/contact"
+    },
+    "license": { "name": "UNLICENSED" }
+  },
+  "servers": [
+    {
+      "url": "https://dev.actuallyitsnathaniel.com/api/v1",
+      "description": "Public / sandbox (read-only)"
+    }
+  ],
+  "tags": [
+    { "name": "catalog", "description": "Discovery" },
+    { "name": "profile", "description": "Person data" }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "listApiCatalog",
+        "tags": ["catalog"],
+        "summary": "API catalog",
+        "description": "Lists resources, docs, OpenAPI, and MCP URLs. No authentication.",
+        "responses": {
+          "200": {
+            "description": "Catalog object",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Catalog" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sandbox": {
+      "get": {
+        "operationId": "getSandbox",
+        "tags": ["catalog"],
+        "summary": "Sandbox catalog",
+        "description": "Same payload as listApiCatalog with environment=sandbox. Use this to exercise the API without any write side effects — there are none.",
+        "responses": {
+          "200": {
+            "description": "Sandbox catalog",
+            "headers": {
+              "X-Environment": {
+                "description": "Always sandbox",
+                "schema": { "type": "string", "enum": ["sandbox"] }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Catalog" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "operationId": "getHealth",
+        "tags": ["catalog"],
+        "summary": "Liveness",
+        "description": "Returns ok=true when the API function is up.",
+        "responses": {
+          "200": {
+            "description": "Health",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["ok"],
+                  "properties": {
+                    "ok": { "type": "boolean" },
+                    "service": { "type": "string" },
+                    "sandbox": { "type": "boolean" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/about": {
+      "get": {
+        "operationId": "getAbout",
+        "tags": ["profile"],
+        "summary": "Bio, facts, and short hire note",
+        "description": "Short bio, tagline, hire note, education, certification, experience, location, and stack for Nathaniel Bowman. The long about-page essay is not in this payload.",
+        "responses": {
+          "200": {
+            "description": "About payload",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/About" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects": {
+      "get": {
+        "operationId": "searchProjects",
+        "tags": ["profile"],
+        "summary": "Search projects",
+        "description": "Filter project history by name, tag, stack, or alias. Omit q to list all.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "description": "Keyword matched against name, tag, stack, and aliases.",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Project list",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectList" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/skills": {
+      "get": {
+        "operationId": "searchSkills",
+        "tags": ["profile"],
+        "summary": "Search toolbelt",
+        "description": "Filter technologies by name, category, or keyword. Omit q to list all.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "description": "Keyword matched against name, category, and keywords.",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Skill list",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SkillList" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contact": {
+      "get": {
+        "operationId": "getContact",
+        "tags": ["profile"],
+        "summary": "Contact channels",
+        "description": "Email, GitHub, LinkedIn, and location.",
+        "responses": {
+          "200": {
+            "description": "Contact",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Contact" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/resume": {
+      "get": {
+        "operationId": "getResume",
+        "tags": ["profile"],
+        "summary": "Resume PDF URL",
+        "description": "Returns the URL of the current resume PDF (proxied from /api/resume).",
+        "responses": {
+          "200": {
+            "description": "Resume locator",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["url", "format"],
+                  "properties": {
+                    "url": { "type": "string", "format": "uri" },
+                    "format": { "type": "string", "enum": ["application/pdf"] }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "required": ["error"],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": ["code", "message", "hint"],
+            "properties": {
+              "code": { "type": "string" },
+              "message": { "type": "string" },
+              "hint": { "type": "string" },
+              "docs": { "type": "string", "format": "uri" },
+              "openapi": { "type": "string", "format": "uri" }
+            }
+          }
+        }
+      },
+      "Catalog": {
+        "type": "object",
+        "required": ["name", "environment", "sandbox", "resources"],
+        "properties": {
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "environment": { "type": "string", "enum": ["live", "sandbox"] },
+          "sandbox": { "type": "boolean" },
+          "auth": { "type": "string" },
+          "docs": { "type": "string", "format": "uri" },
+          "openapi": { "type": "string", "format": "uri" },
+          "mcp": { "type": "string", "format": "uri" },
+          "resources": {
+            "type": "object",
+            "additionalProperties": { "type": "string", "format": "uri" }
+          }
+        }
+      },
+      "About": {
+        "type": "object",
+        "required": ["name", "bio"],
+        "properties": {
+          "name": { "type": "string" },
+          "brand": { "type": "string" },
+          "bio": { "type": "string" },
+          "tagline": { "type": "string" },
+          "note": {
+            "type": "string",
+            "description": "Short hire-me graf. The long essay on /about is human-only."
+          },
+          "facts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": { "type": "string" },
+                "value": { "type": "string" }
+              }
+            }
+          }
+        }
+      },
+      "Project": {
+        "type": "object",
+        "required": ["name", "date", "role", "stack"],
+        "properties": {
+          "name": { "type": "string" },
+          "date": { "type": "string" },
+          "tag": { "type": "string" },
+          "role": { "type": "string" },
+          "stack": { "type": "string" },
+          "liveUrl": { "type": "string", "nullable": true },
+          "bullets": { "type": "array", "items": { "type": "string" } }
+        }
+      },
+      "ProjectList": {
+        "type": "object",
+        "required": ["results"],
+        "properties": {
+          "query": { "type": "string", "nullable": true },
+          "results": { "type": "array", "items": { "$ref": "#/components/schemas/Project" } }
+        }
+      },
+      "Skill": {
+        "type": "object",
+        "required": ["name", "category"],
+        "properties": {
+          "name": { "type": "string" },
+          "category": { "type": "string" },
+          "href": { "type": "string", "format": "uri" }
+        }
+      },
+      "SkillList": {
+        "type": "object",
+        "required": ["results"],
+        "properties": {
+          "query": { "type": "string", "nullable": true },
+          "results": { "type": "array", "items": { "$ref": "#/components/schemas/Skill" } }
+        }
+      },
+      "Contact": {
+        "type": "object",
+        "required": ["email"],
+        "properties": {
+          "email": { "type": "string", "format": "email" },
+          "github": { "type": "string", "format": "uri" },
+          "linkedin": { "type": "string", "format": "uri" },
+          "location": { "type": "string" }
+        }
+      }
+    }
+  }
+}

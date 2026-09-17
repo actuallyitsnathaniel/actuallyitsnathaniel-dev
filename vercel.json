@@ -3,10 +3,34 @@
   "buildCommand": "npm run build",
   "outputDirectory": "build",
   "rewrites": [
-    {
-      "source": "/((?!api/|@)(?!.*\\.[a-zA-Z0-9]+$).*)",
-      "destination": "/index.html"
-    }
+    { "source": "/.well-known/mcp", "destination": "/api/mcp" },
+    { "source": "/.well-known/api-catalog", "destination": "/.well-known/api-catalog.json" },
+    { "source": "/.well-known/oauth-protected-resource", "destination": "/.well-known/oauth-protected-resource.json" },
+    { "source": "/.well-known/oauth-authorization-server", "destination": "/.well-known/oauth-authorization-server.json" },
+    { "source": "/.well-known/http-message-signatures-directory", "destination": "/.well-known/http-message-signatures-directory.json" },
+    { "source": "/.well-known/llms.txt", "destination": "/llms.txt" },
+    { "source": "/v1", "destination": "/api/v1" },
+    { "source": "/v1/:path*", "destination": "/api/v1/:path*" },
+    { "source": "/ask", "destination": "/api/ask" },
+    { "source": "/agent/identity/claim", "destination": "/api/agent/identity/claim" },
+    { "source": "/agent/identity", "destination": "/api/agent/identity" },
+    { "source": "/agent/auth", "destination": "/api/agent/auth" },
+    { "source": "/agent/event/notify", "destination": "/api/agent/event/notify" },
+    { "source": "/oauth2/token", "destination": "/api/oauth2/token" },
+    { "source": "/oauth2/revoke", "destination": "/api/oauth2/revoke" },
+    { "source": "/api/llms.txt", "destination": "/docs/api-llms.txt" },
+    { "source": "/api/openapi.json", "destination": "/openapi.json" },
+    { "source": "/about", "destination": "/index.html" },
+    { "source": "/toolbelt", "destination": "/index.html" },
+    { "source": "/work", "destination": "/index.html" },
+    { "source": "/infra", "destination": "/index.html" },
+    { "source": "/repos", "destination": "/index.html" },
+    { "source": "/misc", "destination": "/index.html" },
+    { "source": "/developers", "destination": "/index.html" },
+    { "source": "/docs", "destination": "/index.html" },
+    { "source": "/contact", "destination": "/index.html" },
+    { "source": "/privacy", "destination": "/index.html" },
+    { "source": "/sandbox", "destination": "/index.html" }
   ],
   "headers": [
     {
@@ -25,6 +49,72 @@
           "key": "Cache-Control",
           "value": "public, max-age=86400, stale-while-revalidate=604800"
         }
+      ]
+    },
+    {
+      "source": "/(.*).md",
+      "headers": [
+        { "key": "Content-Type", "value": "text/markdown; charset=utf-8" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    },
+    {
+      "source": "/llms.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    },
+    {
+      "source": "/llms-full.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    },
+    {
+      "source": "/docs/llms.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    },
+    {
+      "source": "/developers/llms.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    },
+    {
+      "source": "/.well-known/(.*).json",
+      "headers": [
+        { "key": "Content-Type", "value": "application/json; charset=utf-8" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    },
+    {
+      "source": "/openapi.json",
+      "headers": [
+        { "key": "Content-Type", "value": "application/json; charset=utf-8" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    },
+    {
+      "source": "/.well-known/api-catalog",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/linkset+json; profile=\"https://www.rfc-editor.org/info/rfc9727\""
+        },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    },
+    {
+      "source": "/feeds/site.jsonl",
+      "headers": [
+        { "key": "Content-Type", "value": "application/jsonl; charset=utf-8" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
       ]
     },
     {
@@ -53,6 +143,14 @@
         {
           "key": "Strict-Transport-Security",
           "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "Vary",
+          "value": "Accept"
+        },
+        {
+          "key": "Link",
+          "value": "</sitemap.xml>; rel=\"sitemap\", </index.md>; rel=\"alternate\"; type=\"text/markdown\", </openapi.json>; rel=\"service-desc\"; type=\"application/json\", </.well-known/api-catalog>; rel=\"api-catalog\", </.well-known/ard.json>; rel=\"ard\""
         }
       ]
     }

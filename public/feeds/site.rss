@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Nathaniel Bowman — actuallyitsnathaniel</title>
+    <link>https://dev.actuallyitsnathaniel.com</link>
+    <description>Public portfolio, MCP server, and REST API for Nathaniel Bowman.</description>
+    <item>
+      <title>Developer portal</title>
+      <link>https://dev.actuallyitsnathaniel.com/developers</link>
+      <description>MCP, OpenAPI, REST, sandbox, and auth.md for agents.</description>
+    </item>
+    <item>
+      <title>About Nathaniel Bowman</title>
+      <link>https://dev.actuallyitsnathaniel.com/about</link>
+      <description>Bio, education, Lightfeather, Los Angeles.</description>
+    </item>
+  </channel>
+</rss>

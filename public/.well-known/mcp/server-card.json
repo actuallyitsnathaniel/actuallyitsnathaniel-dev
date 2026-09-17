@@ -1,0 +1,49 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json",
+  "name": "dev.actuallyitsnathaniel/portfolio",
+  "title": "Nathaniel Bowman Portfolio",
+  "description": "Query Nathaniel Bowman's bio, projects, skills, resume, and contact.",
+  "version": "1.0.0",
+  "websiteUrl": "https://dev.actuallyitsnathaniel.com",
+  "repository": {
+    "url": "https://github.com/actuallyitsnathaniel/actuallyitsnathaniel-dev",
+    "source": "github"
+  },
+  "serverUrl": "https://dev.actuallyitsnathaniel.com/api/mcp",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://dev.actuallyitsnathaniel.com/api/mcp"
+    },
+    {
+      "type": "streamable-http",
+      "url": "https://dev.actuallyitsnathaniel.com/.well-known/mcp"
+    }
+  ],
+  "tools": [
+    {
+      "name": "search_projects",
+      "description": "Search project history by name, tech stack, or keyword."
+    },
+    {
+      "name": "get_toolbelt",
+      "description": "Search technologies Nathaniel works with."
+    },
+    {
+      "name": "get_about",
+      "description": "Short bio plus education, experience, location, and stack."
+    },
+    {
+      "name": "get_resume",
+      "description": "URL of the current resume PDF."
+    },
+    {
+      "name": "get_contact",
+      "description": "Email, GitHub, and LinkedIn."
+    },
+    {
+      "name": "get_github_activity",
+      "description": "GitHub contribution count for the past year."
+    }
+  ]
+}

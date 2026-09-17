@@ -1,0 +1,29 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json",
+  "name": "dev.actuallyitsnathaniel/docs",
+  "title": "Nathaniel Bowman Docs",
+  "description": "Fetch llms.txt, auth.md, OpenAPI, and developer docs over MCP.",
+  "version": "1.0.0",
+  "websiteUrl": "https://dev.actuallyitsnathaniel.com/developers",
+  "serverUrl": "https://dev.actuallyitsnathaniel.com/api/mcp-docs",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://dev.actuallyitsnathaniel.com/api/mcp-docs"
+    }
+  ],
+  "tools": [
+    {
+      "name": "list_docs",
+      "description": "List documentation pages available to agents."
+    },
+    {
+      "name": "get_doc",
+      "description": "Fetch a documentation page by name."
+    },
+    {
+      "name": "search_docs",
+      "description": "Keyword-search developer documentation."
+    }
+  ]
+}

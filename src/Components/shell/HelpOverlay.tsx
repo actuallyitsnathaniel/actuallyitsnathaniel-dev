@@ -207,7 +207,7 @@ export function HelpOverlay({
           </div>
         </div>
         <Row keys={<Kbd>:resume</Kbd>} desc="download résumé" />
-        <Row keys={<Kbd>:contact</Kbd>} desc="contact info · copy-paste" />
+        <Row keys={<Kbd>:contact</Kbd>} desc="~/contact" />
         <Row keys={<Kbd>:crt</Kbd>} desc="toggle scanlines + phosphor" />
 
         {/* :theme row with expandable swatch picker */}

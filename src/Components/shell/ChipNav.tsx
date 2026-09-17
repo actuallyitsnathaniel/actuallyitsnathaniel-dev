@@ -1,4 +1,4 @@
-import { SECTIONS, type SectionId } from "../../lib/sections";
+import { CHIP_SECTIONS, type SectionId } from "../../lib/sections";
 
 interface ChipNavProps {
   current: SectionId;
@@ -21,7 +21,7 @@ export function ChipNav({
       role="navigation"
       aria-label="section navigation"
     >
-      {SECTIONS.map((s) => {
+      {CHIP_SECTIONS.map((s) => {
         const isActive = current === s.id;
         const isMatch = highlightedSection === s.id;
         const hasFocus =

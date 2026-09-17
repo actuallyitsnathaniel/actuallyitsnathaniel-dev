@@ -1,3 +1,4 @@
+// Edge: fetch-proxy to GitHub GraphQL. MCP stays on Node for the SDK transport.
 export const config = { runtime: "edge" };
 
 const QUERY = `

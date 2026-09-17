@@ -1,0 +1,51 @@
+{
+  "@context": "https://agenticresourcediscovery.org/context/v1",
+  "entries": [
+    {
+      "identifier": "urn:air:dev.actuallyitsnathaniel.com:server:portfolio",
+      "displayName": "Nathaniel Bowman Portfolio MCP",
+      "type": "application/mcp-server+json",
+      "url": "https://dev.actuallyitsnathaniel.com/.well-known/mcp/server-card.json",
+      "capabilities": [
+        "search_projects",
+        "get_toolbelt",
+        "get_about",
+        "get_resume",
+        "get_contact",
+        "get_github_activity"
+      ],
+      "description": "MCP server for Nathaniel Bowman's bio, projects, skills, resume, and contact.",
+      "representativeQueries": [
+        "What projects has Nathaniel Bowman built?",
+        "What tech stack does Nathaniel Bowman use?",
+        "How do I contact Nathaniel Bowman?"
+      ]
+    },
+    {
+      "identifier": "urn:air:dev.actuallyitsnathaniel.com:server:docs",
+      "displayName": "Nathaniel Bowman Docs MCP",
+      "type": "application/mcp-server+json",
+      "url": "https://dev.actuallyitsnathaniel.com/.well-known/mcp/docs-server-card.json",
+      "capabilities": ["list_docs", "get_doc", "search_docs"],
+      "description": "MCP server that fetches llms.txt, auth.md, OpenAPI, and other developer docs.",
+      "representativeQueries": [
+        "How do I authenticate to actuallyitsnathaniel?",
+        "Where is the OpenAPI spec for Nathaniel Bowman?",
+        "When should an agent use actuallyitsnathaniel?"
+      ]
+    },
+    {
+      "identifier": "urn:air:dev.actuallyitsnathaniel.com:api:v1",
+      "displayName": "Nathaniel Bowman public REST API",
+      "type": "application/openapi+json",
+      "url": "https://dev.actuallyitsnathaniel.com/openapi.json",
+      "capabilities": ["about", "projects", "skills", "contact", "resume"],
+      "description": "Read-only REST API. No API key. Sandbox is the same public surface.",
+      "representativeQueries": [
+        "GET Nathaniel Bowman contact email",
+        "List Nathaniel Bowman musician websites",
+        "Fetch Nathaniel Bowman resume URL"
+      ]
+    }
+  ]
+}

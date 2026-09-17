@@ -8,6 +8,8 @@ import {
 import { ActivityLogBackground } from "./Components/activity-log-background";
 import { Shell } from "./Components/shell/Shell";
 import SEO from "./Components/seo";
+import { WebMCP } from "./Components/WebMCP";
+import { jsonLdGraph } from "./lib/site";
 
 import { useRouter } from "./hooks/useRouter";
 import { useTheme } from "./hooks/useTheme";
@@ -19,8 +21,12 @@ import { WorkStage } from "./stages/WorkStage";
 import { InfraStage } from "./stages/InfraStage";
 import { ReposStage } from "./stages/ReposStage";
 import { MiscStage } from "./stages/MiscStage";
+import { ContactStage } from "./stages/ContactStage";
+import { DevelopersStage, DocsStage, PrivacyStage } from "./stages/ProseStage";
 
 import type { RouterState } from "./hooks/useRouter";
+import { SECTION_MAP } from "./lib/sections";
+import { SITE_URL } from "./lib/site";
 
 function renderStage(
   state: RouterState,
@@ -48,6 +54,14 @@ function renderStage(
       return <ReposStage />;
     case "misc":
       return <MiscStage />;
+    case "developers":
+      return <DevelopersStage />;
+    case "docs":
+      return <DocsStage />;
+    case "contact":
+      return <ContactStage />;
+    case "privacy":
+      return <PrivacyStage />;
     default:
       return <HomeStage />;
   }
@@ -104,45 +118,16 @@ const AppContent = () => {
     <>
       <SEO
         title="Nathaniel Bowman — full-stack · infra · music software"
-        description="nathaniel bowman — full-stack engineer, infra, and a soft spot for music software. day job at lightfeather; weekends are sites for musicians."
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "WebSite",
-              "@id":
-                (import.meta.env.VITE_SITE_URL ||
-                  "https://actuallyitsnathaniel.dev") + "/#website",
-              url:
-                import.meta.env.VITE_SITE_URL ||
-                "https://actuallyitsnathaniel.dev",
-              name: "Nathaniel Bowman",
-              description:
-                "nathaniel bowman — full-stack engineer, infra, and a soft spot for music software.",
-            },
-            {
-              "@type": "Person",
-              "@id":
-                (import.meta.env.VITE_SITE_URL ||
-                  "https://actuallyitsnathaniel.dev") + "/#person",
-              name: "Nathaniel Bowman",
-              url:
-                import.meta.env.VITE_SITE_URL ||
-                "https://actuallyitsnathaniel.dev",
-              jobTitle: "Full-Stack Software Engineer",
-              alumniOf: {
-                "@type": "CollegeOrUniversity",
-                name: "Azusa Pacific University",
-                url: "https://www.apu.edu/",
-              },
-              sameAs: [
-                "https://github.com/actuallyitsnathaniel",
-                "https://linkedin.com/in/nathaniel-bowman",
-              ],
-            },
-          ],
-        }}
+        description="nathaniel bowman (actuallyitsnathaniel) — full-stack engineer, infra, and a soft spot for music software. day job at lightfeather; weekends are sites for musicians. public MCP and REST API."
+        url={`${SITE_URL}${SECTION_MAP[state.current].href}`}
+        markdownHref={
+          state.current === "home"
+            ? `${SITE_URL}/index.md`
+            : `${SITE_URL}${SECTION_MAP[state.current].href}.md`
+        }
+        jsonLd={jsonLdGraph()}
       />
+      <WebMCP />
       <ActivityLogBackground isCRT={crt} />
       <Shell
         routerState={state}

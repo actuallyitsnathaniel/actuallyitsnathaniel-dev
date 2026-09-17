@@ -4,6 +4,7 @@
   <img width="auto" height="450" src="https://github.com/user-attachments/assets/2f075a61-7044-41a4-b37f-6f6646d43737">
 </p>
 
+One Vite + React terminal. Path routes (`/about`, `/work`, `/developers`, …) are the same URLs for humans and agents. Bio, projects, skills, and contact live in `src/lib`; React stages render them, and MCP / REST / `/ask` / generated markdown are adapters over that same data. There is no parallel HTML site.
 
 ## Installation
 
@@ -15,6 +16,17 @@ npm i
 
 `npm run dev`
 
+## Agent discovery
+
+Public, read-only surfaces for AI agents (no API key):
+
+- `GET /llms.txt` — when-to-use index
+- `GET /openapi.json` — REST spec (`/api/v1`)
+- `GET /developers` — developer portal
+- MCP product: `https://dev.actuallyitsnathaniel.com/api/mcp` and `/.well-known/mcp`
+- MCP docs: `https://dev.actuallyitsnathaniel.com/api/mcp-docs`
+- Auth skill: `/auth.md`
+
 ## MCP Server
 
 `api/mcp.ts` exposes a Model Context Protocol server at **`https://dev.actuallyitsnathaniel.com/api/mcp`** (Node runtime, Streamable HTTP transport) with 6 tools: `search_projects`, `get_toolbelt`, `get_about`, `get_resume`, `get_contact`, `get_github_activity`. No auth — every tool reads data that's already public on the site.
@@ -25,7 +37,7 @@ To test it:
 - `npx vercel dev`, then point [MCP Inspector](https://github.com/modelcontextprotocol/inspector) (`npx @modelcontextprotocol/inspector`) at `http://localhost:3000/api/mcp` for an interactive UI
 - `npx vercel build` — reproduces Vercel's real bundler/runtime locally; catches deploy-only failures (e.g. edge vs. node runtime bundling issues) before pushing
 
-**Gotcha:** `package.json` has `"type": "module"`, so Node's real ESM loader requires explicit `.js` extensions on every relative import reachable from `api/mcp.ts` (e.g. `../src/lib/projects.js`, not `../src/lib/projects`) — TypeScript's `bundler` resolution accepts either, and `tsx`/`vercel dev` silently tolerate a missing extension, so this only breaks in the actual deployed function (`ERR_MODULE_NOT_FOUND`, ready but 500ing on every request). `npm run test:mcp` and `vercel dev` **cannot** catch this class of bug. To verify for real: `npx vercel build`, then load the compiled output directly under plain Node —
+**Gotcha:** `package.json` has `"type": "module"`, so Node's real ESM loader requires explicit `.js` extensions on every relative import reachable from `api/mcp.ts` (e.g. `../src/lib/portfolio.js`, not `../src/lib/portfolio`) — TypeScript's `bundler` resolution accepts either, and `tsx`/`vercel dev` silently tolerate a missing extension, so this only breaks in the actual deployed function (`ERR_MODULE_NOT_FOUND`, ready but 500ing on every request). `npm run test:mcp` and `vercel dev` **cannot** catch this class of bug. To verify for real: `npx vercel build`, then load the compiled output directly under plain Node —
 ```bash
 cd .vercel/output/functions/api/mcp.func && node --input-type=module -e "await import('./api/mcp.js')"
 ```

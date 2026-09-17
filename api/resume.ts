@@ -1,3 +1,4 @@
+// Edge: fetch-proxy to Google Docs PDF export. MCP stays on Node for the SDK transport.
 export const config = { runtime: "edge" };
 
 export default async function handler(): Promise<Response> {

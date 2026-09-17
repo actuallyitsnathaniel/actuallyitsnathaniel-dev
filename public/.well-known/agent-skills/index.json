@@ -1,0 +1,24 @@
+{
+  "skills": [
+    {
+      "name": "search-projects",
+      "description": "Search Nathaniel Bowman's project history (musician sites, tools, mobile apps) by name, stack, or keyword.",
+      "url": "https://dev.actuallyitsnathaniel.com/skills/portfolio/SKILL.md"
+    },
+    {
+      "name": "get-about",
+      "description": "Return Nathaniel Bowman's bio, education, production experience, location, and stack.",
+      "url": "https://dev.actuallyitsnathaniel.com/about.md"
+    },
+    {
+      "name": "get-contact",
+      "description": "Return email, GitHub, and LinkedIn for Nathaniel Bowman (actuallyitsnathaniel).",
+      "url": "https://dev.actuallyitsnathaniel.com/contact.md"
+    },
+    {
+      "name": "use-public-api",
+      "description": "Call the read-only REST API at /api/v1 or the MCP server at /api/mcp. No API key. Auth walkthrough in /auth.md.",
+      "url": "https://dev.actuallyitsnathaniel.com/developers.md"
+    }
+  ]
+}

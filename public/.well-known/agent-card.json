@@ -1,0 +1,51 @@
+{
+  "name": "Nathaniel Bowman Portfolio Agent",
+  "description": "Answers questions about Nathaniel Bowman (actuallyitsnathaniel): bio, projects, skills, resume, and how to get in touch. Public, read-only, no API key.",
+  "url": "https://dev.actuallyitsnathaniel.com/api/mcp",
+  "version": "1.0.0",
+  "protocolVersion": "0.2.1",
+  "provider": {
+    "organization": "Nathaniel Bowman",
+    "url": "https://dev.actuallyitsnathaniel.com"
+  },
+  "documentationUrl": "https://dev.actuallyitsnathaniel.com/developers",
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": false,
+    "stateTransitionHistory": false
+  },
+  "defaultInputModes": ["text"],
+  "defaultOutputModes": ["text", "application/json"],
+  "skills": [
+    {
+      "id": "search_projects",
+      "name": "Search projects",
+      "description": "Search client sites, tools, and mobile apps by name, stack, or keyword.",
+      "tags": ["portfolio", "projects"]
+    },
+    {
+      "id": "get_toolbelt",
+      "name": "Get toolbelt",
+      "description": "Search languages, frameworks, cloud, and devops tools Nathaniel uses.",
+      "tags": ["skills"]
+    },
+    {
+      "id": "get_about",
+      "name": "Get about",
+      "description": "Short bio, education, experience, location, and stack.",
+      "tags": ["about"]
+    },
+    {
+      "id": "get_contact",
+      "name": "Get contact",
+      "description": "Email, GitHub, and LinkedIn.",
+      "tags": ["contact"]
+    },
+    {
+      "id": "get_resume",
+      "name": "Get resume",
+      "description": "URL of the current resume PDF.",
+      "tags": ["resume"]
+    }
+  ]
+}

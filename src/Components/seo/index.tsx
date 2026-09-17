@@ -5,6 +5,7 @@ interface SEOProps {
   description?: string;
   image?: string;
   url?: string;
+  markdownHref?: string;
   type?: "website" | "music.album" | "music.song" | "profile";
   jsonLd?: object;
 }
@@ -14,6 +15,7 @@ const SEO = ({
   description = "Portfolio of Nathaniel Bowman - Mid-Level Full-Stack Engineer specializing in Node.js, AWS, Postgres, CI/CD pipelines, and building tools for musicians and creative teams.",
   image,
   url,
+  markdownHref,
   type = "website",
   jsonLd,
 }: SEOProps) => {
@@ -55,7 +57,14 @@ const SEO = ({
       { name: "twitter:description", content: description },
       { name: "twitter:image", content: finalImage },
     ],
-    link: [{ rel: "canonical", href: finalUrl }],
+    link: [
+      { rel: "canonical", href: finalUrl },
+      {
+        rel: "alternate",
+        type: "text/markdown",
+        href: markdownHref || `${siteUrl}/index.md`,
+      },
+    ],
     script: jsonLd
       ? [{ type: "application/ld+json", innerHTML: JSON.stringify(jsonLd) }]
       : [],

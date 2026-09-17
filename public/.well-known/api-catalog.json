@@ -1,0 +1,58 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://dev.actuallyitsnathaniel.com/.well-known/api-catalog",
+      "item": [
+        {
+          "href": "https://dev.actuallyitsnathaniel.com/openapi.json",
+          "type": "application/json",
+          "title": "Portfolio REST API OpenAPI description"
+        },
+        {
+          "href": "https://dev.actuallyitsnathaniel.com/api/v1",
+          "type": "application/json",
+          "title": "Portfolio REST API catalog"
+        },
+        {
+          "href": "https://dev.actuallyitsnathaniel.com/api/mcp",
+          "type": "application/json",
+          "title": "Portfolio MCP server (Streamable HTTP)"
+        },
+        {
+          "href": "https://dev.actuallyitsnathaniel.com/api/mcp-docs",
+          "type": "application/json",
+          "title": "Docs MCP server (Streamable HTTP)"
+        }
+      ]
+    },
+    {
+      "anchor": "https://dev.actuallyitsnathaniel.com/api/v1",
+      "service-desc": [
+        {
+          "href": "https://dev.actuallyitsnathaniel.com/openapi.json",
+          "type": "application/json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://dev.actuallyitsnathaniel.com/developers",
+          "type": "text/html"
+        },
+        {
+          "href": "https://dev.actuallyitsnathaniel.com/docs.md",
+          "type": "text/markdown"
+        },
+        {
+          "href": "https://dev.actuallyitsnathaniel.com/api.md",
+          "type": "text/markdown"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://dev.actuallyitsnathaniel.com/api/v1/health",
+          "type": "application/json"
+        }
+      ]
+    }
+  ]
+}

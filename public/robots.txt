@@ -3,3 +3,4 @@ Allow: /
 Disallow:
 
 Sitemap: https://dev.actuallyitsnathaniel.com/sitemap.xml
+Schemamap: https://dev.actuallyitsnathaniel.com/schemamap.xml

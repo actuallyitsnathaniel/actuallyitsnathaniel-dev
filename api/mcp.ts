@@ -2,9 +2,11 @@ import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import { z } from "zod";
-import { PROJECTS } from "../src/lib/projects.js";
-import { ABOUT } from "../src/lib/about.js";
-import { SKILLS } from "../src/lib/skills.js";
+import { aboutText, contactText, projectsText, skillsText } from "../src/lib/portfolio.js";
+
+// Node runtime (VercelRequest/VercelResponse): Streamable HTTP MCP needs Node's
+// IncomingMessage/ServerResponse. Fetch-proxy routes (resume, contributions) and
+// the REST/ask adapters stay on Edge.
 
 const GH_QUERY = `
   query($login: String!) {
@@ -72,26 +74,9 @@ function buildServer() {
       },
       annotations: READ_ONLY,
     },
-    safe(async ({ query }: { query?: string }) => {
-      const q = query?.toLowerCase().trim() ?? "";
-      const matches = PROJECTS.filter(
-        (p) =>
-          !q ||
-          p.name.toLowerCase().includes(q) ||
-          p.tag.toLowerCase().includes(q) ||
-          p.stack.toLowerCase().includes(q) ||
-          p.aliases.some((a) => a.includes(q)),
-      );
-      const text = matches
-        .map(
-          (p) =>
-            `${p.name} (${p.date})\nrole: ${p.role}\nstack: ${p.stack}` +
-            (p.liveUrl ? `\nlive: ${p.liveUrl}` : "") +
-            `\n${p.bullets.map((b) => `- ${b.text}`).join("\n")}`,
-        )
-        .join("\n\n");
-      return { content: [{ type: "text", text: text || "no matching projects" }] };
-    }),
+    safe(async ({ query }: { query?: string }) => ({
+      content: [{ type: "text", text: projectsText(query) }],
+    })),
   );
 
   server.registerTool(
@@ -108,38 +93,22 @@ function buildServer() {
       },
       annotations: READ_ONLY,
     },
-    safe(async ({ query }: { query?: string }) => {
-      const q = query?.toLowerCase().trim() ?? "";
-      const matches = SKILLS.filter(
-        (s) =>
-          !q ||
-          s.name.toLowerCase().includes(q) ||
-          s.category.toLowerCase().includes(q) ||
-          s.keywords.some((k) => k.toLowerCase().includes(q)),
-      );
-      const text = matches.map((s) => `${s.name} — ${s.category}`).join("\n");
-      return { content: [{ type: "text", text: text || "no matching tools" }] };
-    }),
+    safe(async ({ query }: { query?: string }) => ({
+      content: [{ type: "text", text: skillsText(query) }],
+    })),
   );
 
   server.registerTool(
     "get_about",
     {
       title: "Get about",
-      description: "Returns a short bio for Nathaniel Bowman plus key facts (education, experience, location, stack).",
+      description:
+        "Returns a short bio, a short hire-me note, and key facts (education, experience, location, stack).",
       inputSchema: {},
       annotations: READ_ONLY,
     },
     safe(async () => ({
-      content: [
-        {
-          type: "text",
-          text: [
-            `${ABOUT.bio} ${ABOUT.tagline}`,
-            ...ABOUT.facts.map((f) => `${f.label}: ${f.value}`),
-          ].join("\n\n"),
-        },
-      ],
+      content: [{ type: "text", text: aboutText() }],
     })),
   );
 
@@ -165,16 +134,7 @@ function buildServer() {
       annotations: READ_ONLY,
     },
     safe(async () => ({
-      content: [
-        {
-          type: "text",
-          text: [
-            "email: nathanielrbowman@gmail.com",
-            "github: https://github.com/actuallyitsnathaniel",
-            "linkedin: https://linkedin.com/in/nathaniel-bowman",
-          ].join("\n"),
-        },
-      ],
+      content: [{ type: "text", text: contactText() }],
     })),
   );
 

@@ -10,7 +10,6 @@ import { FilterBar } from "./FilterBar";
 import { ChipNav } from "./ChipNav";
 import { Stage } from "./Stage";
 import { HelpOverlay } from "./HelpOverlay";
-import { ContactOverlay } from "./ContactOverlay";
 import { LogOverlay } from "./LogOverlay";
 import { useResumeDownload } from "../../hooks/useResumeDownload";
 
@@ -33,7 +32,6 @@ export function Shell({
 }: ShellProps) {
   const [helpOpen, setHelpOpen] = useState(false);
   const [helpOpenWithThemes, setHelpOpenWithThemes] = useState(false);
-  const [contactOpen, setContactOpen] = useState(false);
   const [logOpen, setLogOpen] = useState(false);
   const [highlightedSection, setHighlightedSection] = useState<SectionId | null>(null);
   const [chipNavVisible, setChipNavVisible] = useState(false);
@@ -47,11 +45,9 @@ export function Shell({
 
   const openHelp = useCallback(() => { setHelpOpenWithThemes(false); setHelpOpen(true); }, []);
   const openHelpThemePicker = useCallback(() => { setHelpOpenWithThemes(true); setHelpOpen(true); }, []);
-  const openContact = useCallback(() => setContactOpen(true), []);
   const openLog = useCallback(() => setLogOpen(true), []);
   const closeOverlays = useCallback(() => {
     setHelpOpen(false);
-    setContactOpen(false);
     setLogOpen(false);
     setHighlightedSection(null);
     setChipNavVisible(false);
@@ -72,7 +68,6 @@ export function Shell({
     go: navigate,
     toggleCrt: onToggleCrt,
     setTheme,
-    openContact,
     openHelp,
     openLog,
     downloadResume,
@@ -137,7 +132,6 @@ export function Shell({
         currentTheme={currentTheme}
         openThemePicker={helpOpenWithThemes}
       />
-      <ContactOverlay open={contactOpen} onClose={() => setContactOpen(false)} />
       <LogOverlay open={logOpen} onClose={() => setLogOpen(false)} />
     </>
   );
