@@ -26,6 +26,8 @@ export const ABOUT = {
     "so the stance is not \"ai writes, humans remain for the scraps.\" the stance is: i will use every tool that makes me faster, and i will still be the one who reads the result. i'm not allergic to the tooling. i'm allergic to shipping something i did not understand. that is the difference between output and engineering.",
     'you should hire me for that difference. four years in federal enterprise at lightfeather — serverless aws, pipelines, observability, the parts of the stack that only get noticed when they break. on the side, sites for musicians who should not have to fight their own software. both are the same job: make the system hold, and keep the craft out of the way. on an ai-saturated team, that looks like review. it looks like saying no to a clever pr. it looks like calling out the "smoking gun" that was actually a blank.',
     "the best engineering still looks invisible, because most of that invisibility has always been reading.",
+    "",
+    "p.s. em-dashes for life. don’t let AI ruin what i was taught to use in school.",
   ],
   facts: [
     {
