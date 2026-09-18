@@ -158,11 +158,11 @@ export function HomeStage() {
             alt="ora agent readiness score"
             width="236"
             height="76"
-            className="block w-[236px] h-[76px]"
+            className="block h-19 w-59"
           />
         </a>
         <a
-          className="no-underline border-0 shrink-0 flex w-[236px] h-[76px] items-center gap-2.5 px-2 overflow-hidden rounded-xl bg-[#111] outline outline-[#262626] outline-offset-[-0.5px] transition-[outline-color] duration-150 hover:outline-[color-mix(in_srgb,var(--accent)_40%,#262626)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          className="no-underline border-0 shrink-0 flex h-19 w-59 items-center gap-2.5 px-2 overflow-hidden rounded-xl bg-[#111] outline outline-[#262626] outline-offset-[-0.5px] transition-[outline-color] duration-150 hover:outline-[color-mix(in_srgb,var(--accent)_40%,#262626)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           href="https://www.credly.com/badges/5d0058f6-76f3-4f9a-ba0e-09986557bf7c/public_url"
           target="_blank"
           rel="noopener noreferrer"
@@ -173,7 +173,7 @@ export function HomeStage() {
             alt=""
             width="68"
             height="68"
-            className="h-[68px] w-[68px] shrink-0 object-contain"
+            className="size-17 shrink-0 object-contain"
           />
           <div className="min-w-0 leading-tight">
             <div className="text-[11px] tracking-[0.08em] text-faint">

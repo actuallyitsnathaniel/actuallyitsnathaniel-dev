@@ -27,7 +27,7 @@ const CELL_COLORS: Record<number, string> = {
   1: "bg-[color-mix(in_srgb,var(--accent)_35%,transparent)]",
   2: "bg-[color-mix(in_srgb,var(--accent)_64%,transparent)]",
   3: "bg-[color-mix(in_srgb,var(--accent)_100%,transparent)]",
-  4: "bg-[var(--accent)]",
+  4: "bg-(--accent)",
 };
 
 const SKELETON_COLS = 52;

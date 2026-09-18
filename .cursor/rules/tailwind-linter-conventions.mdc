@@ -1,0 +1,39 @@
+---
+description: Tailwind classes must match this project's Tailwind version and IntelliSense canonical-class linter. Prefer scale/named utilities over unnecessary -[…] arbitrary values.
+globs: "**/*.{tsx,jsx,html,vue,svelte,astro,css,scss,mdx}"
+alwaysApply: false
+---
+
+# Tailwind follows the linter, not invented arbitrary values
+
+Detect the installed Tailwind major version (`package.json`, `@import "tailwindcss"` vs `tailwind.config.*`). Write classes in that version's canonical form. After edits, fix Tailwind IntelliSense diagnostics (`suggestCanonicalClasses`, `cssConflict`) instead of leaving warnings.
+
+## Do not use `-[]` when a canonical class exists
+
+Arbitrary values are a last resort. If the linter can rewrite it, write the rewrite.
+
+```
+# Tailwind v4 (spacing is 0.25rem / 4px)
+w-[236px] h-[76px]     →  w-59 h-19
+h-[68px] w-[68px]      →  size-17
+w-[16px]               →  w-4
+bg-[var(--accent)]     →  bg-(--accent)
+px-[var(--pad-x)]      →  px-(--pad-x)
+z-[5]                  →  z-5
+duration-[150ms]       →  duration-150
+tracking-[0.1em]       →  tracking-widest
+leading-[1.5]          →  leading-normal
+bg-white/[0.02]        →  bg-white/2
+```
+
+v3 has a fixed spacing scale (`w-4`, `w-64`) and no `utility-(--var)` shorthand. Do not invent v4 scale numbers (`w-59`) in a v3 project.
+
+## Arbitrary `-[]` is OK only when nothing else matches
+
+Keep `max-w-[36ch]`, `grid-cols-[200px_1fr]`, `min-[601px]:`, `color-mix(...)`, `outline-offset-[-0.5px]`, and similar one-offs. Do not force a nearby token if it changes the design.
+
+## Never
+
+- Pixel arbitrary values that divide evenly by 4 in v4 (`-[Np x]` → scale)
+- `-[var(--token)]` in v4 (use `-(--token)`)
+- Ignoring the Problems panel after writing `className`
