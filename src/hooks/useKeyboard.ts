@@ -1,12 +1,12 @@
 import { useEffect, useRef } from "react";
 import { GO_MAP, type SectionId } from "../lib/sections";
+import { isTypingTarget, type PromptMode } from "../lib/prompt";
 
 interface KeyboardContext {
   go: (id: SectionId) => void;
   openHelp: () => void;
   closeOverlays: () => void;
-  focusFilter: () => void;
-  run: (cmd: string) => boolean;
+  focusFilter: (opts?: { mode?: PromptMode }) => void;
 }
 
 export function useKeyboard(ctx: KeyboardContext) {
@@ -15,12 +15,11 @@ export function useKeyboard(ctx: KeyboardContext) {
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      const target = e.target as HTMLElement;
-      const inInput = target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable;
+      const inInput = isTypingTarget(e.target);
 
       if (e.key === "Escape") {
         ctx.closeOverlays();
-        if (inInput) (target as HTMLInputElement).blur?.();
+        if (inInput) (e.target as HTMLInputElement).blur?.();
         return;
       }
 
@@ -32,9 +31,11 @@ export function useKeyboard(ctx: KeyboardContext) {
         return;
       }
 
-      if (e.key === "/") {
+      if (e.key === "/" || e.key === ":") {
+        if (e.ctrlKey || e.metaKey || e.altKey) return;
         e.preventDefault();
-        ctx.focusFilter();
+        ctx.closeOverlays();
+        ctx.focusFilter({ mode: e.key === ":" ? ":" : "/" });
         return;
       }
 
@@ -50,7 +51,9 @@ export function useKeyboard(ctx: KeyboardContext) {
 
       if (e.key.toLowerCase() === "g") {
         gPending.current = true;
-        gTimer.current = setTimeout(() => { gPending.current = false; }, 1000);
+        gTimer.current = setTimeout(() => {
+          gPending.current = false;
+        }, 1000);
       }
     };
 

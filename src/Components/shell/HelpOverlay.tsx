@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { ThemeName } from "../../hooks/useTheme";
+import { COMMANDS } from "../../lib/commands";
 
 const THEME_HEX: Record<ThemeName, string> = {
   green: "#7ee787",
@@ -187,18 +188,34 @@ export function HelpOverlay({
             input modes
           </div>
         </div>
-        <Row keys={<Kbd>/</Kbd>} desc="filter · default mode" />
-        <Row keys={<Kbd>:</Kbd>} desc="command" />
+        <Row
+          keys={<Kbd>/</Kbd>}
+          desc="filter · focus or switch. live query survives commands"
+        />
+        <Row
+          keys={<Kbd>:</Kbd>}
+          desc="command · focus or switch. type the payload only"
+        />
         <Row
           keys={<Kbd>~</Kbd>}
           desc={
             <>
-              navigate (e.g. <Kbd>~/work</Kbd>)
+              navigate · path payload (e.g. <Kbd>work</Kbd>)
             </>
           }
         />
+        <Row keys={<Kbd>↑</Kbd>} desc="older line" />
+        <Row keys={<Kbd>↓</Kbd>} desc="newer line" />
+        <Row keys={<Kbd>tab</Kbd>} desc="complete · shift-tab cycles back" />
+        <Row keys={<Kbd>ctrl+r</Kbd>} desc="reverse search history" />
+        <Row keys={<Kbd>ctrl+a</Kbd>} desc="start of line" />
+        <Row keys={<Kbd>ctrl+e</Kbd>} desc="end of line" />
+        <Row keys={<Kbd>ctrl+u</Kbd>} desc="kill to start" />
+        <Row keys={<Kbd>ctrl+k</Kbd>} desc="kill to end" />
+        <Row keys={<Kbd>ctrl+w</Kbd>} desc="kill previous word" />
+        <Row keys={<Kbd>ctrl+l</Kbd>} desc="clear line · wipe log" />
         <Row keys={<Kbd>*</Kbd>} desc="wipe filter · show all" />
-        <Row keys={<Kbd>esc</Kbd>} desc="blur / close" />
+        <Row keys={<Kbd>esc</Kbd>} desc="back to filter / blur / close" />
         <Row keys={<Kbd>?</Kbd>} desc="this overlay" />
 
         <div className="mt-3.5 pt-3 border-t border-rule">
@@ -206,70 +223,70 @@ export function HelpOverlay({
             commands
           </div>
         </div>
-        <Row keys={<Kbd>:resume</Kbd>} desc="download résumé" />
-        <Row keys={<Kbd>:contact</Kbd>} desc="~/contact" />
-        <Row keys={<Kbd>:crt</Kbd>} desc="toggle scanlines + phosphor" />
-
-        {/* :theme row with expandable swatch picker */}
-        <div
-          ref={themeRowRef}
-          className="grid grid-cols-[110px_1fr] gap-3.5 py-1.5 text-[13px] text-dim"
-        >
-          <div className="flex gap-1 items-center">
-            <Kbd>:theme</Kbd>
-          </div>
-          <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-dim text-[12px]">
-              {ALL_THEMES.length} colors
-            </span>
-            <button
-              className="text-[10px] outline outline-[color-mix(in_srgb,var(--accent)_28%,var(--rule-2))] tracking-widest uppercase px-1.5 py-px rounded-xs text-faint transition-[color,border-color] duration-120 hover:text-accent hover:border-[color-mix(in_srgb,var(--accent)_40%,transparent)]"
-              onClick={() => setThemesExpanded((v) => !v)}
-              aria-expanded={themesExpanded}
-            >
-              {themesExpanded ? "collapse ↑" : "expand ↓"}
-            </button>
-          </div>
-        </div>
-
-        {themesExpanded && (
-          <div className="mt-1 mb-1.5 grid grid-cols-3 gap-1.5 pl-27.5">
-            {ALL_THEMES.map((t) => {
-              const isActive = currentTheme === t;
-              return (
-                <button
-                  key={t}
-                  onClick={() => setTheme(t)}
-                  className={`flex items-center gap-1.5 px-2 py-1 rounded-xs border text-[11px] text-left transition-[border-color,background] duration-120 ${
-                    isActive
-                      ? "border-[color-mix(in_srgb,var(--accent)_50%,transparent)] bg-[color-mix(in_srgb,var(--accent)_6%,transparent)] text-accent"
-                      : "border-rule text-faint hover:border-rule2 hover:text-dim"
-                  }`}
-                  aria-pressed={isActive}
+        {COMMANDS.map((cmd) => {
+          if (cmd.name === "theme") {
+            return (
+              <div key="theme">
+                <div
+                  ref={themeRowRef}
+                  className="grid grid-cols-[110px_1fr] gap-3.5 py-1.5 text-[13px] text-dim"
                 >
-                  <span
-                    className="w-2 h-2 rounded-full shrink-0"
-                    style={{ backgroundColor: THEME_HEX[t] }}
-                    aria-hidden="true"
-                  />
-                  {t}
-                </button>
-              );
-            })}
-          </div>
-        )}
-
-        <Row keys={<Kbd>:home</Kbd>} desc="~/whoami" />
-        <Row keys={<Kbd>:back</Kbd>} desc="previous section" />
-        <Row keys={<Kbd>:github</Kbd>} desc="open github profile" />
-        <Row keys={<Kbd>:linkedin</Kbd>} desc="open linkedin" />
-        <Row keys={<Kbd>:share</Kbd>} desc="copy url to clipboard" />
-        <Row keys={<Kbd>:mcp</Kbd>} desc="copy mcp server endpoint" />
-        <Row keys={<Kbd>:log</Kbd>} desc="view full activity log" />
-        <Row keys={<Kbd>:?</Kbd>} desc="this overlay" />
-      </div>
-      <div className="mt-3.5 pt-3 border-t border-rule text-accent opacity-50 text-[11px] text-center">
-        esc to close
+                  <div className="flex gap-1 items-center">
+                    <Kbd>:theme</Kbd>
+                  </div>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-dim text-[12px]">
+                      {ALL_THEMES.length} colors
+                    </span>
+                    <button
+                      className="text-[10px] outline outline-[color-mix(in_srgb,var(--accent)_28%,var(--rule-2))] tracking-widest uppercase px-1.5 py-px rounded-xs text-faint transition-[color,border-color] duration-120 hover:text-accent hover:border-[color-mix(in_srgb,var(--accent)_40%,transparent)]"
+                      onClick={() => setThemesExpanded((v) => !v)}
+                      aria-expanded={themesExpanded}
+                    >
+                      {themesExpanded ? "collapse ↑" : "expand ↓"}
+                    </button>
+                  </div>
+                </div>
+                {themesExpanded && (
+                  <div className="mt-1 mb-1.5 grid grid-cols-3 gap-1.5 pl-27.5">
+                    {ALL_THEMES.map((t) => {
+                      const isActive = currentTheme === t;
+                      return (
+                        <button
+                          key={t}
+                          onClick={() => setTheme(t)}
+                          className={`flex items-center gap-1.5 px-2 py-1 rounded-xs border text-[11px] text-left transition-[border-color,background] duration-120 ${
+                            isActive
+                              ? "border-[color-mix(in_srgb,var(--accent)_50%,transparent)] bg-[color-mix(in_srgb,var(--accent)_6%,transparent)] text-accent"
+                              : "border-rule text-faint hover:border-rule2 hover:text-dim"
+                          }`}
+                          aria-pressed={isActive}
+                        >
+                          <span
+                            className="w-2 h-2 rounded-full shrink-0"
+                            style={{ backgroundColor: THEME_HEX[t] }}
+                            aria-hidden="true"
+                          />
+                          {t}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          }
+          return (
+            <Row
+              key={cmd.name}
+              keys={<Kbd>{cmd.kbd ?? `:${cmd.name}`}</Kbd>}
+              desc={cmd.help}
+            />
+          );
+        })}
+        <div className="mt-3.5 pt-3 border-t border-rule text-accent opacity-50 text-[11px] text-center">
+          esc to close
+        </div>
       </div>
     </div>
   );

@@ -16,6 +16,28 @@ npm i
 
 `npm run dev`
 
+## Terminal
+
+The human UI is a prompt over path routes, not a PTY. `?` or `:help` opens the same reference in the app.
+
+**Modes** (chrome prefix; type the payload only):
+
+- `/` — live filter. Unfocused `/` focuses the line. Query stays on the stage while you run a command.
+- `:` — command. Unfocused `:` focuses and switches to command mode.
+- `~` — navigate by section path (`work`, `about`, …).
+
+`g` then `w|a|t|i|r|m|h` jumps sections without the prompt. `*` wipes the filter.
+
+**Line editor** (bash analogs on the single-line input):
+
+- `↑` / `↓` — history (`localStorage` key `ain_hist`, consecutive-deduped)
+- `Tab` / `Shift+Tab` — complete commands, themes, paths
+- `Ctrl+R` — reverse incremental search
+- `Ctrl+A` / `E` / `U` / `K` / `W` — start, end, kill-to-start, kill-to-end, kill-word
+- `Ctrl+L` or `:clear` — clear the line and wipe the activity log
+
+Commands include `:resume`, `:theme <name>`, `:crt`, `:github`, `:share`, `:mcp`, `:log`. Full list is in the overlay.
+
 ## Agent discovery
 
 Public, read-only surfaces for AI agents (no API key):

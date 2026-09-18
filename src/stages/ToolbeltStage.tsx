@@ -17,10 +17,7 @@ function matchesFilter(skill: Skill, query: string): boolean {
 }
 
 export function ToolbeltStage({ filter }: ToolbeltStageProps) {
-  const query =
-    filter.startsWith(":") || filter.startsWith("~")
-      ? ""
-      : filter.toLowerCase().trim();
+  const query = filter.toLowerCase().trim();
 
   const renderTool = (skill: Skill) => {
     const hit = query && matchesFilter(skill, query);

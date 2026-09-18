@@ -18,6 +18,7 @@ export interface LogEntry {
 interface ActivityLogContextType {
   logs: LogEntry[];
   log: (type: LogType, message: string) => void;
+  clear: () => void;
 }
 
 const ActivityLogContext = createContext<ActivityLogContextType | null>(null);
@@ -39,6 +40,8 @@ export const ActivityLogProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [logs, setLogs] = useState<LogEntry[]>([]);
 
+  const clear = useCallback(() => setLogs([]), []);
+
   const log = useCallback((type: LogType, message: string) => {
     const entry: LogEntry = {
       id: `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
@@ -54,7 +57,7 @@ export const ActivityLogProvider: React.FC<{ children: React.ReactNode }> = ({
     });
   }, []);
 
-  const value = useMemo(() => ({ logs, log }), [logs, log]);
+  const value = useMemo(() => ({ logs, log, clear }), [logs, log, clear]);
 
   return (
     <ActivityLogContext.Provider value={value}>

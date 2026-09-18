@@ -30,10 +30,7 @@ export function WorkStage({
   onToggleEntry,
 }: WorkStageProps) {
   const { log } = useActivityLog();
-  const query =
-    filter.startsWith(":") || filter.startsWith("~")
-      ? ""
-      : filter.toLowerCase().trim();
+  const query = filter.toLowerCase().trim();
 
   const matchesEntry = (entry: WorkEntry): boolean => {
     if (!query) return true;

@@ -111,7 +111,9 @@ export function defaultOpenEntries(): string[] {
 }
 
 export function filterFromUrl(): string {
-  return new URLSearchParams(window.location.search).get("f") ?? "";
+  const f = new URLSearchParams(window.location.search).get("f") ?? "";
+  if (f.startsWith(":") || f.startsWith("~")) return "";
+  return f;
 }
 
 export function entriesFromUrl(): string[] {

@@ -5,6 +5,7 @@ import { useCommands } from "../../hooks/useCommands";
 import { useKeyboard } from "../../hooks/useKeyboard";
 import { useActivityLog, type LogType } from "../../context/ActivityLogContext";
 import type { ThemeName } from "../../hooks/useTheme";
+import type { PromptMode } from "../../lib/prompt";
 import { StatusBar } from "./StatusBar";
 import { FilterBar } from "./FilterBar";
 import { ChipNav } from "./ChipNav";
@@ -35,8 +36,10 @@ export function Shell({
   const [logOpen, setLogOpen] = useState(false);
   const [highlightedSection, setHighlightedSection] = useState<SectionId | null>(null);
   const [chipNavVisible, setChipNavVisible] = useState(false);
+  const [mode, setMode] = useState<PromptMode>("/");
+  const [draft, setDraft] = useState("");
   const filterInputRef = useRef<HTMLInputElement | null>(null);
-  const { log } = useActivityLog();
+  const { log, clear } = useActivityLog();
   const { downloadResume } = useResumeDownload();
 
   const logActivity = useCallback((type: LogType, msg: string) => {
@@ -52,12 +55,23 @@ export function Shell({
     setHighlightedSection(null);
     setChipNavVisible(false);
   }, []);
-  const focusFilter = useCallback(() => {
+  const focusFilter = useCallback((opts?: { mode?: PromptMode }) => {
+    if (opts?.mode === ":") {
+      setMode(":");
+      setDraft("");
+    } else if (opts?.mode === "~") {
+      setMode("~");
+      setDraft("");
+    } else if (opts?.mode === "/") {
+      setMode("/");
+    }
     filterInputRef.current?.focus();
   }, []);
 
   const navigate = useCallback((id: SectionId) => {
     go(id);
+    setMode("/");
+    setDraft("");
     setHighlightedSection(null);
     setChipNavVisible(false);
     filterInputRef.current?.blur();
@@ -70,6 +84,7 @@ export function Shell({
     setTheme,
     openHelp,
     openLog,
+    clearLog: clear,
     downloadResume,
     logActivity,
   });
@@ -79,7 +94,6 @@ export function Shell({
     openHelp,
     closeOverlays,
     focusFilter,
-    run,
   });
 
   const handleChipCommand = useCallback((cmd: string) => {
@@ -97,14 +111,20 @@ export function Shell({
         <div className="bar">
           <FilterBar
             current={routerState.current}
-            value={routerState.filter}
-            onChange={setFilter}
+            mode={mode}
+            onModeChange={setMode}
+            filter={routerState.filter}
+            onFilterChange={setFilter}
+            draft={draft}
+            onDraftChange={setDraft}
             onNavigate={navigate}
             onCommand={handleFilterCommand}
             onOpenHelp={openHelp}
             onHighlight={setHighlightedSection}
             onFocusChange={(focused) => { if (focused) setChipNavVisible(true); }}
             onCollapse={() => setChipNavVisible(false)}
+            onCloseOverlays={closeOverlays}
+            onClearLog={clear}
             inputRef={filterInputRef}
           />
           <div className={chipNavVisible ? "" : "max-sm:hidden"}>
@@ -113,7 +133,7 @@ export function Shell({
               onNavigate={navigate}
               onCommand={handleChipCommand}
               onOpenThemePicker={openHelpThemePicker}
-              highlightedSection={routerState.filter && !routerState.filter.startsWith(":") && !routerState.filter.startsWith("~") ? highlightedSection : undefined}
+              highlightedSection={mode === "/" && routerState.filter ? highlightedSection : undefined}
             />
           </div>
         </div>

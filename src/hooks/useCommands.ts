@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { SECTIONS, type SectionId } from "../lib/sections";
-import type { ThemeName } from "./useTheme";
+import { THEME_NAMES, type ThemeName } from "./useTheme";
 import type { LogType } from "../context/ActivityLogContext";
 
 interface CommandContext {
@@ -9,9 +9,12 @@ interface CommandContext {
   setTheme: (t: ThemeName) => void;
   openHelp: () => void;
   openLog: () => void;
+  clearLog: () => void;
   downloadResume: () => void;
   logActivity: (type: LogType, msg: string) => void;
 }
+
+const THEME_SET = new Set<string>(THEME_NAMES);
 
 export function useCommands(ctx: CommandContext) {
   const run = useCallback(
@@ -37,39 +40,7 @@ export function useCommands(ctx: CommandContext) {
           ctx.logActivity("event", ":crt · toggled");
           return true;
         case "theme":
-          if (
-            [
-              "green",
-              "amber",
-              "mono",
-              "red",
-              "orange",
-              "yellow",
-              "lime",
-              "teal",
-              "cyan",
-              "sky",
-              "blue",
-              "indigo",
-              "violet",
-              "purple",
-              "fuchsia",
-              "pink",
-              "rose",
-              "slate",
-              "zinc",
-              "gold",
-              "coral",
-              "mint",
-              "lavender",
-              "peach",
-              "sage",
-              "dusk",
-              "ember",
-              "frost",
-              "neon",
-            ].includes(arg)
-          ) {
+          if (THEME_SET.has(arg)) {
             ctx.setTheme(arg as ThemeName);
             ctx.logActivity("event", `:theme ${arg}`);
           }
@@ -129,6 +100,9 @@ export function useCommands(ctx: CommandContext) {
         case "log":
           ctx.openLog();
           ctx.logActivity("event", ":log · activity log opened");
+          return true;
+        case "clear":
+          ctx.clearLog();
           return true;
         case "?":
         case "help":

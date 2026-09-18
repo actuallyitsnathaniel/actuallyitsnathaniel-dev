@@ -129,10 +129,7 @@ interface InfraStageProps {
 }
 
 export function InfraStage({ filter }: InfraStageProps) {
-  const query =
-    filter.startsWith(":") || filter.startsWith("~")
-      ? ""
-      : filter.toLowerCase().trim();
+  const query = filter.toLowerCase().trim();
 
   const matchesRow = (row: InfraRow): boolean => {
     if (!query) return true;
