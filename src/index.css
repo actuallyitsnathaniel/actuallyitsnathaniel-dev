@@ -351,7 +351,7 @@ body::before {
 .stage h1 {
   font-family: var(--display);
   font-weight: 400;
-  font-size: var(--t-64);
+  font-size: 56px;
   line-height: 1;
   letter-spacing: -0.005em;
   margin: 0 0 6px;

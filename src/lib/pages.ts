@@ -269,7 +269,7 @@ export function agentFiles(): Record<string, string> {
       `Public GitHub: https://github.com/actuallyitsnathaniel. Heatmap data: GET ${SITE_URL}/api/contributions. MCP: get_github_activity.`,
     ]),
     "/misc.md": mdPage(`Misc — ${SITE_NAME}`, [
-      `Personal extras from the terminal at ${SITE_URL}/misc. Currently listening: Kora — Skrillex, Varg², Eurohead, SIIICKBRAIN, swedm.`,
+      `Personal extras from the terminal at ${SITE_URL}/misc. Currently listening: Kora — Skrillex, Varg², Eurohead, SIIICKBRAIN, swedm. Currently reading: Magnifica Humanitas — Pope Leo XIV. The encyclical is free on vatican.va; the printed Word on Fire copy is a personal preference for real pages.`,
     ]),
   };
 }
