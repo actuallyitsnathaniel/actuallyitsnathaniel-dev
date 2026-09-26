@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import profilePic from "/src/assets/images/pfp_2023.png";
-import unqorkBadge from "/src/assets/images/unqork-creator.webp";
+import unqorkBadge from "/src/assets/images/unqork-developer.webp";
 import { useResumeDownload } from "../hooks/useResumeDownload";
 import { timeAgo } from "../utils/timeAgo";
 import { ContribHeatmap } from "../Components/ContribHeatmap";
@@ -162,11 +162,11 @@ export function HomeStage() {
           />
         </a>
         <a
-          className="no-underline border-0 shrink-0 flex h-19 w-59 items-center gap-2.5 px-2 overflow-hidden rounded-xl bg-[#111] outline outline-[#262626] outline-offset-[-0.5px] transition-[outline-color] duration-150 hover:outline-[color-mix(in_srgb,var(--accent)_40%,#262626)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          href="https://www.credly.com/badges/5d0058f6-76f3-4f9a-ba0e-09986557bf7c/public_url"
+          className="no-underline border-0 shrink-0 flex h-19 w-59 items-center justify-between px-2.5 overflow-hidden rounded-xl bg-[#111] outline outline-[#262626] outline-offset-[-0.5px] transition-[outline-color] duration-150 hover:outline-[color-mix(in_srgb,var(--accent)_40%,#262626)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          href="https://www.credly.com/badges/e9a80704-2689-47a2-b71f-2bcd61c1aa18/public_url"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="certified unqork creator on credly (opens in a new tab)"
+          aria-label="certified unqork developer on credly (opens in a new tab)"
         >
           <img
             src={unqorkBadge}
@@ -175,10 +175,13 @@ export function HomeStage() {
             height="68"
             className="size-17 shrink-0 object-contain"
           />
-          <div className="min-w-0 leading-tight">
-            <div className="text-[11px] tracking-[0.08em] text-faint">
-              credly · 2026
-            </div>
+          <div className="flex min-w-0 flex-col items-end text-right leading-none">
+            <span className="text-nowrap text-t10 tracking-[0.08em] text-faint">
+              unqork · 2026
+            </span>
+            <span className="mt-1 text-t10 tracking-[0.06em] text-dim">
+              developer
+            </span>
           </div>
         </a>
       </div>

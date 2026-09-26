@@ -554,10 +554,11 @@ export const skills: Skill[] = [
     id: "unqork",
     name: "Unqork",
     icon: UnqorkIcon,
-    href: "https://www.credly.com/badges/5d0058f6-76f3-4f9a-ba0e-09986557bf7c/public_url",
+    href: "https://www.credly.com/badges/e9a80704-2689-47a2-b71f-2bcd61c1aa18/public_url",
     category: "tools",
     keywords: [
       "unqork",
+      "developer",
       "creator",
       "certification",
       "certified",
