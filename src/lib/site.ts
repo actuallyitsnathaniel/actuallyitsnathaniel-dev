@@ -9,7 +9,7 @@ export const SITE_DESCRIPTION =
 
 export const SAME_AS = [
   "https://github.com/actuallyitsnathaniel",
-  "https://linkedin.com/in/nathaniel-bowman",
+  "https://linkedin.com/in/actuallyitsnathaniel",
 ] as const;
 
 export const ADDRESS = {
@@ -145,9 +145,24 @@ export function jsonLdGraph() {
         "@id": `${SITE_URL}/#breadcrumb`,
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-          { "@type": "ListItem", position: 2, name: "About", item: `${SITE_URL}/about` },
-          { "@type": "ListItem", position: 3, name: "Developers", item: `${SITE_URL}/developers` },
-          { "@type": "ListItem", position: 4, name: "Docs", item: `${SITE_URL}/docs` },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "About",
+            item: `${SITE_URL}/about`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: "Developers",
+            item: `${SITE_URL}/developers`,
+          },
+          {
+            "@type": "ListItem",
+            position: 4,
+            name: "Docs",
+            item: `${SITE_URL}/docs`,
+          },
         ],
       },
     ],

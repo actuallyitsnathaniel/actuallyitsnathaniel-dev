@@ -64,7 +64,7 @@ export function useCommands(ctx: CommandContext) {
         case "linkedin":
         case "li":
           window.open(
-            "https://linkedin.com/in/nathaniel-bowman",
+            "https://linkedin.com/in/actuallyitsnathaniel",
             "_blank",
             "noopener",
           );

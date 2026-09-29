@@ -41,7 +41,7 @@ export function contactPayload() {
   return {
     email: SITE_EMAIL,
     github: "https://github.com/actuallyitsnathaniel",
-    linkedin: "https://linkedin.com/in/nathaniel-bowman",
+    linkedin: "https://linkedin.com/in/actuallyitsnathaniel",
     location: "Los Angeles, CA (PST)",
   };
 }
@@ -62,7 +62,10 @@ export function projectsText(query?: string): string {
 
 export function skillsText(query?: string): string {
   const matches = searchSkills(query);
-  return matches.map((s) => `${s.name} — ${s.category}`).join("\n") || "no matching tools";
+  return (
+    matches.map((s) => `${s.name} — ${s.category}`).join("\n") ||
+    "no matching tools"
+  );
 }
 
 export function aboutText(): string {
@@ -75,7 +78,11 @@ export function aboutText(): string {
 
 export function contactText(): string {
   const c = contactPayload();
-  return [`email: ${c.email}`, `github: ${c.github}`, `linkedin: ${c.linkedin}`].join("\n");
+  return [
+    `email: ${c.email}`,
+    `github: ${c.github}`,
+    `linkedin: ${c.linkedin}`,
+  ].join("\n");
 }
 
 export function apiCatalog(environment: "live" | "sandbox") {
@@ -113,7 +120,8 @@ export type NlHit = {
 export function searchHits(query: string): NlHit[] {
   const q = query.toLowerCase();
   const tokens = q.split(/[^a-z0-9]+/).filter((t) => t.length > 2);
-  const hit = (blob: string) => !tokens.length || tokens.some((t) => blob.includes(t));
+  const hit = (blob: string) =>
+    !tokens.length || tokens.some((t) => blob.includes(t));
   const hits: NlHit[] = [];
 
   const aboutBlob =

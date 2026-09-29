@@ -134,7 +134,7 @@ export function HomeStage() {
             </a>
             <a
               className="inline-flex items-center gap-2 px-3.5 py-2.25 border border-rule2 rounded-[3px] text-dim text-t12 tracking-[0.04em] transition-[color,border-color,background,transform] duration-150 hover:text-ink hover:border-ink hover:bg-[rgba(255,255,255,0.02)] no-underline"
-              href="https://linkedin.com/in/nathaniel-bowman"
+              href="https://linkedin.com/in/actuallyitsnathaniel"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="linkedin profile"
