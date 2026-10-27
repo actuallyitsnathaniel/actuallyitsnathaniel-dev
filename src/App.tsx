@@ -27,6 +27,7 @@ import { DevelopersStage, DocsStage, PrivacyStage } from "./stages/ProseStage";
 import type { RouterState } from "./hooks/useRouter";
 import { SECTION_MAP } from "./lib/sections";
 import { SITE_URL } from "./lib/site";
+import { useDevContent } from "./sanity/DevContentContext";
 
 function renderStage(
   state: RouterState,
@@ -71,6 +72,7 @@ const AppContent = () => {
   const { state, go, setFilter, toggleEntry } = useRouter();
   const { theme, crt, toggleCrt, setTheme } = useTheme();
   const { log } = useActivityLog();
+  const { siteDescription } = useDevContent();
   const isFirstRender = useRef(true);
   const hasBooted = useRef(false);
 
@@ -118,7 +120,10 @@ const AppContent = () => {
     <>
       <SEO
         title="Nathaniel Bowman — full-stack · infra · music software"
-        description="nathaniel bowman (actuallyitsnathaniel) — full-stack engineer, infra, and a soft spot for music software. day job at lightfeather; weekends are sites for musicians. public MCP and REST API."
+        description={
+          siteDescription ||
+          "nathaniel bowman (actuallyitsnathaniel) — full-stack engineer, infra, and a soft spot for music software. day job at lightfeather; weekends are sites for musicians. public MCP and REST API."
+        }
         url={`${SITE_URL}${SECTION_MAP[state.current].href}`}
         markdownHref={
           state.current === "home"

@@ -1,5 +1,5 @@
-import { skills } from "../Components/skills/skills-data";
 import type { Skill } from "../types/skill.types";
+import { useDevContent } from "../sanity/DevContentContext";
 
 interface ToolbeltStageProps {
   filter: string;
@@ -17,6 +17,7 @@ function matchesFilter(skill: Skill, query: string): boolean {
 }
 
 export function ToolbeltStage({ filter }: ToolbeltStageProps) {
+  const { skills } = useDevContent();
   const query = filter.toLowerCase().trim();
 
   const renderTool = (skill: Skill) => {

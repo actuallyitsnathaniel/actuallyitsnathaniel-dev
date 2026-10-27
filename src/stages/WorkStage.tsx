@@ -1,10 +1,11 @@
 import { useActivityLog } from "../context/ActivityLogContext";
-import { PROJECTS, type ProjectEntry } from "../lib/projects";
+import type { ProjectEntry } from "../lib/projects";
 import shotJlm from "../assets/images/work/jlm.webm";
 import shotSahil from "../assets/images/work/sahil.webm";
 import shotDave from "../assets/images/work/dave.webm";
 import shotJohn from "../assets/images/work/john.webm";
 import shotRyland from "../assets/images/work/ryland.webm";
+import { useDevContent } from "../sanity/DevContentContext";
 
 const SCREENSHOTS: Record<string, string> = {
   jlm: shotJlm,
@@ -15,8 +16,6 @@ const SCREENSHOTS: Record<string, string> = {
 };
 
 type WorkEntry = ProjectEntry;
-
-const ENTRIES: WorkEntry[] = PROJECTS;
 
 interface WorkStageProps {
   filter: string;
@@ -30,6 +29,7 @@ export function WorkStage({
   onToggleEntry,
 }: WorkStageProps) {
   const { log } = useActivityLog();
+  const { projects: ENTRIES } = useDevContent();
   const query = filter.toLowerCase().trim();
 
   const matchesEntry = (entry: WorkEntry): boolean => {

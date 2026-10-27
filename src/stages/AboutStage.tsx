@@ -1,6 +1,7 @@
-import { ABOUT } from "../lib/about";
+import { useDevContent } from "../sanity/DevContentContext";
 
 export function AboutStage() {
+  const { about: ABOUT } = useDevContent();
   return (
     <div className="grid grid-cols-1 gap-5.5">
       <h2>about</h2>
@@ -32,7 +33,7 @@ export function AboutStage() {
           {ABOUT.noteTitle}
         </h3>
         {ABOUT.note.map((paragraph) => (
-          <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+          <p key={paragraph.slice(0, 48) || "blank"}>{paragraph}</p>
         ))}
       </section>
     </div>

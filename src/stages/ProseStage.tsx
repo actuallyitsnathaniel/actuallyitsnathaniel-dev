@@ -1,4 +1,5 @@
-import { PROSE, type ProsePage } from "../lib/pages";
+import type { ProsePage } from "../lib/pages";
+import { useDevContent } from "../sanity/DevContentContext";
 
 export function ProseStage({ page }: { page: ProsePage }) {
   return (
@@ -12,13 +13,16 @@ export function ProseStage({ page }: { page: ProsePage }) {
 }
 
 export function DevelopersStage() {
-  return <ProseStage page={PROSE.developers} />;
+  const { prose } = useDevContent();
+  return <ProseStage page={prose.developers} />;
 }
 
 export function DocsStage() {
-  return <ProseStage page={PROSE.docs} />;
+  const { prose } = useDevContent();
+  return <ProseStage page={prose.docs} />;
 }
 
 export function PrivacyStage() {
-  return <ProseStage page={PROSE.privacy} />;
+  const { prose } = useDevContent();
+  return <ProseStage page={prose.privacy} />;
 }
